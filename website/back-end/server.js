@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const multer = require('multer')
 
 require('dotenv').config();
 
@@ -20,9 +21,11 @@ connection.once('open', () => {
 
 const clustersRouter = require('./routes/clusters');
 const usersRouter = require('./routes/users');
+const fileRouter = require('./routes/file-upload');
 
 app.use('/clusters', clustersRouter);
 app.use('/users', usersRouter);
+app.use('/file', fileRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
