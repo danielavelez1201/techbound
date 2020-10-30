@@ -1,10 +1,10 @@
 const multer = require('multer')
-
 const router = require('express').Router();
+applicationCache.use(express.static(__dirname + '../public'))
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, 'public')
+    cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' +file.originalname )
@@ -13,10 +13,8 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('file')
 
-
 router.route('/upload').post((req, res) => {
-    console.log("file");
-    console.log(req);
+
     upload(req, res, function (err) {
         if (err instanceof multer.MulterError) {
             return res.status(500).json(err)
