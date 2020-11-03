@@ -5,13 +5,13 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     email: {
         type: String,
-        required: true,
         unique: true,
         minlength: 3
     },
     firstName: String, 
     lastName: String, 
-    type: String
+    type: String,
+    clusters: [{type: mongoose.Schema.Types.ObjectId, ref: 'Cluster'}]
 }, {
     timestamps: true, //created, modified
 });

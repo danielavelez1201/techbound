@@ -8,6 +8,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const User = require('models/user.model');
 
+
 require('dotenv').config();
 
 const app = express();
@@ -45,9 +46,13 @@ passport.deserializeUser(User.deserializeUser());
 
 const clustersRouter = require('./routes/clusters');
 const usersRouter = require('./routes/users');
+//const fileRouter = require('./routes/file-upload');
+//const scanRouter = require('./routes/file-scan');
 
 app.use('/clusters', clustersRouter);
 app.use('/users', usersRouter);
+//app.use('/file', fileRouter);
+//app.use('/scan', scanRouter);
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
