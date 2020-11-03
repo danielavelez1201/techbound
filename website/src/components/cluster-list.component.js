@@ -3,14 +3,30 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 
+function enlargen(e) {
+  e.target.style.width = "110%";
+}
+
+function shrink(e) {
+  e.target.style.width = "90%";
+}
+
 const renderCard = (card, index) => {
+  const redirectLink = "/" + card.title;
   return (
-    <Card key={index} className="box">
-      <Card.Body>
-        <Card.Title>{card.title}</Card.Title>
-        <Card.Text>{card.text}</Card.Text>
-      </Card.Body>
-    </Card>
+    <Button onClick={() => history.push("/Products")}>
+      <Card
+        onMouseLeave={shrink}
+        onMouseOver={enlargen}
+        key={index}
+        className="box"
+      >
+        <Card.Body>
+          <Card.Title>{card.title}</Card.Title>
+          <Card.Text>{card.text}</Card.Text>
+        </Card.Body>
+      </Card>
+    </Button>
   );
 };
 
