@@ -1,6 +1,6 @@
 const multer = require('multer')
 const router = require('express').Router();
-applicationCache.use(express.static(__dirname + '../public'))
+//applicationCache.use(express.static(__dirname + '../public'))
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
