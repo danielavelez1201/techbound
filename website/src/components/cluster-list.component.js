@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const Cluster = props => (
   <tr>
+    <td>{props.cluster.logo}</td>
     <td>{props.cluster.title}</td>
   </tr>
 )
