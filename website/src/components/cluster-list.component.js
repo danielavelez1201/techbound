@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 function enlargen(e) {
   e.target.style.width = "110%";
@@ -14,19 +15,17 @@ function shrink(e) {
 const renderCard = (card, index) => {
   const redirectLink = "/" + card.title;
   return (
-    <Button onClick={() => history.push("/Products")}>
-      <Card
-        onMouseLeave={shrink}
-        onMouseOver={enlargen}
-        key={index}
-        className="box"
-      >
-        <Card.Body>
-          <Card.Title>{card.title}</Card.Title>
-          <Card.Text>{card.text}</Card.Text>
-        </Card.Body>
-      </Card>
-    </Button>
+    <Card
+      onMouseLeave={shrink}
+      onMouseOver={enlargen}
+      key={index}
+      className="box"
+    >
+      <Card.Body>
+        <Card.Title>{card.title}</Card.Title>
+        <Card.Text>{card.text}</Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 
