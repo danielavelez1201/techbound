@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import ClusterList from "./components/cluster-list.component";
-import SignUp from './components/sign-up-component';
+import SignUp from './components/sign-up.component';
 import FileUpload from "./components/file-upload.component";
 import Header from "./components/header.component";
 import ClusterCards from "./components/cluster-cards.component";
