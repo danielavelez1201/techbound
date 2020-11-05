@@ -7,9 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import MoreDeets from "./more-deets-component.js";
-import { Redirect } from "react-router-dom";
-
 export default class Basics extends React.Component {
     render() {
         if (this.props.currentStep !== 1) {
@@ -19,7 +16,7 @@ export default class Basics extends React.Component {
             <div>
                 <Form>
                     <Form.Group>Email (to send results)
-                        <Form.Control type="text" name="email" value={this.props.email} onChange={this.props.handleChange} required />
+                        <Form.Control type="text" name="email" value={this.props.email} placeholder="johnny@college.edu" onChange={this.props.handleChange} required />
                     </Form.Group>
                     <Form.Group>Resume
                         <Form.File type="file" name="resume" value={this.props.resume} onChange={this.props.handleChange} required />

@@ -1,11 +1,9 @@
 import React from "react";
-import Select from 'react-select';
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Importing a few elements from react-bootstrap for design aesthetics
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Basics from "./basics-component";
 import MoreDeets from "./more-deets-component";
@@ -29,8 +27,8 @@ export default class SignUp extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
-        this.register = this.register.bind(this);
         this._next = this._next.bind(this)
+        this.register = this.register.bind(this);
     }
 
     handleChange(e) {
