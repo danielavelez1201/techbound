@@ -16,7 +16,6 @@ function App() {
     <Router>
       <div className="container">
         <br />
-        <Route path="/" exact component={ClusterList} />
         <Route path="/sign-up" exact component={SignUp} />
         {/* <Route path="/basics" exact component={Basics} />
         <Route path="/more-deets" exact component={MoreDeets} />
