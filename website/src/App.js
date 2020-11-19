@@ -10,6 +10,7 @@ import ChooseClusters from "./components/choose-clusters.component";
 import SignUp from "./components/sign-up.component";
 import Header from "./components/header.component";
 import ClusterCards from "./components/cluster-cards.component";
+import BrowsingList from "./components/browsing-list.component";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <div className="container">
         <br />
         <Route path="/sign-up" exact component={SignUp} />
+        <Route path="/browsing-list" exact component={BrowsingList} />
         {/* <Route path="/basics" exact component={Basics} />
         <Route path="/more-deets" exact component={MoreDeets} />
         <Route path="/choose-clusters" exact component={ChooseClusters} /> */}
@@ -25,7 +27,7 @@ function App() {
         <br></br>
         <br></br>
         <br></br>
-        <ClusterList />
+        <Route path="/" exact component={ClusterList} />
       </div>
     </Router>
   );
