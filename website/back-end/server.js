@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const passport = require("passport");
+//const passport = require("passport");
 const bodyParser = require("body-parser");
 const LocalStrategy = require("passport-local");
-const passportLocalMongoose = require("passport-local-mongoose");
+//const passportLocalMongoose = require("passport-local-mongoose");
 
 //const User = require("models/user.model");
 
@@ -28,6 +28,7 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
+/*
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   require("express-session")({
@@ -36,9 +37,10 @@ app.use(
     saveUninitialized: false,
   })
 );
+*/
 
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 //passport.use(new LocalStrategy(User.authenticate()));
 //passport.serializeUser(User.serializeUser());
