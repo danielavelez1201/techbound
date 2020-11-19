@@ -6,14 +6,14 @@ import Nav from "react-bootstrap/Nav";
 export default class Header extends Component {
   render() {
     return (
-      <div>
-        <div>
+        <div className= "Navbar">
           <Navbar
             collapseOnSelect
             fixed="top"
             expand="lg"
             bg="dark"
             variant="dark"
+            className= "Navbar"
           >
             <Navbar.Brand href="#home">TECHBOUND</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -30,13 +30,6 @@ export default class Header extends Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div className="hero-container">
-          <h1>Find a tech internship.</h1>
-        </div>
-      </div>
     );
   }
 }

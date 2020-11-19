@@ -4,20 +4,16 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-function enlargen(e) {
-  e.target.style.width = "110%";
-}
-
-function shrink(e) {
-  e.target.style.width = "90%";
-}
+const cardInfo = [
+  { title: "Hi", text: "boop" },
+  { title: "Hello", text: "beep" },
+  { title: "Dog", text: "bop" },
+];
 
 const renderCard = (card, index) => {
   const redirectLink = "/" + card.title;
   return (
     <Card
-      onMouseLeave={shrink}
-      onMouseOver={enlargen}
       key={index}
       className="box"
     >
@@ -48,13 +44,12 @@ export default class ClusterList extends Component {
   }
 
   clusterList() {
-    return <div className="grid">{this.state.clusters.map(renderCard)}</div>;
+    return <div className="grid">{cardInfo.map(renderCard)}</div>;
   }
 
   render() {
     return (
       <div>
-        <h3>Explore Internships Based on Mission Cluster</h3>
         {this.clusterList()}
       </div>
     );
