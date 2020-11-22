@@ -20,6 +20,7 @@ function App() {
             <Route path="/" exact component={ClusterList} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/file" exact component={FileUpload} />
+            <Route path="/browse" component={BrowsingList} />
           </Switch>
         </div>
       </div>

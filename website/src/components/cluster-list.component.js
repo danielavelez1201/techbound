@@ -5,25 +5,70 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 const cardInfo = [
-  { title: "Revolutionize transportation", text: "" },
-  { title: "Advance healthcare", text: "" },
-  { title: "Reimagine education", text: "" },
-  { title: "Empower businesses through advertising", text: "" },
-  { title: "Reimagine real estate and property management", text: "" },
-  { title: "Empower individuals and businesses financially", text: "" },
-  { title: "Advance biotech solutions", text: "" },
   {
-    title: "Empower individuals and businesses with data and analytics",
+    title: "Transportation",
+    subtitle: "Revolutionize transportation",
     text: "",
   },
-  { title: "Reimagine supply chains and delivery", text: "" },
-  { title: "Enable satellite data capture", text: "" },
-  { title: "Develop more accessible and efficient technology", text: "" },
-  { title: "Revolutionize child care", text: "" },
-  { title: "Provide music and video entertainment", text: "" },
-  { title: "Enable employment services", text: "" },
-  { title: "Enable leisure and recreation", text: "" },
-  { title: "Develop social and community platforms", text: "" },
+  { title: "Healthcare", subtitle: "Advance healthcare", text: "" },
+  { title: "Education", subtitle: "Reimagine education", text: "" },
+  {
+    title: "Advertising",
+    subtitle: "Empower businesses through advertising",
+    text: "",
+  },
+  {
+    title: "Real estate & property management",
+    subtitle: "Reimagine real estate and property management",
+    text: "",
+  },
+  {
+    title: "Financial technology",
+    subtitle: "Empower individuals and businesses financially",
+    text: "",
+  },
+  { title: "Biotechnology", subtitle: "Advance biotech solutions", text: "" },
+  {
+    title: "Data and analytics",
+    subtitle: "Empower individuals and businesses with data and analytics",
+    text: "",
+  },
+  {
+    title: "Supply chains & delivery",
+    subtitle: "Reimagine supply chains and delivery",
+    text: "",
+  },
+  {
+    title: "Satellite data capture",
+    subtitle: "Enable satellite data capture",
+    text: "",
+  },
+  {
+    title: "Technology",
+    subtitle: "Develop more accessible and efficient technology",
+    text: "",
+  },
+  { title: "Child care", subtitle: "Revolutionize child care", text: "" },
+  {
+    title: "Music & entertainment",
+    subtitle: "Provide music and video entertainment",
+    text: "",
+  },
+  {
+    title: "Employment services",
+    subtitle: "Enable employment services",
+    text: "",
+  },
+  {
+    title: "Leisure & recreation",
+    subtitle: "Enable leisure and recreation",
+    text: "",
+  },
+  {
+    title: "Social & community platforms",
+    subtitle: "Develop social and community platforms",
+    text: "",
+  },
 ];
 
 function enlargen(e) {
@@ -33,15 +78,21 @@ function enlargen(e) {
 function shrink(e) {
   e.target.style.width = "90%";
 }
-
 function ClusterList() {
   const [clusters, setClusters] = useState([]);
   let history = useHistory();
 
-  function handleClick(clusterName) {
+  const handleClick = async (clusterName) => {
     console.log("function");
-    history.push("/" + clusterName);
-  }
+
+    const apiURL =
+      "https://jobs.github.com/positions.json?description=" + clusterName;
+    const response = await axios.get(apiURL);
+    history.push({
+      pathname: "/browse/" + clusterName,
+      state: { internships: response.data },
+    });
+  };
 
   const renderCard = (card, index) => {
     return (
@@ -54,7 +105,7 @@ function ClusterList() {
       >
         <Card.Body>
           <Card.Title>{card.title}</Card.Title>
-          <Card.Text>{card.text}</Card.Text>
+          <Card.Text>{card.subtitle}</Card.Text>
         </Card.Body>
       </Card>
     );

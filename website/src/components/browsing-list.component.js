@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Sidebar from "react-sidebar";
+import axios from "axios";
+import parse from "html-react-parser";
 
 function BrowsingList() {
   const [open, setOpen] = useState(false);
-
-  const links = [];
+  const [internships, setInternships] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
-    for (let ind = 0; ind < 10; ind++) {
-      links.push(
-        <a key={ind} href="#">
-          Mock menu item {ind}
-        </a>
-      );
-    }
-  }, []);
+    console.log(location.pathname);
+    console.log(location.state.internships);
+    setInternships(location.state.internships);
+  });
 
   function clusterList() {
     return <p>Hello</p>;
@@ -23,14 +21,24 @@ function BrowsingList() {
   return (
     <div>
       <h3>Explore Internships Based on Mission Cluster</h3>
-      <Sidebar
-        className="Sidebar"
-        sidebar={links}
-        styles={{ sidebar: { background: "white" } }}
-        open={true}
-        docked={true}
-        defaultSidebarWidth={1}
-      ></Sidebar>
+      <div>
+        {internships &&
+          internships.map((internship, index) => {
+            const title = internship.title;
+
+            var htmlDescription = internship.description;
+            var reactDescription = parse(htmlDescription);
+
+            return (
+              <div className="internship">
+                <h4>{title}</h4>
+                {reactDescription}
+                <br></br>
+              </div>
+            );
+          })}
+      </div>
+      <div></div>
     </div>
   );
 }
