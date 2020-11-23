@@ -7,8 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import ChooseClusters from "./choose-clusters.component";
-
 export default class MoreDeets extends React.Component {
   render() {
     const {

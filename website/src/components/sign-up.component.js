@@ -5,7 +5,6 @@ import Select from "react-select";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Importing a few elements from react-bootstrap for design aesthetics
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Basics from "./basics.component";
 import MoreDeets from "./more-deets.component";

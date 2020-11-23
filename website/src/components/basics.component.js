@@ -7,9 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import MoreDeets from "./more-deets.component.js";
-import { Redirect } from "react-router-dom";
-
 export default class Basics extends React.Component {
   render() {
     if (this.props.currentStep !== 1) {

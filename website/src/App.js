@@ -3,11 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
-import ClusterList from "./components/cluster-list.component";
 import SignUp from './components/sign-up.component';
 import FileUpload from "./components/file-upload.component";
 import Header from "./components/header.component";
 import ClusterCards from "./components/cluster-cards.component";
+import Landing from "./components/landing-page.component";
 
 function App() {
   return (
@@ -16,15 +16,12 @@ function App() {
         <Header />
         <div className="container">
           <Switch>
-            <Route path="/" exact component={ClusterList} />
+            <Route path="/" exact component={Landing} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/file" exact component={FileUpload} />
           </Switch>
         </div>
       </div>
-      {/*       
-        <ClusterList />
-       */}
     </Router>
   );
 }
