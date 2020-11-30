@@ -130,4 +130,5 @@ function ClusterList() {
   );
 }
 
+export { cardInfo };
 export default ClusterList;
