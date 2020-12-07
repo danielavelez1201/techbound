@@ -7,94 +7,88 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export default class MoreDeets extends React.Component {
-  render() {
-    const {
-      currentStep,
-      handleChange,
-      firstname,
-      lastname,
-      password,
-      confirmation,
-      linkedin,
-      github,
-      onNext,
-    } = this.props;
-    if (currentStep !== 2) {
-      return null;
-    }
+const MoreDeets = ({ setForm, formData, navigation }) => {
+    const { firstname, lastname, password, confirmation, github, linkedin } = formData;
+    const { previous, next } = navigation;
+
     return (
-      <div>
-        <Form>
-          <Form.Group>
-            First Name
-            <Form.Control
-              type="text"
-              name="firstname"
-              value={firstname}
-              placeholder="Johnny"
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            Last Name
-            <Form.Control
-              type="text"
-              name="lastname"
-              value={lastname}
-              placeholder="Appleseed"
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            Password
-            <Form.Control
-              type="password"
-              name="password"
-              value={password}
-              placeholder="6+ characters"
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            Confirm Password
-            <Form.Control
-              type="password"
-              name="confirmation"
-              value={confirmation}
-              placeholder="6+ characters"
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            GitHub Link (optional)
-            <Form.Control
-              type="text"
-              name="github"
-              value={github}
-              placeholder="https://github.com/johnny"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            LinkedIn Profile Link (optional)
-            <Form.Control
-              type="text"
-              name="linkedin"
-              value={linkedin}
-              placeholder="https://www.linkedin.com/in/johnnyappleseed/"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit" onClick={onNext}>
-            Next
-          </Button>
-        </Form>
-      </div>
+        <div>
+            <Form>
+                <Form.Group>
+                    First Name
+                    <Form.Control
+                    type="text"
+                    name="firstname"
+                    placeholder="Johnny"
+                    value={firstname}
+                    onChange={setForm}
+                    required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    Last Name
+                    <Form.Control
+                    type="text"
+                    name="lastname"
+                    placeholder="Appleseed"
+                    value={lastname}
+                    onChange={setForm}
+                    required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    Password
+                    <Form.Control
+                    type="password"
+                    name="password"
+                    placeholder="6+ characters"
+                    value={password}
+                    onChange={setForm}
+                    required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    Confirm Password
+                    <Form.Control
+                    type="password"
+                    name="confirmation"
+                    placeholder="6+ characters"
+                    value={confirmation}
+                    onChange={setForm}
+                    required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    GitHub Link (optional)
+                    <Form.Control
+                    type="text"
+                    name="github"
+                    placeholder="https://github.com/johnny"
+                    value={github}
+                    onChange={setForm}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    LinkedIn Profile Link (optional)
+                    <Form.Control
+                    type="text"
+                    name="linkedin"
+                    placeholder="https://www.linkedin.com/in/johnnyappleseed/"
+                    value={linkedin}
+                    onChange={setForm}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Button variant="primary" onClick={previous}>
+                        Previous
+                    </Button>
+                    <Button variant="primary" onClick={next}>
+                        Next
+                    </Button>
+                </Form.Group>
+            </Form>
+        </div>
     );
-  }
-}
+};
+
+export default MoreDeets;

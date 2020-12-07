@@ -1,5 +1,4 @@
-import React from "react";
-import Select from 'react-select';
+import React, { useState } from "react";
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,28 +6,79 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Importing a few elements from react-bootstrap for design aesthetics
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import Alert from "react-bootstrap/Alert";
 
-export default class ChooseClusters extends React.Component {
-    render() {
-        const all_clusters = [{value: "language", label: "Language"}, 
-                              {value: "security_and_defense", label: "Security and Defense"}, 
-                              {value: "education", label: "Education"}, 
-                              {value: "media_and_entertainment", label: "Media and Entertainment"}];
-        const { currentStep, handleChange, clusters } = this.props;
-        if (currentStep !== 3) {
-            return null
-        }
+import { cardInfo } from "./cluster-list.component";
+import axios from "axios";
+
+const ChooseClusters = ({ setForm, formData, navigation }) => {
+    const [clusters, setClusters] = useState(cardInfo);
+    const { previous } = navigation;
+    // const { clusters } = formData;
+
+    // useEffect(() => {
+    //     axios
+    //     .get("http://localhost:5000/clusters/")
+    //     .then(response => setClusters(response.data))
+    //     .catch(error => console.log(error));
+    // }, [])
+
+    const toggleSelect = cluster => {
+        setClusters(
+            clusters.map(c => {
+                if (cluster === c) {
+                    if (c.selected === false && clusters.filter(c => c.selected).length === 3) {
+                        console.log("cannot select more than 3 clusters")
+                    } else {
+                        c.selected = !c.selected;
+                    }
+                }
+                return c;
+            }),
+        );
+    };
+
+    const renderCard = (card, index) => {
         return (
-            <div>
-                <Form>
-                    <Form.Group>Clusters (Select 3)
-                        <Select isMulti name="clusters" value={clusters} options={all_clusters} onChange={handleChange} />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Register
-                    </Button>
-                </Form>
-            </div>
-        )
+            <Card key={index} className="box transition" onClick={() => toggleSelect(card)} style={card.selected ? { borderColor: "green" } : {}}>
+                <Card.Body>
+                    <Card.Title>{card.title}</Card.Title>
+                    <Card.Text>{card.subtitle}</Card.Text>
+                </Card.Body>
+            </Card>
+        );
+    };
+
+    const handleSubmit = () => {
+        if (clusters.filter(c => c.selected).length === 3) {
+            formData.clusters = clusters.filter(c => c.selected);
+            axios
+            .post("http://localhost:5000/users/add", formData)
+            .then(res => console.log(res.data))
+        }
     }
-}
+
+    return (
+        <div>
+            <Form>
+                <Form.Group>
+                    Choose 3 mission clusters that you're interested in
+                    We can help you find what you should highlight when you apply to clusters.
+                    <Alert variant="success">You have selected {clusters.filter(c => c.selected).length} out of  your 3 clusters.</Alert>
+                    <div className="grid">{cardInfo.map(renderCard)}</div>
+                </Form.Group>
+                <Form.Group>
+                    <Button variant="primary" onClick={previous}>
+                        Previous
+                    </Button>
+                    <Button variant="primary" onClick={() => handleSubmit()}>
+                        Register!
+                    </Button>
+                </Form.Group>
+            </Form>
+        </div>
+    );
+};
+
+export default ChooseClusters;

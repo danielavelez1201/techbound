@@ -12,7 +12,7 @@ function Landing(props) {
         init(myElement, { showCursor: false, strings: clusterTitles, loop: true })
     }, [])
     
-    // const [clusters, setClusters] = useState(clusterTitles)
+    // const [clusters, setClusters] = useState([])
 
     // useEffect(() => {
     //     axios
