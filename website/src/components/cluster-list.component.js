@@ -64,11 +64,6 @@ const cardInfo = [
     subtitle: "Enable leisure and recreation",
     text: "",
   },
-  {
-    title: "Social & community platforms",
-    subtitle: "Develop social and community platforms",
-    text: "",
-  },
 ];
 
 function enlargen(e) {
@@ -101,7 +96,7 @@ function ClusterList() {
         onMouseOver={enlargen}
         key={index}
         className="box transition"
-        onClick={() => handleClick(card.title)}
+        onClick={() => handleClick(card.subtitle)}
       >
         <Card.Body>
           <Card.Title>{card.title}</Card.Title>

@@ -48,9 +48,11 @@ app.use(
 
 const clustersRouter = require("./routes/clusters");
 const usersRouter = require("./routes/users");
+const signS3Router = require("./routes/s3");
 //const fileRouter = require('./routes/file-upload');
 //const scanRouter = require('./routes/file-scan');
 
+app.use("/sign-s3", signS3Router);
 app.use("/clusters", clustersRouter);
 app.use("/users", usersRouter);
 //app.use('/file', fileRouter);

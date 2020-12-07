@@ -9,6 +9,7 @@ import FileUpload from "./components/file-upload.component";
 import Header from "./components/header.component";
 import ClusterCards from "./components/cluster-cards.component";
 import BrowsingList from "./components/browsing-list.component";
+import FileSave from "./components/file-save-2.component";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={ClusterList} />
             <Route path="/sign-up" exact component={SignUp} />
+            <Route path="/file-save" exact component={FileSave} />
             <Route path="/file" exact component={FileUpload} />
             <Route path="/browse" component={BrowsingList} />
           </Switch>
