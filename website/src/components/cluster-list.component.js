@@ -117,7 +117,7 @@ function ClusterList() {
         onMouseOver={enlargen}
         key={index}
         className="box transition"
-        onClick={() => handleClick(card.title)}
+        onClick={() => handleClick(card.subtitle)}
       >
         <Card.Body>
           <Card.Title>{card.title}</Card.Title>
