@@ -2,11 +2,6 @@ const router = require("express").Router();
 var aws = require("aws-sdk");
 aws.config.update({ region: "us-west-2" });
 
-aws.config = {
-  secretAccessKey: "YhirouUihghSdVxxBFyaw3lygSAK+sS4U22CNI5m",
-  accessKeyId: "AKIAIYAYTSHWIZHZVOTA",
-};
-
 var s3 = new aws.S3({ apiVersion: "2006-03-01" });
 
 const signS3 = (req, res) => {
