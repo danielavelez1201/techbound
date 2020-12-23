@@ -51,12 +51,14 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
     };
 
     const handleSubmit = () => {
+
         if (clusters.filter(c => c.selected).length === 3) {
             formData.clusters = clusters.filter(c => c.selected);
             axios
             .post("http://localhost:5000/users/add", formData)
             .then(res => console.log(res.data))
         }
+      
     }
 
     return (
