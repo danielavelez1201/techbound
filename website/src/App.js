@@ -9,6 +9,7 @@ import ClusterCards from "./components/cluster-cards.component";
 import BrowsingList from "./components/browsing-list.component";
 import Landing from "./components/landing-page.component";
 import FileSave from "./components/file-save-2.component";
+import Profile from "./components/profile.component";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/file-save" exact component={FileSave} />
             <Route path="/file" exact component={FileUpload} />
             <Route path="/browse" component={BrowsingList} />
+            <Route path="/profile" component={Profile} />
           </Switch>
         </div>
       </div>
