@@ -1,7 +1,6 @@
 import ReactDom from "react-dom";
 import ReactS3 from "react-s3";
 import S3FileUpload from "react-s3";
-import aws from "../keys";
 import { uploadImage } from "../s3";
 import { useState } from "react";
 import axios from "axios";
@@ -32,6 +31,7 @@ function FileSave() {
       uploadImage(file)
         .then((url) => {
           console.log("post action");
+          console.log(file);
         })
         .catch((error) => {
           console.log("error");
