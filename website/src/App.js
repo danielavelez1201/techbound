@@ -12,7 +12,8 @@ import FileSave from "./components/file-save-2.component";
 import Profile from "./components/profile.component";
 import Login from "./components/login.component";
 import Logout from "./components/logout.component";
-import { SessionContext, getSessionCookie, setSessionCookie }from "./sessions";
+import InternshipListings from "./components/internship-listings.component";
+import { SessionContext, getSessionCookie, setSessionCookie } from "./sessions";
 import * as Cookies from "js-cookie";
 import { Button } from "react-bootstrap";
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/profile" exact component={Profile} />
             <Route path="/login" exact component = {Login} />
             <Route path="/logout" exact component = {Logout} />
+            <Route path="/clusters/language-learning" component = {InternshipListings} />
           </Switch>
         </div>
       </div>
