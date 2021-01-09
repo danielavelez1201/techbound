@@ -5,8 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Basics from "./basics.component";
+import SignUp from "./sign-up.component";
 
 import axios from "axios";
+
 
 const InternshipListings = () => {
     const [cluster, setCluster] = useState("Language Learning");
@@ -51,17 +53,20 @@ const InternshipListings = () => {
             <div className="container" style={{ columnCount: 2 }}>{internships.map(renderCard)}</div>
             <br />
             <div>
-                Get more from Techbound
+                <strong>Get more from Techbound</strong>
                 <br />
                 <Container>
                     <Row>
                         <Col>
                             <ol>
                                 <li>
-                                    See more internship postings
+                                    <p>See more internship postings</p>
+                                    <img src="https://via.placeholder.com/140x100" alt="" />
                                 </li>
+                                <br />
                                 <li>
-                                    Get resume analyzed and tailored to your clusters
+                                    <p>Get resume analyzed and tailored to your clusters</p>
+                                    <img src="https://via.placeholder.com/140x100" alt="" />
                                 </li>
                             </ol>
                         </Col>

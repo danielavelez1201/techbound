@@ -16,6 +16,7 @@ import InternshipListings from "./components/internship-listings.component";
 import { SessionContext, getSessionCookie, setSessionCookie } from "./sessions";
 import * as Cookies from "js-cookie";
 import { Button } from "react-bootstrap";
+import Basics from "./components/basics.component";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <Route path="/login" exact component = {Login} />
             <Route path="/logout" exact component = {Logout} />
             <Route path="/clusters/language-learning" component = {InternshipListings} />
+            <Route path="/basics" exact component = {Basics} />
           </Switch>
         </div>
       </div>

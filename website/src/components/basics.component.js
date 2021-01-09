@@ -2,14 +2,29 @@ import React from "react";
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useForm } from "react-hooks-helper";
+import { useHistory } from "react-router-dom";
 
 // Importing a few elements from react-bootstrap for design aesthetics
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const Basics = ({ setForm, formData, navigation }) => {
+const Basics = () => {
+  const defaultData = {
+    email: "",
+    resume: ""
+  }
+  const [formData, setForm] = useForm(defaultData);
   const { email, resume } = formData;
-  const { next } = navigation;
+
+  let history = useHistory();
+  const handleClick = () => {
+    console.log(history);
+    history.replace({
+      pathname: "/sign-up",
+      state: { email: email, resume: resume }
+    });
+  };
 
   return (
     <div>
@@ -35,7 +50,7 @@ const Basics = ({ setForm, formData, navigation }) => {
             required
           />
         </Form.Group>
-        <Button variant="primary" onClick={next}>
+        <Button variant="primary" onClick={handleClick}>
           Get Started
         </Button>
       </Form>
