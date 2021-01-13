@@ -4,6 +4,8 @@ import { init } from "ityped"
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ClusterList, { cardInfo } from "./cluster-list.component";
+import { Col, Jumbotron, Row } from "react-bootstrap";
+import Basics from "./basics.component";
 
 function Landing(props) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
@@ -55,6 +57,7 @@ function Landing(props) {
         <div className='white-block'>
             <div className= 'content'>
                 <h2>Let us look at your resume and help you tailor it to your dream clusters.</h2>
+                 <Basics />
             </div>
         </div>
     </>

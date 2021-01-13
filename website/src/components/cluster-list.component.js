@@ -4,6 +4,10 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+const dotenv = require('dotenv');
+
+dotenv.config({ path: './config/config.env' })
+
 const cardInfo = [
   {
     title: "Transportation",
@@ -96,28 +100,44 @@ function shrink(e) {
 }
 function ClusterList() {
   const [clusters, setClusters] = useState([]);
+  const [allCards, setAllCards] = useState(false);
   let history = useHistory();
 
-  const handleClick = async (clusterName) => {
-    console.log("function");
+  const [internships, setInternships] = useState([{
+    "last-updated": "",
+    notes: "", 
+    name: "", 
+    link: "", 
+    location: ""
+  }])
 
-    const apiURL =
-      "https://jobs.github.com/positions.json?description=" + clusterName;
-    const response = await axios.get(apiURL);
+
+  useEffect(() => {
+    const internships = async () => {
+      const response = await axios.get("http://localhost:5000/internships");
+      setInternships(response.data);
+    }
+    internships();
+  }, []);
+
+  console.log(internships)
+
+
+  const handleClick = async (clusterName) => {
+    const response = await axios.get("http://localhost:5000/internships")
     history.push({
       pathname: "/browse/" + clusterName,
-      state: { internships: response.data },
+      state: { internships: internships },
     });
   };
 
   const renderCard = (card, index) => {
     return (
       <Card
-        onMouseLeave={shrink}
-        onMouseOver={enlargen}
         key={index}
         className="box transition"
         onClick={() => handleClick(card.subtitle)}
+        style={{ width: '18rem', breakInside: "avoid" }}
       >
         <Card.Body>
           <Card.Title>{card.title}</Card.Title>
@@ -126,6 +146,10 @@ function ClusterList() {
       </Card>
     );
   };
+
+  const toggleCards = () => {
+    setAllCards(!allCards)
+  }
 
   useEffect(() => {
     axios
@@ -140,7 +164,9 @@ function ClusterList() {
 
   return (
     <div>
-      <div className="grid">{cardInfo.map(renderCard)}</div>
+      <h3>Explore Internships Based on Mission Cluster</h3>
+      <div className="container" style={{ columnCount: 3 }}>{cardInfo.slice(0, 9).map(renderCard)}</div>
+      <div onClick={toggleCards}>See {allCards ? "Less" : "More"}</div>
     </div>
   );
 }

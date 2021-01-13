@@ -18,21 +18,29 @@ function BrowsingList() {
   function clusterList() {
     return <p>Hello</p>;
   }
+
+  function getDomain(str) {
+    const str1 = str.split('//').pop();
+    return str1.split('/')[0];
+  }
+
   return (
     <div>
       <h3>Explore Internships Based on Mission Cluster</h3>
       <div>
         {internships &&
           internships.map((internship, index) => {
-            const title = internship.title;
 
-            var htmlDescription = internship.description;
-            var reactDescription = parse(htmlDescription);
+            const domain = getDomain(internship.link);
 
             return (
               <div className="internship">
-                <h4>{title}</h4>
-                {reactDescription}
+                {internship.name}
+                <a href = {internship.link} >Link</a>
+                {internship.notes}
+                
+
+                <img src={"https://logo.clearbit.com/" + domain}></img>
                 <br></br>
               </div>
             );

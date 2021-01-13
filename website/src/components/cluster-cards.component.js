@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "../Box.css";
 const cardInfo = [
-  { title: "Hi", text: "boop" },
+  { title: "Hi", text: "boop", image: "blah"},
   { title: "Hello", text: "beep" },
   { title: "Dog", text: "bop" },
 ];
@@ -14,6 +14,7 @@ const renderCard = (card, index) => {
       <Card.Body>
         <Card.Title>{card.title}</Card.Title>
         <Card.Text>{card.text}</Card.Text>
+        <img src={card.image}></img>
       </Card.Body>
     </Card>
   );

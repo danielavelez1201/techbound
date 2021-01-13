@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const LocalStrategy = require("passport-local");
 //const passportLocalMongoose = require("passport-local-mongoose");
+const dotenv = require('dotenv');
 
+dotenv.config({ path: './config/config.env' })
 //const User = require("models/user.model");
-
-require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,7 +21,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
-const uri = process.env.ATLAS_URI;
+const uri = "mongodb+srv://dvelez:1234@dev.8tkwb.mongodb.net/dev?retryWrites=true";
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
@@ -51,10 +51,14 @@ const usersRouter = require("./routes/users");
 const signS3Router = require("./routes/s3");
 //const fileRouter = require('./routes/file-upload');
 //const scanRouter = require('./routes/file-scan');
+const auth = require("./routes/auth");
+const internshipRouter = require("./routes/internships");
 
 app.use("/sign-s3", signS3Router);
 app.use("/clusters", clustersRouter);
 app.use("/users", usersRouter);
+app.use('/auth', auth);
+app.use('/internships', internshipRouter);
 //app.use('/file', fileRouter);
 //app.use('/scan', scanRouter);
 

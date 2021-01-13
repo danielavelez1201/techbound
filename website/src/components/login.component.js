@@ -1,38 +1,54 @@
-import React, { useState } from "react";
-import { setSessionCookie } from "../sessions";
+import React from 'react';
+import { Link, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+import { login } from '../actions/action.auth';
+import { useState } from "react";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
-  const handleSubmit = async e => {
-    console.log("submitting");
-    e.preventDefault();
-    setLoading(true);
-    // NOTE request to api login here instead of this fake promise
-    //await new Promise(r => setTimeout(r(), 1000));
-    setSessionCookie(e.target.value);
-    setLoading(false);
-  };
+function Login () {
+    const [loginData, setLoginData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+    const onChange = (e) => 
+    setLoginData({...loginData, [e.target.name]: e.target.value})
 
-  const actionSetEmail = (event) => {
-      setEmail(event.target.value);
-  }
+    const onSubmit = (e) => {
+        e.preventDefault();
+        login(name, email, password);
+    }
+    const { name, email, password} = loginData;
+    return (
+        <div>
+        <h1> Sign in to your account </h1>
+        <form onSubmit = {(e) => onSubmit(e)}>
+            <input 
+            type="text" 
+            onChange={(e) => onChange(e)} 
+            autoComplete="on" 
+            name="name" 
+            placeholder="name"/> 
+            <br />
+            <input 
+            type="email" 
+            onChange={(e) => onChange(e)} 
+            autoComplete="on" 
+            name="email" 
+            placeholder="email here"/> 
+            <input 
+            type="password" 
+            onChange={(e) => onChange(e)} 
+            autoComplete="on" 
+            name="password" 
+            placeholder="password"/> 
+            <button type="submit">LOGIN</button>
 
-  if (loading) {
-    return <h4>Logging in...</h4>;
-  }
+        </form>
+        <br />
+        <h6> Don't have an account? <Link to="/signup">Create Account</Link></h6>
 
-  return (
-    <div style={{ marginTop: "1rem" }}>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Enter email address"
-        />
-        <input type="submit" value="Login" />
-      </form>
-    </div>
-  );
-};
+        </div>
+    )
+}
 
-export default Login;
+export default connect(null, {login})(Login);

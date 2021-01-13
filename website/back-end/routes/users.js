@@ -8,9 +8,8 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
-  console.log("in route");
-  console.log(req.body);
+router.route('/add').post((req, res, next) => {
+
   const formData = req.body;
   const clusterData = [];
 
@@ -27,35 +26,36 @@ router.route('/add').post((req, res) => {
   });
   const clusters = formData.clusters;
 
-  console.log("final cluster data", clusterData);
-  const newUser = new User({
-    "firstname": formData.firstname,
-    "lastname": formData.lastname,
-    "email": formData.email,
-    "password": formData.password,
-    "confirmation": formData.confirmation,
-    "resume": formData.resume,
-    "linkedin": formData.linkedin,
-    "github": formData.github,
-    "clusters": [{
-      "title": clusters[0].title,
-      "subtitle": clusters[0].subtitle,
-      "text": clusters[0].text,
-      "selected": clusters[0].selected
-    },
-    {
-      "title": clusters[1].title,
-      "subtitle": clusters[1].subtitle,
-      "text": clusters[1].text,
-      "selected": clusters[1].selected
-    }, 
-    {
-      "title": clusters[2].title,
-      "subtitle": clusters[2].subtitle,
-      "text": clusters[2].text,
-      "selected": clusters[2].selected
-    }]
-  });
+  bcrypt.hash(formData.password, 10).then((hash) => {
+    const newUser = new User({
+      "firstname": formData.firstname,
+      "lastname": formData.lastname,
+      "email": formData.email,
+      "password": hash,
+      "confirmation": hash,
+      "resume": formData.resume,
+      "linkedin": formData.linkedin,
+      "github": formData.github,
+      "clusters": [{
+        "title": clusters[0].title,
+        "subtitle": clusters[0].subtitle,
+        "text": clusters[0].text,
+        "selected": clusters[0].selected
+      },
+      {
+        "title": clusters[1].title,
+        "subtitle": clusters[1].subtitle,
+        "text": clusters[1].text,
+        "selected": clusters[1].selected
+      }, 
+      {
+        "title": clusters[2].title,
+        "subtitle": clusters[2].subtitle,
+        "text": clusters[2].text,
+        "selected": clusters[2].selected
+      }]
+    });
+  })
 
   console.log("NEW USER", newUser);
   newUser.save()
