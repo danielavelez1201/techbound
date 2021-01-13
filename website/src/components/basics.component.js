@@ -2,47 +2,60 @@ import React from "react";
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useForm } from "react-hooks-helper";
+import { useHistory } from "react-router-dom";
 
 // Importing a few elements from react-bootstrap for design aesthetics
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import MoreDeets from "./more-deets.component.js";
-import { Redirect } from "react-router-dom";
-
-export default class Basics extends React.Component {
-  render() {
-    if (this.props.currentStep !== 1) {
-      return null;
-    }
-    return (
-      <div>
-        <Form>
-          <Form.Group>
-            Email (to send results)
-            <Form.Control
-              type="text"
-              name="email"
-              value={this.props.email}
-              onChange={this.props.handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            Resume
-            <Form.File
-              type="file"
-              name="resume"
-              value={this.props.resume}
-              onChange={this.props.handleChange}
-              required
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit" onClick={this.props.onNext}>
-            Get Started
-          </Button>
-        </Form>
-      </div>
-    );
+const Basics = () => {
+  const defaultData = {
+    email: "",
+    resume: ""
   }
-}
+  const [formData, setForm] = useForm(defaultData);
+  const { email, resume } = formData;
+
+  let history = useHistory();
+  const handleClick = () => {
+    console.log(history);
+    history.replace({
+      pathname: "/sign-up",
+      state: { email: email, resume: resume }
+    });
+  };
+
+  return (
+    <div>
+      <Form>
+        <Form.Group>
+          Email (to send results)
+          <Form.Control
+            type="text"
+            name="email"
+            placeholder="johnny@college.edu"
+            value={email}
+            onChange={setForm}
+            required
+          />
+        </Form.Group>
+        <Form.Group>
+          Resume
+          <Form.File
+            type="file"
+            name="resume"
+            value={resume}
+            onChange={setForm}
+            required
+          />
+        </Form.Group>
+        <Button variant="primary" onClick={handleClick}>
+          Get Started
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export default Basics;

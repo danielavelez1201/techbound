@@ -27,7 +27,7 @@ export default class Header extends Component {
               >
                 <Nav.Link href="#internships">View Internships</Nav.Link>
                 <Nav.Link href="#deets">Log In</Nav.Link>
-                <Button variant="info" href="sign-up">Tailor Your Resume</Button>
+                <Button variant="info" href="/sign-up">Tailor Your Resume</Button>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

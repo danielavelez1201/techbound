@@ -9,10 +9,55 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  const username = req.body.username;
+  console.log("in route");
+  console.log(req.body);
+  const formData = req.body;
+  const clusterData = [];
 
-  const newUser = new User({username});
+  console.log("clusters", formData.clusters);
 
+  formData.clusters.forEach(function (cluster) {
+    console.log("loop", cluster);
+    clusterData.push({
+      "title": cluster.title,
+      "subtitle": cluster.subtitle,
+      "text": cluster.text,
+      "selected": cluster.selected
+    });
+  });
+  const clusters = formData.clusters;
+
+  console.log("final cluster data", clusterData);
+  const newUser = new User({
+    "firstname": formData.firstname,
+    "lastname": formData.lastname,
+    "email": formData.email,
+    "password": formData.password,
+    "confirmation": formData.confirmation,
+    "resume": formData.resume,
+    "linkedin": formData.linkedin,
+    "github": formData.github,
+    "clusters": [{
+      "title": clusters[0].title,
+      "subtitle": clusters[0].subtitle,
+      "text": clusters[0].text,
+      "selected": clusters[0].selected
+    },
+    {
+      "title": clusters[1].title,
+      "subtitle": clusters[1].subtitle,
+      "text": clusters[1].text,
+      "selected": clusters[1].selected
+    }, 
+    {
+      "title": clusters[2].title,
+      "subtitle": clusters[2].subtitle,
+      "text": clusters[2].text,
+      "selected": clusters[2].selected
+    }]
+  });
+
+  console.log("NEW USER", newUser);
   newUser.save()
     .then(() => res.json('User added!'))
     .catch(err => res.status(400).json('Error: ' + err));
