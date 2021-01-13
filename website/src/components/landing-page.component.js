@@ -4,6 +4,8 @@ import { init } from "ityped"
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ClusterList, { cardInfo } from "./cluster-list.component";
+import { Col, Jumbotron, Row } from "react-bootstrap";
+import Basics from "./basics.component";
 
 function Landing(props) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
@@ -52,7 +54,49 @@ function Landing(props) {
             </div>
         </div>
 
+<<<<<<< HEAD
         
+=======
+        <div className='white-block'>
+            <div className= 'content'>
+                <h2>Let us look at your resume and help you tailor it to your dream clusters.</h2>
+            </div>
+        </div>
+            
+        <div>
+            <div>
+                Start growing your career in tech by looking in the areas you're most passionate about.
+            </div>
+            <br />
+            <div>
+                Find a tech internship in {" "}
+                <span id="myElement"></span>
+            </div>
+            <br />
+            <div>
+                Explore Internships Based on Mission Cluster
+            </div>
+            <ClusterList />
+            <br />
+            <Jumbotron fluid>
+                TechBound can help you customize your resume to company mission.
+                <br />
+                <div>
+                    <Row>
+                        <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
+                        <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
+                        <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
+                    </Row>
+                </div>
+            </Jumbotron>
+            <br />
+            <div>
+                Let us look at your resume and help you tailor it to your dream clusters.
+                <br />
+                <Basics />
+            </div>
+        </div>
+>>>>>>> 7ee3c73136bc68c4382d7f0ead82454a25814035
     </>
     )
 }
