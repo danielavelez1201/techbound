@@ -5,31 +5,6 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 const cardInfo = [
-<<<<<<< HEAD
-  { title: "Hi", text: "boop" },
-  { title: "Hello", text: "beep" },
-  { title: "Dog", text: "bop" },
-];
-
-const renderCard = (card, index) => {
-  const redirectLink = "/" + card.title;
-  return (
-    <Card
-      key={index}
-      className="box"
-    >
-      <Card.Body>
-        <Card.Title>{card.title}</Card.Title>
-        <Card.Text>{card.text}</Card.Text>
-      </Card.Body>
-    </Card>
-  );
-};
-
-export default class ClusterList extends Component {
-  constructor(props) {
-    super(props);
-=======
   { title: "Revolutionize transportation", text: "" },
   { title: "Advance healthcare", text: "" },
   { title: "Reimagine education", text: "" },
@@ -62,7 +37,6 @@ function shrink(e) {
 function ClusterList() {
   const [clusters, setClusters] = useState([]);
   let history = useHistory();
->>>>>>> 4200cb916a9676d3744b34d6ea8f6d5ae5ae6aaf
 
   function handleClick(clusterName) {
     console.log("function");
@@ -97,26 +71,11 @@ function ClusterList() {
       });
   });
 
-<<<<<<< HEAD
-  clusterList() {
-    return <div className="grid">{cardInfo.map(renderCard)}</div>;
-  }
-
-  render() {
-    return (
-      <div>
-        {this.clusterList()}
-      </div>
-    );
-  }
-=======
   return (
     <div>
-      <h3>Explore Internships Based on Mission Cluster</h3>
       <div className="grid">{cardInfo.map(renderCard)}</div>
     </div>
   );
->>>>>>> 4200cb916a9676d3744b34d6ea8f6d5ae5ae6aaf
 }
 
 export default ClusterList;

@@ -25,9 +25,10 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-select": "^3.1.0",
+    "react-sidebar": "^3.0.2",
+    "react-sidemenu": "^1.1.0",
     "react-toastify": "^6.0.9",
     "reactstrap": "^8.6.0",
-    "toast": "^0.3.30",
     "validator": "^13.1.17",
     "web-vitals": "^0.2.4"
   },

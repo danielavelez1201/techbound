@@ -13,8 +13,8 @@ export default class Header extends Component {
             fixed="top"
             sticky="top"
             expand="lg"
-            bg="dark"
-            variant="dark"
+            bg="light"
+            variant="light"
             className= "Navbar"
           >
             <Navbar.Brand href="/">TECHBOUND</Navbar.Brand>
@@ -32,10 +32,6 @@ export default class Header extends Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-<<<<<<< HEAD
-=======
-      </div>
->>>>>>> 4200cb916a9676d3744b34d6ea8f6d5ae5ae6aaf
     );
   }
 }
