@@ -7,15 +7,15 @@ import { Redirect } from "react-router-dom";
 export default class Header extends Component {
   render() {
     return (
-      <div>
-        <div>
+        <div className= "Navbar">
           <Navbar
             collapseOnSelect
             fixed="top"
             sticky="top"
             expand="lg"
-            bg="dark"
-            variant="dark"
+            bg="light"
+            variant="light"
+            className= "Navbar"
           >
             <Navbar.Brand href="/">TECHBOUND</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -27,12 +27,11 @@ export default class Header extends Component {
               >
                 <Nav.Link href="#internships">View Internships</Nav.Link>
                 <Nav.Link href="#deets">Log In</Nav.Link>
-                <Button variant="info" href="sign-up">Tailor Your Resume</Button>
+                <Button variant="info" href="/sign-up">Tailor Your Resume</Button>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
         </div>
-      </div>
     );
   }
 }

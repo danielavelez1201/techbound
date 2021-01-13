@@ -10,6 +10,7 @@ import Form from "react-bootstrap/Form";
 const MoreDeets = ({ setForm, formData, navigation }) => {
     const { firstname, lastname, password, confirmation, github, linkedin } = formData;
     const { previous, next } = navigation;
+    console.log(formData);
 
     return (
         <div>

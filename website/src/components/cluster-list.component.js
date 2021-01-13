@@ -160,7 +160,6 @@ function ClusterList() {
 
   return (
     <div>
-      <h3>Explore Internships Based on Mission Cluster</h3>
       <div className="grid">{cardInfo.map(renderCard)}</div>
     </div>
   );
