@@ -41,7 +41,7 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
 
     const renderCard = (card, index) => {
         return (
-            <Card key={index} className="box transition" onClick={() => toggleSelect(card)} style={card.selected ? { borderColor: "green" } : {}}>
+            <Card key={index} className="box transition" onClick={() => toggleSelect(card)} style={card.selected ? { borderColor: "green", width: '18rem', breakInside: "avoid" } : { width: '18rem', breakInside: "avoid" }}>
                 <Card.Body>
                     <Card.Title>{card.title}</Card.Title>
                     <Card.Text>{card.subtitle}</Card.Text>
@@ -51,7 +51,6 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
     };
 
     const handleSubmit = () => {
-
         if (clusters.filter(c => c.selected).length === 3) {
             formData.clusters = clusters.filter(c => c.selected);
             axios
@@ -68,14 +67,14 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
                     Choose 3 mission clusters that you're interested in
                     We can help you find what you should highlight when you apply to clusters.
                     <Alert variant="success">You have selected {clusters.filter(c => c.selected).length} out of  your 3 clusters.</Alert>
-                    <div className="grid">{cardInfo.map(renderCard)}</div>
+                    <div className="container" style={{ columnCount: 3 }}>{cardInfo.map(renderCard)}</div>
                 </Form.Group>
                 <Form.Group>
                     <Button variant="primary" onClick={previous}>
                         Previous
                     </Button>
                     <Button variant="primary" onClick={() => handleSubmit()}>
-                        Register!
+                        Finish
                     </Button>
                 </Form.Group>
             </Form>

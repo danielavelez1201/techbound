@@ -3,6 +3,8 @@ import { init } from "ityped"
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ClusterList, { cardInfo } from "./cluster-list.component";
+import { Col, Jumbotron, Row } from "react-bootstrap";
+import Basics from "./basics.component";
 
 function Landing(props) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
@@ -37,8 +39,22 @@ function Landing(props) {
             </div>
             <ClusterList />
             <br />
-            <div>
+            <Jumbotron fluid>
                 TechBound can help you customize your resume to company mission.
+                <br />
+                <div>
+                    <Row>
+                        <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
+                        <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
+                        <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
+                    </Row>
+                </div>
+            </Jumbotron>
+            <br />
+            <div>
+                Let us look at your resume and help you tailor it to your dream clusters.
+                <br />
+                <Basics />
             </div>
         </div>
     )

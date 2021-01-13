@@ -96,6 +96,7 @@ function shrink(e) {
 }
 function ClusterList() {
   const [clusters, setClusters] = useState([]);
+  const [allCards, setAllCards] = useState(false);
   let history = useHistory();
 
   const handleClick = async (clusterName) => {
@@ -113,11 +114,10 @@ function ClusterList() {
   const renderCard = (card, index) => {
     return (
       <Card
-        onMouseLeave={shrink}
-        onMouseOver={enlargen}
         key={index}
         className="box transition"
         onClick={() => handleClick(card.subtitle)}
+        style={{ width: '18rem', breakInside: "avoid" }}
       >
         <Card.Body>
           <Card.Title>{card.title}</Card.Title>
@@ -126,6 +126,10 @@ function ClusterList() {
       </Card>
     );
   };
+
+  const toggleCards = () => {
+    setAllCards(!allCards)
+  }
 
   useEffect(() => {
     axios
@@ -141,7 +145,8 @@ function ClusterList() {
   return (
     <div>
       <h3>Explore Internships Based on Mission Cluster</h3>
-      <div className="grid">{cardInfo.map(renderCard)}</div>
+      <div className="container" style={{ columnCount: 3 }}>{cardInfo.slice(0, 9).map(renderCard)}</div>
+      <div onClick={toggleCards}>See {allCards ? "Less" : "More"}</div>
     </div>
   );
 }
