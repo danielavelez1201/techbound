@@ -54,9 +54,6 @@ function Landing(props) {
             </div>
         </div>
 
-<<<<<<< HEAD
-        
-=======
         <div className='white-block'>
             <div className= 'content'>
                 <h2>Let us look at your resume and help you tailor it to your dream clusters.</h2>
@@ -96,7 +93,6 @@ function Landing(props) {
                 <Basics />
             </div>
         </div>
->>>>>>> 7ee3c73136bc68c4382d7f0ead82454a25814035
     </>
     )
 }
