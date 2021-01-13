@@ -123,7 +123,6 @@ function ClusterList() {
 
 
   const handleClick = async (clusterName) => {
-    const response = await axios.get("http://localhost:5000/internships")
     history.push({
       pathname: "/browse/" + clusterName,
       state: { internships: internships },
