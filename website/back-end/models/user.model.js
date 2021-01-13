@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+const uniqueValidator = require('mongoose-unique-validator');
 
 
 const clusterSchema = new Schema(
@@ -11,20 +12,49 @@ selected: Boolean}
 )
 const userSchema = new Schema(
   {
-    firstname: String,
-    lastname: String,
-    email: String,
-    password: String,
-    confirmation: String,
-    resume: String,
-    linkedin: String,
-    github: String,
-    clusters: [clusterSchema],
+    firstname: {
+      type: String,
+      required: true,
+    },
+    lastname: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    confirmation: {
+      type: String,
+      required: true,
+    },
+    resume: {
+      type: String,
+      required: true,
+    },
+    linkedin: {
+      type: String,
+      required: true,
+    },
+    github: {
+      type: String,
+      required: true,
+    },
+    clusters: {
+      type: [clusterSchema],
+      required: true,
+    }
   },
   {
     timestamps: true, //created, modified
   }
 );
+
+userSchema.plugin(uniqueValidator, {message: 'Email already exists!'});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

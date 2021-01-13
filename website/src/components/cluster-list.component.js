@@ -4,6 +4,10 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+const dotenv = require('dotenv');
+
+dotenv.config({ path: './config/config.env' })
+
 const cardInfo = [
   {
     title: "Transportation",
@@ -99,15 +103,31 @@ function ClusterList() {
   const [allCards, setAllCards] = useState(false);
   let history = useHistory();
 
-  const handleClick = async (clusterName) => {
-    console.log("function");
+  const [internships, setInternships] = useState([{
+    "last-updated": "",
+    notes: "", 
+    name: "", 
+    link: "", 
+    location: ""
+  }])
 
-    const apiURL =
-      "https://jobs.github.com/positions.json?description=" + clusterName;
-    const response = await axios.get(apiURL);
+
+  useEffect(() => {
+    const internships = async () => {
+      const response = await axios.get("http://localhost:5000/internships");
+      setInternships(response.data);
+    }
+    internships();
+  }, []);
+
+  console.log(internships)
+
+
+  const handleClick = async (clusterName) => {
+    const response = await axios.get("http://localhost:5000/internships")
     history.push({
       pathname: "/browse/" + clusterName,
-      state: { internships: response.data },
+      state: { internships: internships },
     });
   };
 
