@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,22 +6,28 @@ import { Col, Container, Row } from "react-bootstrap";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Basics from "./basics.component";
 import SignUp from "./sign-up.component";
-
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
-
+import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 
 const InternshipListings = () => {
     const [cluster, setCluster] = useState("Language Learning");
-
     const tempInternships = Array(10).fill({position: "SWE @ Duolingo", location: "Atlanta, GA", description: "An American language-learning website and mobile app, as well as a digital language-proficiency assessment exam."})
-    const [internships, setInternships] = useState(tempInternships);
+    const [internships, setInternships] = useState(null); 
 
-    // useEffect(() => {
-    //     axios
-    //     .get("http://localhost:5000/clusters/:id")
-    //     .then(response => setInternships(response.data))
-    //     .catch(error => console.log(error));
-    // }, [])
+    const location = useLocation();
+
+    useEffect(() => {
+        console.log(location.pathname);
+        console.log(location.state.internships);
+        setInternships(location.state.internships);
+      });
+    
+    function getDomain(str) {
+        const str1 = str.split('//').pop();
+        return str1.split('/')[0];
+    }
 
     const renderCard = (card, index) => {
         return (
@@ -29,14 +35,16 @@ const InternshipListings = () => {
                 <div key={index} className="card">
                     <div className="row no-gutters">
                         <div className="col-auto">
-                            <img src="https://play-lh.googleusercontent.com/hSyebBlYwtE2aMjzSIHasUO9cQv9HgNAw9owy6ADO0szOKYO3rDk60r7jcyXu82Fbq1M" class="img-fluid" alt="Duolingo Logo" width="150" style={{ padding: 10 }} />
+                            <img src={"https://logo.clearbit.com/" + getDomain(card.link)} class="img-fluid" alt="Logo" width="150" style={{ padding: 10 }} />
                         </div>
                         <div className="col">
                             <div className="card-block px-2">
-                                <h3 className="card-title">{card.position}</h3>
+                                <h3 className="card-title">{card.name}</h3>
                                 <h5 className="card-subtitle"><FaMapMarkerAlt />{" "}{card.location}</h5>
                                 <br />
-                                <p className="card-text">{card.description}</p>
+                                <p className="card-text">{card.notes}</p>
+                                <br />
+                                <a href={card.link}> <Button variant="secondary">More info</Button></a>
                             </div>
                         </div>
                     </div>
@@ -50,7 +58,9 @@ const InternshipListings = () => {
         <div>
             <h2>{cluster} Internship Opportunities</h2>
             <br />
-            <div className="container" style={{ columnCount: 2 }}>{internships.map(renderCard)}</div>
+            <div className="container" style={{ columnCount: 2 }}>
+                {internships && 
+                internships.map(renderCard)}</div>
             <br />
             <div>
                 <strong>Get more from Techbound</strong>

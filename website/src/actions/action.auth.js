@@ -7,14 +7,14 @@ import {
   SIGNUP_FAILED,
   SIGNUP_SUCESS,
   LOGOUT_USER,
-} from "./action.types";
+} from "./actions.types";
 
 import setAuthToken from "../utils/setAuthToken";
 
 //Action checks for authentication
 export const check_authenticated = () => async (dispatch) => {
   if (localStorage.access) {
-    setAuthToken(localStorage.access);
+    //setAuthToken(localStorage.access);
   }
 
   try {
@@ -86,3 +86,4 @@ export const logout = () => (dispatch) => {
     type: LOGOUT_USER,
   });
 };
+

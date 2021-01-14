@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react"
+import Basics from "./basics.component";
 import ClusterList from "./cluster-list.component";
 
 function LandingPage() {
@@ -102,42 +103,7 @@ export default LandingPage;
 //                 <h2>Let us look at your resume and help you tailor it to your dream clusters.</h2>
 //             </div>
 //         </div>
-            
-//         <div>
-//             <div>
-//                 Start growing your career in tech by looking in the areas you're most passionate about.
-//             </div>
-//             <br />
-//             <div>
-//                 Find a tech internship in {" "}
-//                 <span id="myElement"></span>
-//             </div>
-//             <br />
-//             <div>
-//                 Explore Internships Based on Mission Cluster
-//             </div>
-//             <ClusterList />
-//             <br />
-//             <Jumbotron fluid>
-//                 TechBound can help you customize your resume to company mission.
-//                 <br />
-//                 <div>
-//                     <Row>
-//                         <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
-//                         <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
-//                         <Col><img src="https://via.placeholder.com/120x150" alt="" /></Col>
-//                     </Row>
-//                 </div>
-//             </Jumbotron>
-//             <br />
-//             <div>
-//                 Let us look at your resume and help you tailor it to your dream clusters.
-//                 <br />
-//                 <Basics />
-//             </div>
-//         </div>
 //     </>
 //     )
 // };
-
 // export Landing;

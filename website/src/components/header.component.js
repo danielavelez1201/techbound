@@ -3,9 +3,10 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../actions/action.auth";
 
-export default class Header extends Component {
-  render() {
+function Header({logout}) {
     return (
         <div className= "Navbar">
           <Navbar
@@ -27,6 +28,7 @@ export default class Header extends Component {
               >
                 <Nav.Link href="#internships">View Internships</Nav.Link>
                 <Nav.Link href="#deets">Log In</Nav.Link>
+                <Nav.Link onClick ={logout} href="#">Log Out</Nav.Link>
                 <Button variant="info" href="/sign-up">Tailor Your Resume</Button>
               </Nav>
             </Navbar.Collapse>
@@ -34,4 +36,6 @@ export default class Header extends Component {
         </div>
     );
   }
-}
+
+
+export default connect(null, {logout})(Header);
