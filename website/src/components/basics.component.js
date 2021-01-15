@@ -19,9 +19,8 @@ const Basics = () => {
 
   let history = useHistory();
   const handleClick = () => {
-    console.log(history);
-    history.replace({
-      pathname: "/sign-up",
+    history.push({
+      pathname: "/sign-up/more",
       state: { email: email, resume: resume }
     });
   };
@@ -32,7 +31,7 @@ const Basics = () => {
         <Form.Group>
           Email (to send results)
           <Form.Control
-            type="text"
+            type="email"
             name="email"
             placeholder="johnny@college.edu"
             value={email}
