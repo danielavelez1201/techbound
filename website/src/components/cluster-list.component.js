@@ -151,7 +151,6 @@ function ClusterList() {
 
   return (
     <div>
-      <h3>Explore Internships Based on Mission Cluster</h3>
       <div className="container" style={{ columnCount: 3 }}>{cardInfo.slice(0, 9).map(renderCard)}</div>
       <div className="container" style={allCards ? { columnCount: 3 } : { display: "none" }}>
         {cardInfo.slice(9).map(renderCard)}
