@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Basics from "./basics.component";
-import SignUp from "./sign-up.component";
+import SignUp from "./sign-up-next.component";
 import Menu from './side-menu.component';
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";

@@ -5,7 +5,8 @@ import axios from "axios";
 import './App.css';
 import ClusterList from "./components/cluster-list.component";
 import { createBrowserHistory } from "history";
-import SignUp from "./components/sign-up.component";
+import SignUpNext from "./components/sign-up-next.component";
+import SignUpFirst from "./components/sign-up-first.component";
 import FileUpload from "./components/file-upload.component";
 import ClusterCards from "./components/cluster-cards.component";
 import InternshipPage from "./components/internship-listing-page.component";
@@ -42,14 +43,14 @@ function App() {
           <div className="container">
             <Switch>
               {/* <Route path="/" exact component={Landing} /> */}
-              <Route path="/sign-up" exact component={SignUp} />
+              <Route path="/sign-up/more" exact component={SignUpNext} />
               <Route path="/file-save" exact component={FileSave} />
               <Route path="/file" exact component={FileUpload} />
               <Route path="/browse" component={InternshipListings} />
               <Route path="/landing" exact component={LandingPage} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/login" exact component = {Login} />
-              <Route path="/basics" exact component = {Basics} />
+              <Route path="/sign-up" exact component = {SignUpFirst} />
             </Switch>
           </div>
         </div>
