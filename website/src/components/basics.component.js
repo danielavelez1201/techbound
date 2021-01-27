@@ -50,7 +50,7 @@ const Basics = () => {
             required
           />
         </Form.Group>
-        <Button variant="primary" onClick={handleClick}>
+        <Button className = 'button' variant="primary" onClick={handleClick}>
           Get Started
         </Button>
       </Form>

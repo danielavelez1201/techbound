@@ -39,7 +39,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <div>
-          <Header2 />
           <div className="container">
             <Switch>
               {/* <Route path="/" exact component={Landing} /> */}
