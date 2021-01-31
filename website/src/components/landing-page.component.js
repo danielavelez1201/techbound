@@ -5,10 +5,10 @@ import { useEffect } from "react";
 import { init } from "ityped"
 import axios from "axios";
 import { cardInfo } from "./cluster-list.component";
+import Header2 from "./test-header.component";
 
 function LandingPage() {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
-   
     useEffect(() => {
         const myElement = document.querySelector('#myElement')
         init(myElement, { showCursor: false, strings: clusterTitles, loop: true })
@@ -17,10 +17,12 @@ function LandingPage() {
     return(
         <>
             <div className= 'blue-block landing-block black-text'>
+            <img className = 'blob-background' alt='Clusters of internships like language learning, gaming, and productivity' src='../../images/blobs2.png' />  
+            <Header2 />  
                     <div className= 'content'>
                         <h1 className="black-text landing-text">Find a tech internship <br></br>
                         in <b>{" "}<span id="myElement"></span></b>|</h1>
-                        <p className="black-text landing-text">Start growing your career in tech by looking in the <br></br>
+                        <p className="landing-text p1">Start growing your career in tech by looking in the <br></br>
                         areas you’re most passionate about.</p>
                     </div>
             </div>
@@ -34,7 +36,7 @@ function LandingPage() {
 
             <div className='blue-block'>
                 <div className= 'content'>
-                    <h2 className= 'center-text'>TechBound can help you customize your resume to company mission.</h2>
+                    <h2 className= 'center-text white-text text-space'>TechBound can help you customize your resume to company mission.</h2>
                     <div class= 'image-rows'>
                         <img class= 'three-step' alt='1. Choose the missions that resonate with you most' src='../../images/step1.png' />
                         <img class= 'three-step' alt='2. Share your resume and other work experiences' src='../../images/step2.png' />

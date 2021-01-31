@@ -8,7 +8,6 @@ import { createBrowserHistory } from "history";
 import SignUpNext from "./components/sign-up-next.component";
 import SignUpFirst from "./components/sign-up-first.component";
 import FileUpload from "./components/file-upload.component";
-import Header from "./components/header.component";
 import ClusterCards from "./components/cluster-cards.component";
 import InternshipPage from "./components/internship-listing-page.component";
 import LandingPage from "./components/landing-page.component";
@@ -42,7 +41,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <div>
-          <Header2 />
           <div className="container">
             <Switch>
               {/* <Route path="/" exact component={Landing} /> */}

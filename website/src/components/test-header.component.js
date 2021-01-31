@@ -57,7 +57,7 @@ const Header2 = () => {
     );
 
     return (
-        <div className= 'blue-block nav-background'>
+        <div className= 'nav-background'>
             <nav className= "FullNavbar">
                 <h2 className="logo blue-text">techbound</h2>
                 <ul>
