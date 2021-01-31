@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Form, OverlayTrigger, Popover } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hooks-helper";
+import ForgotPassword from "./forgot-password.component";
 
 const NavItems = [
     {
@@ -32,6 +33,8 @@ const Header2 = () => {
     const [formData, setForm] = useForm(defaultData);
     const { email, password } = formData;
 
+    const [modalShow, setModalShow] = useState(false);
+
     const loginPopover = (
         <Popover>
             <Popover.Content>
@@ -45,7 +48,7 @@ const Header2 = () => {
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name="password" value={password} onChange={setForm} required />
-                        <Form.Text><a href="#">Forgot Your Password?</a></Form.Text>
+                        <Form.Text><a href="#" onClick={() => setModalShow(true)}>Forgot Your Password?</a></Form.Text>
                     </Form.Group>
                     <Button>Log In</Button>
                 </Form>
@@ -80,6 +83,7 @@ const Header2 = () => {
                     })}
                 </ul>
             </nav>
+            <ForgotPassword show={modalShow} onHide={() => setModalShow(false)} />
         </div>
     );
 };

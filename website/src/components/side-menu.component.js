@@ -1,42 +1,26 @@
 import React from "react";
-import Sidebar from "react-sidebar";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { IoLanguage } from "react-icons/io5";
 
 function Menu() {
+  const tempClusters = Array(20).fill({icon: <IoLanguage />, title: "Language Learning"})
+  const [isOpen, setIsOpen] = useState(false);
 
-    const [openVar, setOpen] = useState(false);
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  }
 
-    return (
+  return (
     <div>
-      <div>
-      <Sidebar
-        sidebar={<b> wheee </b>}
-        open={openVar}
-        styles={{ sidebar: { background: "white" } }}
-      >
-      <br>
-      </br>   
-      <br>
-      </br>
-      <br>
-      </br>
-      <button
-      onClick={() => 
-        {if (openVar) {
-          console.log("open!");
-          setOpen(false)
-        }
-        else {
-          console.log("closed!");
-          setOpen(true)
-          }}}>
-            Open menu
-      </button>
-      </Sidebar>
+      <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "Hide" : "View"} All Clusters</button>
+      <div id="side-nav" className="" style={ isOpen ? {} : { display: "none" } }>
+        {tempClusters.map(cluster =>
+          <div><Link to="/">{cluster.icon} {cluster.title}</Link></div>
+        )}
       </div>
-
-      </div>
-    );
+    </div>
+  );
 }
 
 export default Menu;
