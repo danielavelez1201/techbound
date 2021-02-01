@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useLocation } from "react";
 import Sidebar from "react-sidebar";
 import axios from "axios";
 import parse from "html-react-parser";

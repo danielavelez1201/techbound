@@ -26,6 +26,8 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { check_authenticated } from "./actions/action.auth";
 import setAuthToken from "./utils/setAuthToken";
+import Sample from "./components/sample.component";
+import PrivateRoute from "./routing/PrivateRoutes";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -52,6 +54,7 @@ function App() {
               <Route path="/profile" exact component={Profile} />
               <Route path="/login" exact component = {Login} />
               <Route path="/basics" exact component = {Basics} />
+              <PrivateRoute exact path = '/sample' component= {Sample} />
             </Switch>
           </div>
         </div>

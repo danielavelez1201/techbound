@@ -11,10 +11,13 @@ import Alert from "react-bootstrap/Alert";
 
 import { cardInfo } from "./cluster-list.component";
 import axios from "axios";
+import { signup } from "../actions/action.auth";
+import { connect } from 'react-redux';
 
 const ChooseClusters = ({ setForm, formData, navigation }) => {
     const [clusters, setClusters] = useState(cardInfo);
     const { previous } = navigation;
+
     // const { clusters } = formData;
 
     // useEffect(() => {
@@ -50,10 +53,11 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
         );
     };
 
-    const handleSubmit = () => {
+    async function handleSubmit() {
         if (clusters.filter(c => c.selected).length === 3) {
+            signup(formData.email, formData.password);
             formData.clusters = clusters.filter(c => c.selected);
-            axios
+            await axios
             .post("http://localhost:5000/users/add", formData)
             .then(res => console.log(res.data))
         }
@@ -82,4 +86,4 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
     );
 };
 
-export default ChooseClusters;
+export default connect(null, { signup })(ChooseClusters);
