@@ -5,7 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Basics from "./basics.component";
-import SignUp from "./sign-up.component";
+import SignUp from "./sign-up-next.component";
+import Menu from './side-menu.component';
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
@@ -56,6 +57,7 @@ const InternshipListings = () => {
 
     return (
         <div>
+            <Menu />
             <h2>{cluster} Internship Opportunities</h2>
             <br />
             <div className="container" style={{ columnCount: 2 }}>

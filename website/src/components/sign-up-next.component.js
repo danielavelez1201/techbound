@@ -14,9 +14,7 @@ const steps = [
     { id: "choose-clusters" },
 ];
 
-
-
-const SignUp = () => {
+const SignUpNext = () => {
     const location = useLocation();
 
     const defaultData = {
@@ -47,4 +45,4 @@ const SignUp = () => {
     }
 };
 
-export default SignUp;
+export default SignUpNext;

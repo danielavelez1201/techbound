@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 
 const dotenv = require('dotenv');
 
@@ -91,13 +90,6 @@ const cardInfo = [
   },
 ];
 
-function enlargen(e) {
-  e.target.style.width = "110%";
-}
-
-function shrink(e) {
-  e.target.style.width = "90%";
-}
 function ClusterList() {
   const [clusters, setClusters] = useState([]);
   const [allCards, setAllCards] = useState(false);
@@ -144,10 +136,6 @@ function ClusterList() {
     );
   };
 
-  const toggleCards = () => {
-    setAllCards(!allCards)
-  }
-
   useEffect(() => {
     axios
       .get("http://localhost:5000/clusters/")
@@ -161,9 +149,11 @@ function ClusterList() {
 
   return (
     <div>
-      <h3>Explore Internships Based on Mission Cluster</h3>
       <div className="container" style={{ columnCount: 3 }}>{cardInfo.slice(0, 9).map(renderCard)}</div>
-      <div onClick={toggleCards}>See {allCards ? "Less" : "More"}</div>
+      <div className="container" style={allCards ? { columnCount: 3 } : { display: "none" }}>
+        {cardInfo.slice(9).map(renderCard)}
+      </div>
+      <div onClick={() => setAllCards(!allCards)}>See {allCards ? "Less" : "More"}</div>
     </div>
   );
 }
