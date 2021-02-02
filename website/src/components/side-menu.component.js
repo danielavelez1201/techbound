@@ -9,13 +9,20 @@ function Menu() {
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+    
+    const main = document.getElementById("main-internships");
+    if (isOpen) {
+      main.style.marginLeft = "0";
+    } else {
+      main.style.marginLeft = "17%";
+    };
   };
 
   return (
     <React.Fragment>
       <button 
         className={isOpen ? "sidenav-button sidenav-open-button" : "sidenav-button"} 
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
       >
         {isOpen ? "Hide" : "View"} All Clusters
       </button>
