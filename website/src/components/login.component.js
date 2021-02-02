@@ -4,30 +4,34 @@ import { connect } from 'react-redux';
 import { login } from '../actions/action.auth';
 import { useState } from "react";
 
-function Login () {
+function Login ({ login, isAuthenticated }) {
     const [loginData, setLoginData] = useState({
         name: '',
         email: '',
         password: ''
     });
-    const onChange = (e) => 
-    setLoginData({...loginData, [e.target.name]: e.target.value})
+    const onChange = (e) => {
+        setLoginData({...loginData, [e.target.name]: e.target.value})
+        console.log(loginData)
+    }
+    
 
-    const onSubmit = (e) => {
+    async function onSubmit (e) {
+        console.log("Submit pressed")
         e.preventDefault();
-        login(name, email, password);
+        console.log(loginData.email, loginData.password);
+        await login(loginData.email, loginData.password);
+        console.log("after login")
+    }
+
+    if (isAuthenticated) {
+        return <Redirect to= "/sample" />;
     }
     const { name, email, password} = loginData;
     return (
         <div>
         <h1> Sign in to your account </h1>
         <form onSubmit = {(e) => onSubmit(e)}>
-            <input 
-            type="text" 
-            onChange={(e) => onChange(e)} 
-            autoComplete="on" 
-            name="name" 
-            placeholder="name"/> 
             <br />
             <input 
             type="email" 
@@ -51,4 +55,8 @@ function Login () {
     )
 }
 
-export default connect(null, {login})(Login);
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+  });
+
+export default connect(mapStateToProps, {login})(Login);

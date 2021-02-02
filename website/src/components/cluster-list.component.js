@@ -112,8 +112,6 @@ function ClusterList() {
     internships();
   }, []);
 
-  console.log(internships)
-
 
   const handleClick = async (clusterName) => {
     history.push({

@@ -27,7 +27,7 @@ function Header({logout}) {
                 defaultActiveKey="#memes"
               >
                 <Nav.Link href="#internships">View Internships</Nav.Link>
-                <Nav.Link href="#deets">Log In</Nav.Link>
+                <Nav.Link href="#login">Log In</Nav.Link>
                 <Nav.Link onClick ={logout} href="#">Log Out</Nav.Link>
                 <Button variant="info" href="/sign-up">Tailor Your Resume</Button>
               </Nav>
