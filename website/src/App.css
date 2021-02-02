@@ -83,6 +83,17 @@
   background-color: #F84D70;
 }
 
+
+.nav-background {
+  background-image: none;
+  background-color: transparent;
+  width: 100%;
+  height: 10vh;
+  position: absolute;
+  top: 2vh;
+  z-index: 8;
+}
+
 /* BUTTONS */
 .button {
   background-color: #E51C45;
@@ -95,12 +106,14 @@
   font-size: 2.5vh;
   padding: 1.2vh 2.5vh 1.3vh 2.5vh;
   font-family: Glacial Indifference Bold;
+  margin-bottom: 2vh;
 }
 
 .button:hover {
   background-color: #F84D70;
 }
 
+/* TEXT */
 .logo {
   display: inline-block;
   font-family: Glacial Indifference Bold;
@@ -120,13 +133,28 @@ h2 {
   font-weight: 500;
 }
 
-p1 {
+h3 {
   color:#1D2F6F;  
   font-size: 1.13vw;
   font-family: Nunito;
   font-weight: 600;
 }
 
+h4 {
+  color:#1D2F6F;  
+  font-size: 2vh;
+  font-family: Nunito;
+  font-weight: 600;
+}
+
+h5 {
+  color:#1D2F6F;  
+  font-size: 1.6vh;
+  font-family: Nunito;
+  font-weight: 600;
+}
+
+/* PAGE SETUP */
 .container {
   max-width: 100%;
   padding: 0;
@@ -143,16 +171,6 @@ p1 {
   width: 100vw;
   position: absolute;
   z-index: 1;
-}
-
-.nav-background {
-  background-image: none;
-  background-color: transparent;
-  width: 100%;
-  height: 10vh;
-  position: absolute;
-  top: 2vh;
-  z-index: 8;
 }
 
 .blue-block {
@@ -177,22 +195,11 @@ p1 {
   color: #3517EB;
 }
 
-.landing-text {
-  margin-bottom: 5vh;
-  position: relative;
-  bottom: 10vh;
-  z-index: 5;
-}
-
 .content {
   margin-top: 10vh;
   margin-bottom: 10vh;
   margin-left: 10vw;
   margin-right: 10vw;
-}
-
-.three-step {
-  max-width: 18vw;
 }
 
 .image-rows {
@@ -206,4 +213,53 @@ p1 {
 
 .text-space {
   margin-bottom: 3.5vh;
+}
+
+/* FORM */
+.form-field {
+  background: #F5F4F7;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  width: 18vw;
+  height: 5vh;
+  font-family: Nunito;
+  font-size: 2.25vh;
+}
+
+.form-label {
+  font-family: Nunito;
+  font-size: 2.25vh;
+  font-weight: 400;
+  color: #152352;
+}
+
+.form-margin {
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+}
+
+.inline-form-text {
+  display: flex;
+  flex-flow: row wrap;
+  margin-right: 3vw;
+}
+
+/* LOGIN BOX */
+.login-box {
+  width: 100%;
+  background-color: orange;
+  padding: 2vh;
+}
+
+
+/* LANDING PAGE SPECIFIC */
+.landing-text {
+  margin-bottom: 5vh;
+  position: relative;
+  bottom: 10vh;
+  z-index: 5;
+}
+
+.three-step {
+  max-width: 18vw;
 }

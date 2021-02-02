@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { Form, OverlayTrigger, Popover } from "react-bootstrap";
+import { Form, OverlayTrigger, Overlay, Popover } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hooks-helper";
 
@@ -33,21 +33,20 @@ const Header2 = () => {
     const { email, password } = formData;
 
     const loginPopover = (
-        <Popover>
+        <Popover className="login-box">
             <Popover.Content>
-                <h4>Welcome back!</h4>
-                <h6>New here? <a href="sign-up">Create an account.</a></h6>
+                <h2>Welcome back!</h2>
                 <Form>
                     <Form.Group>
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name="email" value={email} onChange={setForm} required />
+                        <Form.Control type="email" name="email" className="form-field" value={email} onChange={setForm} required />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" value={password} onChange={setForm} required />
-                        <Form.Text><a href="#">Forgot Your Password?</a></Form.Text>
+                    <Form.Group className="inline-form-text">
+                        <Form.Label>Password</Form.Label> <Form.Text><h5><a href="#">Forgot Your Password?</a></h5></Form.Text>
+                        <Form.Control type="password" name="password" className="form-field" value={password} onChange={setForm} required />
                     </Form.Group>
-                    <Button>Log In</Button>
+                    <Button className="button">Log In</Button>
+                    <h3>New here? <a href="sign-up">Create an account.</a></h3>
                 </Form>
             </Popover.Content>
         </Popover>

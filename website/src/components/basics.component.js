@@ -28,18 +28,19 @@ const Basics = () => {
   return (
     <div>
       <Form>
-        <Form.Group>
+        <Form.Group className="form-label form-margin">
           Email (to send results)
           <Form.Control
             type="email"
             name="email"
-            placeholder="johnny@college.edu"
+            className="form-field"
+            placeholder="jenny@college.edu"
             value={email}
             onChange={setForm}
             required
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="form-label form-margin">
           Resume
           <Form.File
             type="file"
