@@ -56,7 +56,7 @@ const InternshipListings = () => {
     };
 
     return (
-        <div>
+        <div className="main">
             <Menu />
             <h2>{cluster} Internship Opportunities</h2>
             <br />

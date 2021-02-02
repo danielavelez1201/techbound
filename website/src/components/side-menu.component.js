@@ -9,17 +9,22 @@ function Menu() {
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
-  }
+  };
 
   return (
-    <div>
-      <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "Hide" : "View"} All Clusters</button>
-      <div id="side-nav" className="" style={ isOpen ? {} : { display: "none" } }>
+    <React.Fragment>
+      <button 
+        className={isOpen ? "sidenav-button sidenav-open-button" : "sidenav-button"} 
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? "Hide" : "View"} All Clusters
+      </button>
+      <div id="side-nav" className="sidenav-container" style={ isOpen ? {} : { display: "none" } }>
         {tempClusters.map(cluster =>
-          <div><Link to="/">{cluster.icon} {cluster.title}</Link></div>
+          <div><Link to="/" className="sidenav-links">{cluster.icon} {cluster.title}</Link></div>
         )}
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

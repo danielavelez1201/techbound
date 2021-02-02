@@ -107,6 +107,60 @@
   font-size: 4.3vh;
 }
 
+/* SIDENAV */
+.sidenav-button {
+  background-color: #3517EB;
+  color: white;
+  font-size: 2.2vh;
+  font-family: Glacial Indifference Regular;
+  display: inline-block;
+  border: 0;
+  border-radius: 10px 10px 0 0;
+  padding: 1.2vh 2.5vh 1.3vh 2.5vh;
+  box-shadow: 5px 0px 2px -2px rgb(158, 158, 158);
+  position: sticky;
+  z-index: 1;
+  top: 14.2vw;
+  left: 0px;
+  vertical-align: top;
+	transform: rotate(7deg);
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -moz-transform: rotate(90deg); /* Firefox */
+  -webkit-transform: rotate(90deg); /* Safari and Chrome */
+  -o-transform: rotate(90deg); /* Opera */
+}
+
+.sidenav-open-button {
+  left: 17%;
+}
+
+.sidenav-links {
+  color: white;
+  font-size: 2.2vh;
+  font-family: Glacial Indifference Regular;
+  transition: 0.3s;
+  padding-top: 1.3vw;
+  display: inline-block;
+}
+
+.sidenav-links:hover {
+  color: white;
+}
+
+.sidenav-container {
+  background-color: #3517EB;
+  width: 17%;
+  height: fit-content;
+  top: 10vw;
+  padding: 0 4vh 4vh 4vh;
+  box-shadow: 0px 6px 2px -2px rgb(158, 158, 158);
+  position: fixed;
+  z-index: 1;
+}
+
+.main {
+  transition: margin-left .5s;
+}
 
 h1 { 
   font-size: 2.65vw;
