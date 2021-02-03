@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Form, OverlayTrigger, Overlay, Popover } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hooks-helper";
+import ForgotPassword from "./forgot-password.component";
 
 const NavItems = [
     {
@@ -32,6 +33,8 @@ const Header2 = () => {
     const [formData, setForm] = useForm(defaultData);
     const { email, password } = formData;
 
+    const [modalShow, setModalShow] = useState(false);
+
     const loginPopover = (
         <Popover className="login-box">
             <Popover.Content>
@@ -41,9 +44,12 @@ const Header2 = () => {
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" name="email" className="form-field" value={email} onChange={setForm} required />
                     </Form.Group>
-                    <Form.Group className="inline-form-text">
-                        <Form.Label>Password</Form.Label> <Form.Text><h5><a href="#">Forgot Your Password?</a></h5></Form.Text>
-                        <Form.Control type="password" name="password" className="form-field" value={password} onChange={setForm} required />
+                    <Form.Group>
+                        <div className="inline-form-text">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Text><a href="#" onClick={() => setModalShow(true)}>Forgot Your Password?</a></Form.Text>
+                        </div>
+                        <Form.Control className="form-field" type="password" name="password" value={password} onChange={setForm} required />
                     </Form.Group>
                     <Button className="button">Log In</Button>
                     <h3>New here? <a href="sign-up">Create an account.</a></h3>
@@ -79,6 +85,7 @@ const Header2 = () => {
                     })}
                 </ul>
             </nav>
+            <ForgotPassword show={modalShow} onHide={() => setModalShow(false)} />
         </div>
     );
 };

@@ -1,42 +1,31 @@
 import React from "react";
-import Sidebar from "react-sidebar";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { IoLanguage } from "react-icons/io5";
 
 function Menu() {
+  const tempClusters = Array(20).fill({icon: <IoLanguage />, title: "Language Learning"})
+  const [isOpen, setIsOpen] = useState(false);
 
-    const [openVar, setOpen] = useState(false);
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
 
-    return (
-    <div>
-      <div>
-      <Sidebar
-        sidebar={<b> wheee </b>}
-        open={openVar}
-        styles={{ sidebar: { background: "white" } }}
+  return (
+    <React.Fragment>
+      <button 
+        className={isOpen ? "sidenav-button sidenav-open-button" : "sidenav-button"} 
+        onClick={() => setIsOpen(!isOpen)}
       >
-      <br>
-      </br>   
-      <br>
-      </br>
-      <br>
-      </br>
-      <button
-      onClick={() => 
-        {if (openVar) {
-          console.log("open!");
-          setOpen(false)
-        }
-        else {
-          console.log("closed!");
-          setOpen(true)
-          }}}>
-            Open menu
+        {isOpen ? "Hide" : "View"} All Clusters
       </button>
-      </Sidebar>
+      <div id="side-nav" className="sidenav-container" style={ isOpen ? {} : { display: "none" } }>
+        {tempClusters.map(cluster =>
+          <div><Link to="/" className="sidenav-links">{cluster.icon} {cluster.title}</Link></div>
+        )}
       </div>
-
-      </div>
-    );
+    </React.Fragment>
+  );
 }
 
 export default Menu;

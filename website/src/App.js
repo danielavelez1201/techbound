@@ -26,6 +26,9 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { check_authenticated } from "./actions/action.auth";
 import setAuthToken from "./utils/setAuthToken";
+import ForgotPassword from "./components/forgot-password.component";
+import Sample from "./components/sample.component";
+import PrivateRoute from "./routing/PrivateRoutes";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -50,7 +53,9 @@ function App() {
               <Route path="/landing" exact component={LandingPage} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/login" exact component = {Login} />
+              <PrivateRoute exact path = '/sample' component= {Sample} />
               <Route path="/sign-up" exact component = {SignUpFirst} />
+              <Route path="/forgot-password" exact component = {ForgotPassword} />
             </Switch>
           </div>
         </div>

@@ -6,8 +6,10 @@ import { init } from "ityped"
 import axios from "axios";
 import { cardInfo } from "./cluster-list.component";
 import Header2 from "./test-header.component";
+import { connect } from 'react-redux';
 
-function LandingPage() {
+
+function Landing({ isAuthenticated }) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
     useEffect(() => {
         const myElement = document.querySelector('#myElement')
@@ -53,6 +55,12 @@ function LandingPage() {
             </div>
         </>
     )
-}
+};
 
-export default LandingPage;
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+    };
+};
+
+export default connect(mapStateToProps)(Landing);

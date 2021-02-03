@@ -44,8 +44,8 @@ const Basics = () => {
           Resume
           <Form.File
             type="file"
-            name="resume"
             value={resume}
+            className= "resume-button"
             onChange={setForm}
             required
           />
