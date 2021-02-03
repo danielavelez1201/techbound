@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hooks-helper";
 import axios from "axios";
-
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import pdf from "../sample.pdf";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
@@ -44,7 +45,15 @@ const Profile = props => {
 
     const [user, setUser] = useState(sampleUser);
     const [editMode, setEditMode] = useState(false);
+    
     const [formData, setForm] = useForm(user);
+
+    const [numPages, setNumPages] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+
+    function onDocumentLoadSuccess({ numPages }) {
+        setNumPages(numPages);
+    }
 
     // useEffect(() => {
     //     axios
@@ -149,6 +158,12 @@ const Profile = props => {
                             </Col>
                         </Row>
                     </Container>
+                    <Document
+                        file={pdf}
+                        onLoadSuccess={onDocumentLoadSuccess}
+                    >
+                        <Page pageNumber={pageNumber} />
+                    </Document>
                 </div>
             );
     };
