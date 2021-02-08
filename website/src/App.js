@@ -26,6 +26,7 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { check_authenticated } from "./actions/action.auth";
 import setAuthToken from "./utils/setAuthToken";
+import ForgotPassword from "./components/forgot-password.component";
 import Sample from "./components/sample.component";
 import PrivateRoute from "./routing/PrivateRoutes";
 
@@ -54,6 +55,7 @@ function App() {
               <Route path="/login" exact component = {Login} />
               <PrivateRoute exact path = '/sample' component= {Sample} />
               <Route path="/sign-up" exact component = {SignUpFirst} />
+              <Route path="/forgot-password" exact component = {ForgotPassword} />
             </Switch>
           </div>
         </div>

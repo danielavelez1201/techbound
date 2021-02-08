@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -7,7 +7,7 @@ import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hooks-helper";
 import { connect } from 'react-redux';
 import { login } from '../actions/action.auth';
-
+import ForgotPassword from "./forgot-password.component";
 
 const NavItems = [
     {
@@ -45,6 +45,7 @@ const Header2 = ({ login, isAuthenticated }) => {
     //if (isAuthenticated) {
     //    return <Redirect to= "/sample" />;
     //}
+    const [modalShow, setModalShow] = useState(false);
 
     const loginPopover = (
         <Popover>
@@ -59,7 +60,7 @@ const Header2 = ({ login, isAuthenticated }) => {
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name="password" value={password} onChange={setForm} required />
-                        <Form.Text><a href="#">Forgot Your Password?</a></Form.Text>
+                        <Form.Text><a href="#" onClick={() => setModalShow(true)}>Forgot Your Password?</a></Form.Text>
                     </Form.Group>
                     <Button type="submit">Log In</Button>
                 </Form>
@@ -94,6 +95,7 @@ const Header2 = ({ login, isAuthenticated }) => {
                     })}
                 </ul>
             </nav>
+            <ForgotPassword show={modalShow} onHide={() => setModalShow(false)} />
         </div>
     );
 };

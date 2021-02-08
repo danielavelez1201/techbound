@@ -58,35 +58,37 @@ const InternshipListings = () => {
     return (
         <div>
             <Menu />
-            <h2>{cluster} Internship Opportunities</h2>
-            <br />
-            <div className="container" style={{ columnCount: 2 }}>
-                {internships && 
-                internships.map(renderCard)}</div>
-            <br />
-            <div>
-                <strong>Get more from Techbound</strong>
+            <div id="main-internships">
+                <h2>{cluster} Internship Opportunities</h2>
                 <br />
-                <Container>
-                    <Row>
-                        <Col>
-                            <ol>
-                                <li>
-                                    <p>See more internship postings</p>
-                                    <img src="https://via.placeholder.com/140x100" alt="" />
-                                </li>
-                                <br />
-                                <li>
-                                    <p>Get resume analyzed and tailored to your clusters</p>
-                                    <img src="https://via.placeholder.com/140x100" alt="" />
-                                </li>
-                            </ol>
-                        </Col>
-                        <Col>
-                            <Basics />
-                        </Col>
-                    </Row>
-                </Container>
+                <div className="container" style={{ columnCount: 2 }}>
+                    {internships && 
+                    internships.map(renderCard)}</div>
+                <br />
+                <div>
+                    <strong>Get more from Techbound</strong>
+                    <br />
+                    <Container>
+                        <Row>
+                            <Col>
+                                <ol>
+                                    <li>
+                                        <p>See more internship postings</p>
+                                        <img src="https://via.placeholder.com/140x100" alt="" />
+                                    </li>
+                                    <br />
+                                    <li>
+                                        <p>Get resume analyzed and tailored to your clusters</p>
+                                        <img src="https://via.placeholder.com/140x100" alt="" />
+                                    </li>
+                                </ol>
+                            </Col>
+                            <Col>
+                                <Basics />
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
             </div>
         </div>
     );
