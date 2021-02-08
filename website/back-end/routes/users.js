@@ -161,6 +161,12 @@ router.route('/add').post(async (req, res, next) => {
   });
 });
 
+router.route('/get/:id').get(async (req, res) => {
+  User.findById(req.params.id)
+  .then(user => res.json(user.firstname))
+  .catch(err => res.status(400).json('Error: ' + err));
+})
+
 
 router.route('/clusters/:id').get(async (req, res) => {
 
