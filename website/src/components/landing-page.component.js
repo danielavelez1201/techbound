@@ -1,20 +1,25 @@
 import React from "react"
 import Basics from "./basics.component";
 import ClusterList from "./cluster-list.component";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { init } from "ityped"
 import axios from "axios";
 import { cardInfo } from "./cluster-list.component";
 import Header2 from "./test-header.component";
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 
-
-function LandingPage({ isAuthenticated }) {
+function LandingPage({ isAuthenticated, user }) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
     useEffect(() => {
         const myElement = document.querySelector('#myElement')
-        init(myElement, { showCursor: false, strings: clusterTitles, loop: true })
-    }, [])
+        init(myElement, { showCursor: false, strings: clusterTitles, loop: true });
+    }, [])    
+
+    const userData = useSelector(user => user.auth.user);
+    console.log(userData);
+
 
     return(
         <>
@@ -30,7 +35,7 @@ function LandingPage({ isAuthenticated }) {
                     <div className= 'content'>
                         <h1 className="black-text landing-text">Find a tech internship <br></br>
                         in <b>{" "}<span id="myElement"></span></b>|</h1>
-                        <p className="landing-text p1">Start growing your career in tech by looking in the <br></br>
+                        <p className="landing-text p1"> Start growing your career in tech by looking in the <br></br>
                         areas you’re most passionate about.</p>
                     </div>
             </div>
@@ -65,6 +70,7 @@ function LandingPage({ isAuthenticated }) {
 
 const mapStateToProps = (state) => {
     return {
+        user: state.user,
         isAuthenticated: state.auth.isAuthenticated,
     };
 };
