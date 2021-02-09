@@ -9,7 +9,7 @@ import Header2 from "./test-header.component";
 import { connect } from 'react-redux';
 
 
-function Landing({ isAuthenticated }) {
+function LandingPage({ isAuthenticated }) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
     useEffect(() => {
         const myElement = document.querySelector('#myElement')
@@ -19,7 +19,13 @@ function Landing({ isAuthenticated }) {
     return(
         <>
             <div className= 'blue-block landing-block black-text'>
-            <img className = 'blob-background' alt='Clusters of internships like language learning, gaming, and productivity' src='../../images/blobs2.png' />  
+                <div className= 'landing-grid'>
+                    <img className = 'main-blob' alt='Big cluster' src='../../images/main-blob.png' />  
+                    <img className = 'language-blob' alt='Language learning companies' src='../../images/language-blob.png' />  
+                    <img className = 'gaming-blob' alt='Gaming companies' src='../../images/gaming-blob.png' /> 
+                    <img className = 'productivity-blob' alt='Productivity companies' src='../../images/productivity-blob.png' />   
+                </div>
+
             <Header2 />  
                     <div className= 'content'>
                         <h1 className="black-text landing-text">Find a tech internship <br></br>
