@@ -83,6 +83,17 @@
   background-color: #F84D70;
 }
 
+
+.nav-background {
+  background-image: none;
+  background-color: transparent;
+  width: 100%;
+  height: 10vh;
+  position: absolute;
+  top: 2vh;
+  z-index: 8;
+}
+
 /* BUTTONS */
 .button {
   background-color: #E51C45;
@@ -95,12 +106,22 @@
   font-size: 2.5vh;
   padding: 1.2vh 2.5vh 1.3vh 2.5vh;
   font-family: Glacial Indifference Bold;
+  margin-bottom: 2vh;
 }
 
 .button:hover {
   background-color: #F84D70;
 }
 
+.resume-button {
+  background: #F5F4F7;
+  border: 1px dashed #AAABAD;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 18vw;
+}
+
+/* TEXT */
 .logo {
   display: inline-block;
   font-family: Glacial Indifference Bold;
@@ -113,26 +134,25 @@
   color: white;
   font-size: 2.2vh;
   font-family: Glacial Indifference Regular;
+  display: inline-block;
   border: 0;
   border-radius: 10px 10px 0 0;
   padding: 1.2vh 2.5vh 1.3vh 2.5vh;
   box-shadow: 5px 0px 2px -2px rgb(158, 158, 158);
-  position: absolute;
+  position: sticky;
   z-index: 1;
-  top: 8.35vw;
-  left: 1.5vw;
-  float: left;
+  top: 14.2vw;
+  left: 0px;
   vertical-align: top;
-  transform: rotate(90deg);
+	transform: rotate(7deg);
   -ms-transform: rotate(90deg); /* IE 9 */
   -moz-transform: rotate(90deg); /* Firefox */
   -webkit-transform: rotate(90deg); /* Safari and Chrome */
   -o-transform: rotate(90deg); /* Opera */
-  transform-origin: left;
 }
 
 .sidenav-open-button {
-  left: 18%;
+  left: 17%;
 }
 
 .sidenav-links {
@@ -146,7 +166,6 @@
 
 .sidenav-links:hover {
   color: white;
-  transition: 0.3s;
 }
 
 .sidenav-container {
@@ -156,13 +175,12 @@
   top: 10vw;
   padding: 0 4vh 4vh 4vh;
   box-shadow: 0px 6px 2px -2px rgb(158, 158, 158);
-  position: absolute;
+  position: fixed;
   z-index: 1;
-  transition: 0.5s;
 }
 
-#main-internships {
-  transition: margin-left 0.5s;
+.main {
+  transition: margin-left .5s;
 }
 
 .highlight {
@@ -227,39 +245,31 @@ h2 {
   font-weight: 500;
 }
 
-p1 {
+h3 {
   color:#1D2F6F;  
   font-size: 1.13vw;
   font-family: Nunito;
   font-weight: 600;
 }
 
+h4 {
+  color:#1D2F6F;  
+  font-size: 2vh;
+  font-family: Nunito;
+  font-weight: 600;
+}
+
+h5 {
+  color:#1D2F6F;  
+  font-size: 1.6vh;
+  font-family: Nunito;
+  font-weight: 600;
+}
+
+/* PAGE SETUP */
 .container {
   max-width: 100%;
   padding: 0;
-}
-
-.landing-block {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-}
-
-.blob-background {
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  z-index: 1;
-}
-
-.nav-background {
-  background-image: none;
-  background-color: transparent;
-  width: 100%;
-  height: 10vh;
-  position: absolute;
-  top: 2vh;
-  z-index: 8;
 }
 
 .blue-block {
@@ -284,22 +294,11 @@ p1 {
   color: #3517EB;
 }
 
-.landing-text {
-  margin-bottom: 5vh;
-  position: relative;
-  bottom: 10vh;
-  z-index: 5;
-}
-
 .content {
   margin-top: 10vh;
   margin-bottom: 10vh;
   margin-left: 10vw;
   margin-right: 10vw;
-}
-
-.three-step {
-  max-width: 18vw;
 }
 
 .image-rows {
@@ -313,4 +312,96 @@ p1 {
 
 .text-space {
   margin-bottom: 3.5vh;
+}
+
+/* FORM */
+.form-field {
+  background: #F5F4F7;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  width: 18vw;
+  height: 5vh;
+  font-family: Nunito;
+  font-size: 2.25vh;
+}
+
+.form-label {
+  font-family: Nunito;
+  font-size: 2.25vh;
+  font-weight: 400;
+  color: #152352;
+}
+
+.form-margin {
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+}
+
+.inline-form-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* LOGIN BOX */
+.login-box {
+  box-sizing: content-box;
+  padding: 2vw;
+}
+
+
+/* LANDING PAGE SPECIFIC */
+.landing-text {
+  margin-bottom: 5vh;
+  position: relative;
+  bottom: 10vh;
+  z-index: 5;
+}
+
+.three-step {
+  max-width: 18vw;
+}
+
+.landing-block {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.landing-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat (10, minmax(0, 1fr));
+  grid-template-rows: repeat (10, minmax(0, 1fr));
+  position: absolute;
+  z-index: 1;
+}
+
+.main-blob {
+  grid-column: 1 / 6;
+  grid-row: 1 / 6;
+  object-fit: fill;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.language-blob {
+  grid-column: 6 / 8;
+  grid-row: 3 / 6;
+  object-fit: contain;
+  max-width: 80%;
+}
+
+.gaming-blob {
+  grid-column: 8 / 10;
+  grid-row: 1 / 4;
+  object-fit: contain;
+  max-width: 80%;
+}
+
+.productivity-blob {
+  grid-column: 7 / 9;
+  grid-row: 5 / 8;
+  object-fit: contain;
+  max-width: 90%;
 }

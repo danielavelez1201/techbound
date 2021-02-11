@@ -13,7 +13,33 @@ import {
     access: localStorage.getItem("access"),
     isAuthenticated: null,
     loading: true,
-    user: null,
+    user: {
+      "firstname": "",
+      "lastname": "",
+      "email": "",
+      "password": "",
+      "confirmation": "",
+      "resume": "",
+      "linkedin": "",
+      "github": "",
+      "clusters": [{
+        "title": "",
+        "subtitle": "",
+        "text": "",
+        "selected": ""
+      },
+      {
+        "title": "",
+        "subtitle": "",
+        "text": "",
+        "selected": ""
+      }, 
+      {
+        "title": "",
+        "subtitle": "",
+        "text": "",
+        "selected": ""
+      }]},
   };
   
   export default function (state = initialState, action) {
