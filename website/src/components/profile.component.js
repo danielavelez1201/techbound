@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useForm } from "react-hooks-helper";
 import axios from "axios";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import pdf from "../sample.pdf";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/esm/Button";
@@ -10,6 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from "react-bootstrap/esm/Card";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Profile = props => {
     const sampleUser = {
@@ -53,6 +55,29 @@ const Profile = props => {
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
+    }
+
+    const textRenderer = (textItem) => {
+        if (textItem.str.includes("extensions")) {
+            return (
+                <OverlayTrigger
+                    placement="right"
+                    overlay={<Tooltip>Hi this is an annotation!</Tooltip>}
+                >
+                    <span className="highlight">{textItem.str}</span>
+                </OverlayTrigger>
+            )
+        }
+    };
+
+    function removeTextLayerOffset() {
+        const textLayers = document.querySelectorAll(".react-pdf__Page__textContent");
+            textLayers.forEach(layer => {
+            const { style } = layer;
+            style.top = "0";
+            style.left = "0";
+            style.transform = "";
+        });
     }
 
     // useEffect(() => {
@@ -162,7 +187,7 @@ const Profile = props => {
                         file={pdf}
                         onLoadSuccess={onDocumentLoadSuccess}
                     >
-                        <Page pageNumber={pageNumber} />
+                        <Page onLoadSuccess={removeTextLayerOffset} pageNumber={pageNumber} customTextRenderer={textRenderer} />
                     </Document>
                 </div>
             );
