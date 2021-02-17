@@ -32,25 +32,23 @@ const InternshipListings = () => {
 
     const renderCard = (card, index) => {
         return (
-            <div>
-                <div key={index} className="card">
-                    <div className="row no-gutters">
-                        <div className="col-auto">
-                            <img src={"https://logo.clearbit.com/" + getDomain(card.link)} class="img-fluid" alt="Logo" width="150" style={{ padding: 10 }} />
-                        </div>
-                        <div className="col">
-                            <div className="card-block px-2">
-                                <h3 className="card-title">{card.name}</h3>
-                                <h5 className="card-subtitle"><FaMapMarkerAlt />{" "}{card.location}</h5>
-                                <br />
-                                <p className="card-text">{card.notes}</p>
-                                <br />
-                                <a href={card.link}> <Button variant="secondary">More info</Button></a>
+            <div className="listing-cards">
+                <Link to={card.link}>
+                    <div key={index} className="listing-card">
+                        <div className="row no-gutters">
+                            <div className="col-auto listing-center">
+                                <img src={"https://logo.clearbit.com/" + getDomain(card.link)} class="img-fluid listing-card-logo" alt="Logo" />
+                            </div>
+                            <div className="col listing-center">
+                                <div className="card-block px-2">
+                                    <h3 className="listing-card-title">{card.name}</h3>
+                                    <h5 className="listing-card-location"><FaMapMarkerAlt />{" "}{card.location}</h5>
+                                    <h4 className="listing-card-text">{card.notes}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br />
+                </Link>
             </div>
         );
     };

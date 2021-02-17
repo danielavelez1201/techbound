@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-<<<<<<< HEAD
-import { Form, OverlayTrigger, Overlay, Popover } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
-=======
 import { Form, OverlayTrigger, Popover } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
->>>>>>> 23ea7aa776f89ea5d38dc2e0c0cca2ef6ec652e1
 import { useForm } from "react-hooks-helper";
 import { connect } from 'react-redux';
 import { login } from '../actions/action.auth';
@@ -55,14 +50,8 @@ const Header2 = ({ login, isAuthenticated }) => {
     const loginPopover = (
         <Popover className="login-box">
             <Popover.Content>
-<<<<<<< HEAD
                 <h2>Welcome back!</h2>
                 <Form>
-=======
-                <h4>Welcome back!</h4>
-                <h6>New here? <a href="sign-up">Create an account.</a></h6>
-                <Form onSubmit={(e) => onSubmit(e)}>
->>>>>>> 23ea7aa776f89ea5d38dc2e0c0cca2ef6ec652e1
                     <Form.Group>
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" name="email" className="form-field" value={email} onChange={setForm} required />
@@ -74,12 +63,8 @@ const Header2 = ({ login, isAuthenticated }) => {
                         </div>
                         <Form.Control className="form-field" type="password" name="password" value={password} onChange={setForm} required />
                     </Form.Group>
-<<<<<<< HEAD
                     <Button className="button">Log In</Button>
                     <h3>New here? <a href="sign-up">Create an account.</a></h3>
-=======
-                    <Button type="submit">Log In</Button>
->>>>>>> 23ea7aa776f89ea5d38dc2e0c0cca2ef6ec652e1
                 </Form>
             </Popover.Content>
         </Popover>
