@@ -29,6 +29,7 @@ import setAuthToken from "./utils/setAuthToken";
 import ForgotPassword from "./components/forgot-password.component";
 import Sample from "./components/sample.component";
 import PrivateRoute from "./routing/PrivateRoutes";
+import Resume from "./components/resume-analysis.component"
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -53,6 +54,7 @@ function App() {
               <Route path="/landing" exact component={LandingPage} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/login" exact component = {Login} />
+              <Route path="/resume" exact component = {Resume} />
               <PrivateRoute exact path = '/sample' component= {Sample} />
               <Route path="/sign-up" exact component = {SignUpFirst} />
               <Route path="/forgot-password" exact component = {ForgotPassword} />

@@ -12,15 +12,20 @@ function LandingPage({ isAuthenticated, user }) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
-    useEffect(() => {
+    const [allUsers, setAllUsers] = useState([])
+    useEffect(async () => {
         const myElement = document.querySelector('#myElement')
         init(myElement, { showCursor: false, strings: clusterTitles, loop: true });
+
+        const allUsers = await axios('http://localhost:5000/users/')
+        setAllUsers(allUsers.data)
     }, [])    
 
     const userData = useSelector(user => user.auth.user);
     console.log(userData);
+    console.log(allUsers)
 
-
+    
     return(
         <>
             <div className= 'blue-block landing-block black-text'>
@@ -33,6 +38,13 @@ function LandingPage({ isAuthenticated, user }) {
 
             <Header2 />  
                     <div className= 'content'>
+                        <ul>
+                            {allUsers.map(item=> (
+                                <li key={item._id}>
+                                    <p>{item.firstname}</p>
+                                </li>
+                            ))}
+                        </ul>
                         <h1 className="black-text landing-text">Find a tech internship <br></br>
                         in <b>{" "}<span id="myElement"></span></b>|</h1>
                         <p className="landing-text p1"> Start growing your career in tech by looking in the <br></br>
