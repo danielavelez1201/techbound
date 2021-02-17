@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { Form, OverlayTrigger, Overlay, Popover } from "react-bootstrap";
+import { Form, OverlayTrigger, Popover } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hooks-helper";
 import { connect } from 'react-redux';
