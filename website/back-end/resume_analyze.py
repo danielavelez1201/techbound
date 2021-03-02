@@ -4,7 +4,7 @@ import sys
 textract = boto3.client(
     service_name="textract",
     region_name="us-west-2",
-    aws_access_key_id="AKIAIYAYTSHWIZHZVOTA",
+    aws_access_key_id=,
     aws_secret_access_key="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",
 
 )
