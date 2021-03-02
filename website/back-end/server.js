@@ -53,12 +53,14 @@ const signS3Router = require("./routes/s3");
 //const scanRouter = require('./routes/file-scan');
 const auth = require("./routes/auth");
 const internshipRouter = require("./routes/internships");
+const emailRouter = require("./routes/email");
 
 app.use("/sign-s3", signS3Router);
 app.use("/clusters", clustersRouter);
 app.use("/users", usersRouter);
 app.use('/auth', auth);
 app.use('/internships', internshipRouter);
+app.use("/email", emailRouter);
 //app.use('/file', fileRouter);
 //app.use('/scan', scanRouter);
 
