@@ -1,10 +1,14 @@
 import boto3
 import sys
+import os
+os.environ.get('ACCESS_KEY')
+os.environ.get('SECRET_ACCESS_KEY')
+
 
 textract = boto3.client(
     service_name="textract",
     region_name="us-west-2",
-    aws_access_key_id="AKIAIYAYTSHWIZHZVOTA",
+    aws_access_key_id= process.env.,
     aws_secret_access_key="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",
 
 )

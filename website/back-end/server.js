@@ -28,24 +28,6 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-/*
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(
-  require("express-session")({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-*/
-
-//app.use(passport.initialize());
-//app.use(passport.session());
-
-//passport.use(new LocalStrategy(User.authenticate()));
-//passport.serializeUser(User.serializeUser());
-//passport.deserializeUser(User.deserializeUser());
-
 const clustersRouter = require("./routes/clusters");
 const usersRouter = require("./routes/users");
 const signS3Router = require("./routes/s3");
@@ -53,43 +35,24 @@ const signS3Router = require("./routes/s3");
 //const scanRouter = require('./routes/file-scan');
 const auth = require("./routes/auth");
 const internshipRouter = require("./routes/internships");
+const mongoAWSRouter = require("./routes/mongo-upload");
+
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
+app.set('view engine', 'ejs');
 
 app.use("/sign-s3", signS3Router);
 app.use("/clusters", clustersRouter);
 app.use("/users", usersRouter);
 app.use('/auth', auth);
 app.use('/internships', internshipRouter);
+app.use('/upload-file', mongoAWSRouter);
+
 //app.use('/file', fileRouter);
 //app.use('/scan', scanRouter);
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-app.post("/register", (req, res) => {
-  const { firstname, lastname, email, password, confirmation } = req.body;
-  if (!email) {
-    res.status(400).json({ error: "must provide email" });
-  } else if (!password) {
-    res.status(400).json({ error: "must provide password" });
-  } else if (password !== confirmation) {
-    res.status(400).json({ error: "password must match confirmation" });
-  } else {
-    User.register(
-      new User({ email: email, firstname: firstname, lastname: lastname }),
-      password,
-      (err, user) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        passport.authenticate("local")(req, res, () => {
-          req.session.userId = this.lastID;
-          res.status(200).json({});
-        });
-      }
-    );
-  }
 });
 
 app.listen(port, () => {
