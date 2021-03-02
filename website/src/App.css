@@ -386,6 +386,7 @@ h5 {
   grid-template-rows: repeat (10, minmax(0, 1fr));
   position: absolute;
   z-index: 1;
+  grid-gap: 5vw;
 }
 
 .main-blob {
@@ -398,21 +399,76 @@ h5 {
 
 .language-blob {
   grid-column: 6 / 8;
-  grid-row: 3 / 6;
+  grid-row: 2 / 5;
   object-fit: contain;
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .gaming-blob {
   grid-column: 8 / 10;
   grid-row: 1 / 4;
   object-fit: contain;
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .productivity-blob {
   grid-column: 7 / 9;
-  grid-row: 5 / 8;
+  grid-row: 4 / 7;
   object-fit: contain;
-  max-width: 90%;
+  max-width: 110%;
+}
+
+/* CARD LISTING */
+.listing-cards {
+  display: flex;
+  justify-content: center;
+}
+
+.listing-card {
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 65vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+
+.listing-card-title {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 105%;
+  color: #176CEB;
+  margin-top: 3vh;
+}
+
+.listing-card-location {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 156.86%;
+  color: #000000;
+}
+
+.listing-card-logo{
+  height: 12vh;
+  max-width: 12vh;
+  margin-left: 3vw;
+  margin-right: 1vw;
+}
+
+.listing-center {
+  display: flex;
+  align-items: center;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.listing-card-text {
+  margin-bottom: 3vh;
 }
