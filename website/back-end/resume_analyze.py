@@ -1,15 +1,19 @@
+import dotenv
+from dotenv import load_dotenv
+load_dotenv()
 import boto3
 import sys
 import os
-os.environ.get('ACCESS_KEY')
-os.environ.get('SECRET_ACCESS_KEY')
+access_key = os.environ.get('access-key')
+secret_access_key = os.environ.get('secret-access-key')
 
-
+print(access_key)
+print(secret_access_key)
 textract = boto3.client(
     service_name="textract",
-    region_name="us-west-2",
-    aws_access_key_id= process.env.,
-    aws_secret_access_key="YhirouUihghSdVxxBFyaw3lygSAK+sS4U22CNI5m",
+    region_name="us-east-2",
+    aws_access_key_id= access_key,
+    aws_secret_access_key= secret_access_key,
 
 )
 
@@ -18,7 +22,7 @@ s3 = boto3.resource('s3')
 response = textract.start_document_text_detection(
     DocumentLocation={
         'S3Object': {
-            'Bucket': 'techbound',
+            'Bucket': 'techbound-resumes',
             'Name': str(sys.argv[1])
         }}
 )
