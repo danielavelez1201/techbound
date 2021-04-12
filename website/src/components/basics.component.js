@@ -2,6 +2,7 @@ import React from "react";
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from 'react';
 import { useForm } from "react-hooks-helper";
 import { useHistory } from "react-router-dom";
 
@@ -9,16 +10,23 @@ import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const Basics = () => {
+const Basics = ({ isAuthenticated, user }) => {
   const defaultData = {
     email: "",
     resume: ""
   }
-  const [formData, setForm] = useForm(defaultData);
-  const { email, resume } = formData;
+  const [{ email, resume }, setForm] = useForm(defaultData);
+  const [fileName, setFileName] = useState("none");
+  const [file, setFile] = useState("");
 
+  const uploadFile = (e) => {
+    setFileName(e.target.files[0].originalname);
+    setForm({target: {name: "resume", value: e.target.files[0]}});
+    setFile(e.target.files[0]);
+  }
   let history = useHistory();
   const handleClick = () => {
+    console.log(file);
     history.push({
       pathname: "/sign-up/more",
       state: { email: email, resume: resume }
@@ -44,10 +52,10 @@ const Basics = () => {
           Resume
           <Form.File
             type="file"
-            value={resume}
             className= "resume-button"
-            onChange={setForm}
+            onChange={uploadFile}
             required
+            label={fileName}
           />
         </Form.Group>
         <Button className = 'button' variant="primary" onClick={handleClick}>
@@ -59,3 +67,4 @@ const Basics = () => {
 };
 
 export default Basics;
+

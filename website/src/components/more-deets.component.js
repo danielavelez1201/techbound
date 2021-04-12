@@ -6,11 +6,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Importing a few elements from react-bootstrap for design aesthetics
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useState, useEffect } from "react";
 
 const MoreDeets = ({ setForm, formData, navigation }) => {
-    const { firstname, lastname, password, confirmation, github, linkedin } = formData;
+    const { firstname, lastname, password, confirmation, github, linkedin, resume } = formData;
     const { previous, next } = navigation;
-    console.log(formData);
+    const [file, setFile] = useState(formData.resume);
+    console.log("state variable", file);
+
+    console.log("resume value", formData.resume);
+    console.log("form Data:", formData)
+    
+   useEffect(() => {
+        setForm({target: {name: "resume", value: file}})
+        console.log("form in use effect,", formData);
+    }, []); 
 
     return (
         <div>
@@ -91,5 +101,7 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
         </div>
     );
 };
+
+
 
 export default MoreDeets;

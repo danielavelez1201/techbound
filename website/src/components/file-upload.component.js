@@ -18,7 +18,7 @@ export default class UploadFile extends Component {
     //define message container
     let err = [];
     // list allow mime type
-    const types = ["image/png", "image/jpeg", "application/pdf"];
+    const types = ["image/png", "image/jpeg", "application/pdf", "multipart/form-data"];
     // loop access array
     for (var x = 0; x < files.length; x++) {
       // compare file type find doesn't matach
@@ -82,7 +82,7 @@ export default class UploadFile extends Component {
     const data = new FormData();
     var inputFile = this.state.selectedFile[0];
     axios
-      .post("http://localhost:5000/file/upload", inputFile, {
+      .post("http://localhost:5000/upload-file", inputFile, {
         onUploadProgress: (ProgressEvent) => {
           this.setState({
             loaded: (ProgressEvent.loaded / ProgressEvent.total) * 100,
