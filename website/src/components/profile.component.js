@@ -13,6 +13,7 @@ import Col from 'react-bootstrap/Col';
 import Card from "react-bootstrap/esm/Card";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
+
 const Profile = props => {
     const sampleUser = {
         firstname: "Johnny",

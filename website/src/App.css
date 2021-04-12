@@ -186,6 +186,7 @@
   transition: margin-left 0.5s;
 }
 
+/* PDF VIEWER */
 .highlight {
   position:relative;
 }
@@ -315,6 +316,13 @@ h5 {
 
 .text-space {
   margin-bottom: 3.5vh;
+}
+
+/* CARD */
+.card {
+  -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+  page-break-inside: avoid; /* Firefox */
+  break-inside: avoid; /* IE 10+ */
 }
 
 /* FORM */

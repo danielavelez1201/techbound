@@ -29,7 +29,8 @@ import setAuthToken from "./utils/setAuthToken";
 import ForgotPassword from "./components/forgot-password.component";
 import Sample from "./components/sample.component";
 import PrivateRoute from "./routing/PrivateRoutes";
-import Resume from "./components/resume-analysis.component"
+import Resume from "./components/resume-analysis.component";
+import HighlightTest from "./components/highlight-test.component.js";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -58,6 +59,7 @@ function App() {
               <PrivateRoute exact path = '/sample' component= {Sample} />
               <Route path="/sign-up" exact component = {SignUpFirst} />
               <Route path="/forgot-password" exact component = {ForgotPassword} />
+              <Route path="/highlight-test" exact component = {HighlightTest} />
             </Switch>
           </div>
         </div>

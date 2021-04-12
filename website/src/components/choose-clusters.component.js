@@ -13,6 +13,7 @@ import { cardInfo } from "./cluster-list.component";
 import axios from "axios";
 import { signup } from "../actions/action.auth";
 import { connect } from 'react-redux';
+import { sendEmail } from "../api/public"
 
 const ChooseClusters = ({ setForm, formData, navigation }) => {
     const [clusters, setClusters] = useState(cardInfo);
@@ -61,8 +62,13 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
             await axios
             .post("http://localhost:5000/signup", formData)
             .then(res => console.log(res.data))
+            try {
+                await sendEmail(formData.email);
+                console.log('email was successfully added to Mailchimp list');
+            } catch (err) {
+                console.log(err)
+            }
         }
-      
     }
 
     return (

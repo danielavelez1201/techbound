@@ -35,6 +35,7 @@ const signS3Router = require("./routes/s3-secondattempt");
 //const scanRouter = require('./routes/file-scan');
 const auth = require("./routes/auth");
 const internshipRouter = require("./routes/internships");
+const emailRouter = require("./routes/email");
 const mongoAWSRouter = require("./routes/mongo-upload");
 const signupRouter = require("./routes/signup");
 
