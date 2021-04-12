@@ -4,15 +4,18 @@ aws.config.update({ region: "us-west-2" });
 
 var s3 = new aws.S3({ apiVersion: "2006-03-01" });
 
-const signS3 = (req, res) => {
+router.route('/').post((req, res) => {
   const s3 = new aws.S3();
-  const fileName = req.query["file-name"];
-  const fileType = req.query["file-type"];
+  console.log(req);
+  const fileName = req.file.name;
+  const fileType = req.file.type;
+  console.log(fileName)
   const s3Params = {
-    Bucket: "techbound",
+    Bucket: "techbound-resumes",
     Key: fileName,
     ContentType: fileType,
-  };
+  };  
+
   console.log("IN SIGNS3");
   s3.getSignedUrl("putObject", s3Params, (err, data) => {
     if (err) {
@@ -26,8 +29,7 @@ const signS3 = (req, res) => {
     };
     return res.send(JSON.stringify(returnData));
   });
-};
+}) 
 
-router.route("/").get(signS3);
 
 module.exports = router;
