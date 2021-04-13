@@ -13,8 +13,9 @@ dotenv.config({ path: './config/config.env' })
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
+
 
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
@@ -36,10 +37,10 @@ const signS3Router = require("./routes/s3");
 const auth = require("./routes/auth");
 const internshipRouter = require("./routes/internships");
 const emailRouter = require("./routes/email");
-const mongoAWSRouter = require("./routes/mongo-upload");
+// const mongoAWSRouter = require("./routes/mongo-upload");
 
 app.use(bodyParser.json());
-app.use(methodOverride('_method'));
+// app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 app.use("/sign-s3", signS3Router);
@@ -48,7 +49,7 @@ app.use("/users", usersRouter);
 app.use('/auth', auth);
 app.use('/internships', internshipRouter);
 app.use("/email", emailRouter);
-app.use('/upload-file', mongoAWSRouter);
+// app.use('/upload-file', mongoAWSRouter);
 
 //app.use('/file', fileRouter);
 //app.use('/scan', scanRouter);

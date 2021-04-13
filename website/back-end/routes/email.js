@@ -1,5 +1,5 @@
 const router = require('express').Router();
-import { send } from "../util/mailchimp";
+const send = require('../util/mailchimp').send;
 
 router.route("/api/v1/public/sendEmail").post(async (req, res) => {
     const { email } = req.body
@@ -7,10 +7,10 @@ router.route("/api/v1/public/sendEmail").post(async (req, res) => {
         res.json({ error: 'Email is required' });    
         return;  
     }    
-    try {    
+    try {
         await send({ email });
         res.json({ sent: 1 });    
-        console.log(email);  
+        console.log("router", email);
     } catch (err) {    
         res.json({ error: err.message || err.toString() });  
     }

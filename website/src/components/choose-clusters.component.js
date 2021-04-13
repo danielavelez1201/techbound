@@ -58,15 +58,16 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
         if (clusters.filter(c => c.selected).length === 3) {
             signup(formData.email, formData.password);
             formData.clusters = clusters.filter(c => c.selected);
-            await axios
-            .post("http://localhost:5000/users/add", formData)
-            .then(res => console.log(res.data))
             try {
+                console.log("trying to submit");
                 await sendEmail(formData.email);
                 console.log('email was successfully added to Mailchimp list');
             } catch (err) {
                 console.log(err)
             }
+            await axios
+            .post("http://localhost:5000/users/add", formData)
+            .then(res => console.log(res.data))
         }
     }
 
