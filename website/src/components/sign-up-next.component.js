@@ -29,7 +29,10 @@ const SignUpNext = () => {
         clusters: [],
     };
 
+    console.log('default data resume', defaultData.resume);
+
     const [formData, setForm] = useForm(defaultData);
+    
     const { step, navigation } = useStep({ initialStep: 0, steps });
     const { id } = step;
 

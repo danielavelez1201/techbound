@@ -18,6 +18,7 @@ import { sendEmail } from "../api/public"
 const ChooseClusters = ({ setForm, formData, navigation }) => {
     const [clusters, setClusters] = useState(cardInfo);
     const { previous } = navigation;
+    console.log('in choose clusters', formData);
 
     // const { clusters } = formData;
 
@@ -58,6 +59,12 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
         if (clusters.filter(c => c.selected).length === 3) {
             signup(formData.email, formData.password);
             formData.clusters = clusters.filter(c => c.selected);
+<<<<<<< HEAD
+=======
+            await axios
+            .post("http://localhost:5000/signup", formData)
+            .then(res => console.log(res.data))
+>>>>>>> fdf08d86771b125fd314b9a45f61dbfbba6d9db3
             try {
                 console.log("trying to submit");
                 await sendEmail(formData.email);

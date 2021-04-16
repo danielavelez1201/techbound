@@ -7,7 +7,7 @@ async function send({ email }) {
     console.log("hi", process.env.API_KEY);
     const data = {    
         email_address: email,    
-        status: 'pending',  
+        status: 'subscribed',  
     };
     await new Promise((resolve, reject) => {
         console.log("pinky promise");
