@@ -59,12 +59,9 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
         if (clusters.filter(c => c.selected).length === 3) {
             signup(formData.email, formData.password);
             formData.clusters = clusters.filter(c => c.selected);
-<<<<<<< HEAD
-=======
-            await axios
-            .post("http://localhost:5000/signup", formData)
-            .then(res => console.log(res.data))
->>>>>>> fdf08d86771b125fd314b9a45f61dbfbba6d9db3
+            // await axios
+            // .post("http://localhost:5000/signup", formData)
+            // .then(res => console.log(res.data))
             try {
                 console.log("trying to submit");
                 await sendEmail(formData.email);
@@ -72,9 +69,9 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
             } catch (err) {
                 console.log(err)
             }
-            await axios
-            .post("http://localhost:5000/users/add", formData)
-            .then(res => console.log(res.data))
+            // await axios
+            // .post("http://localhost:5000/users/add", formData)
+            // .then(res => console.log(res.data))
         }
     }
 

@@ -4,13 +4,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 async function send({ email }) {  
-    console.log("hi", process.env.API_KEY);
     const data = {    
         email_address: email,    
         status: 'subscribed',  
     };
     await new Promise((resolve, reject) => {
-        console.log("pinky promise");
         request.post(      
             {        
                 uri: `https://us1.api.mailchimp.com/3.0/lists/${process.env.LIST_ID}/members`,      
@@ -26,8 +24,6 @@ async function send({ email }) {
                     reject(err);        
                 } else {          
                     resolve(body);
-                    console.log("big resolve", Buffer.from(`apikey:${process.env.API_KEY}`).toString('base64'));  
-                    console.log(response);
                 }      
             },    
         );  
