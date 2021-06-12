@@ -8,14 +8,19 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
-const MoreDeets = ({ setForm, formData, navigation }) => {
-    const { firstname, lastname, password, confirmation, github, linkedin, resume } = formData;
+const MoreDeets = ({ setForm, formData, navigation, resume }) => {
+    const { firstname, lastname, password, confirmation, github, linkedin } = formData;
     const { previous, next } = navigation;
     const [file, setFile] = useState(formData.resume);
     console.log("state variable", file);
 
     console.log("resume value", formData.resume);
-    console.log("form Data:", formData)
+
+    const setFormValues = (e) => {
+        setForm({target: {name: e.target.name, value: e.nativeEvent.data}});
+        setForm({target: {name: "resume", value: file}});
+        console.log(formData);
+    }
     
    useEffect(() => {
         setForm({target: {name: "resume", value: file}})

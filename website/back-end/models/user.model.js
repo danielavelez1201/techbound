@@ -38,14 +38,14 @@ const userSchema = new Schema(
     },
     linkedin: {
       type: String,
-      required: true,
+      required: false,
     },
     github: {
       type: String,
-      required: true,
+      required: false,
     },
     clusters: {
-      type: [clusterSchema],
+      type: [String],
       required: true,
     }
   },

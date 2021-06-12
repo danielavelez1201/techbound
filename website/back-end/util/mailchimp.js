@@ -1,12 +1,12 @@
-import request from 'request';
+const emailrequest = require('request');
 
-export async function send({ email }) {  
+async function send({ email }) {  
     const data = {    
         email_address: email,    
         status: 'sent',  
     };
     await new Promise((resolve, reject) => {    
-        request.post(      
+        emailrequest.request.post(      
             {        
                 uri: `https://us1.api.mailchimp.com/3.0/lists/${LIST_ID}/members`,      
                 headers: {          
@@ -26,3 +26,5 @@ export async function send({ email }) {
         );  
     });
 }
+
+module.exports = send;

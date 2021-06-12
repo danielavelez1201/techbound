@@ -1,10 +1,13 @@
 require('dotenv/config')
-
+const bcrypt = require('bcrypt');
 const express = require('express')
 const multer = require('multer')
 const AWS = require('aws-sdk')
 const uuid = require('uuid/v4')
 const router = require("express").Router();
+let User = require('../models/user.model');
+const jwt = require("jsonwebtoken");
+
 
 
 const s3 = new AWS.S3({
@@ -20,37 +23,41 @@ const storage = multer.memoryStorage({
 
 const upload = multer({ storage });
 
-router.route('/').post(upload.any('file'), async (req, res) => {
-    console.log(req)
+router.route('/').post(upload.single('resume'), async (req, res) => {
+    const file = req.file;
+    const data = req.body;
+    console.log(data);
 
-    
-    let myFile = req.body.resume.originalname.split(".")
-    const fileType = myFile[myFile.length - 1]
+    const fileName = file.originalname.split(".")
+    const fileType = fileName[fileName.length - 1]
+    const fileKey = `${uuid()}.${fileType}`;
 
     const params = {
         Bucket: "techbound-resumes",
-        Key: `${uuid()}.${fileType}`,
-        Body: req.body.resume.buffer,
+        Key: fileKey,
+        ContentType: file.mimetype,
+        Body: file.buffer,
+        ACL: "public-read"
     }
 
-    s3.upload(params, (error, data));
+    s3.upload(params, function(error, data) {
+      if (error) {
+        console.log(error);
+        //res.status(500).json({ error: true, Message: error });
+      } else {
+        //res.send({ data });
+        console.log(data);
+      } 
+    });
 
     const formData = req.body;
-    const clusterData = [];
-  
-    console.log("clusters", formData.clusters);
-  
-    formData.clusters.forEach(function (cluster) {
-      console.log("loop", cluster);
-      clusterData.push({
-        "title": cluster.title,
-        "subtitle": cluster.subtitle,
-        "text": cluster.text,
-        "selected": cluster.selected
-      });
-    });
-  
-    const clusters = formData.clusters;
+
+    $.ajax({
+      type: 'POST',
+      url: "resume_analyze.py",
+      data: {}
+    })
+    
     console.log("PASSWORD", formData.password)
     const hash = await bcrypt.hash(formData.password, 10)
     console.log(hash)
@@ -60,28 +67,10 @@ router.route('/').post(upload.any('file'), async (req, res) => {
       "email": formData.email,
       "password": hash,
       "confirmation": hash,
-      "resume": formData.resume,
+      "resume": fileKey,
       "linkedin": formData.linkedin,
       "github": formData.github,
-      "clusters": [{
-        "title": clusters[0].title,
-        "subtitle": clusters[0].subtitle,
-        "text": clusters[0].text,
-        "selected": clusters[0].selected
-      },
-      {
-        "title": clusters[1].title,
-        "subtitle": clusters[1].subtitle,
-        "text": clusters[1].text,
-        "selected": clusters[1].selected
-      }, 
-      {
-        "title": clusters[2].title,
-        "subtitle": clusters[2].subtitle,
-        "text": clusters[2].text,
-        "selected": clusters[2].selected
-      }]
-    });
+      "clusters": [formData.cluster1, formData.cluster2, formData.cluster3]});
   
     user.save()
     .then((response) => {

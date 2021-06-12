@@ -1,5 +1,5 @@
 const router = require('express').Router();
-import { send } from "../util/mailchimp";
+const mailchimp = require("../util/mailchimp");
 
 router.route("/api/v1/public/sendEmail").post(async (req, res) => {
     const { email } = req.body
@@ -8,7 +8,7 @@ router.route("/api/v1/public/sendEmail").post(async (req, res) => {
         return;  
     }    
     try {    
-        await send({ email });
+        await mailchimp.send({ email });
         res.json({ sent: 1 });    
         console.log(email);  
     } catch (err) {    
