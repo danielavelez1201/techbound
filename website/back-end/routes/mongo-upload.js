@@ -74,4 +74,4 @@ router.route('/').post(upload.single("avatar"), (req, res) => {
 
 
 
-module.exports = router;
+// module.exports = router;

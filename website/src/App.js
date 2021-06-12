@@ -7,7 +7,7 @@ import ClusterList from "./components/cluster-list.component";
 import { createBrowserHistory } from "history";
 import SignUpNext from "./components/sign-up-next.component";
 import SignUpFirst from "./components/sign-up-first.component";
-import FileUpload from "./components/file-upload-basic.component";
+// import FileUpload from "./components/file-upload-basic.component";
 import ClusterCards from "./components/cluster-cards.component";
 import InternshipPage from "./components/internship-listing-page.component";
 import LandingPage from "./components/landing-page.component";
@@ -50,7 +50,7 @@ function App() {
               {/* <Route path="/" exact component={Landing} /> */}
               <Route path="/sign-up/more" exact component={SignUpNext} />
               <Route path="/file-save" exact component={FileSave} />
-              <Route path="/file" exact component={FileUpload} />
+              {/* <Route path="/file" exact component={FileUpload} /> */}
               <Route path="/browse" component={InternshipListings} />
               <Route path="/landing" exact component={LandingPage} />
               <Route path="/profile" exact component={Profile} />

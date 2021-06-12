@@ -13,10 +13,11 @@ dotenv.config({ path: './config/config.env' })
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
 
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
@@ -51,6 +52,8 @@ app.use("/users", usersRouter);
 app.use("/signup", signupRouter);
 app.use('/auth', auth);
 app.use('/internships', internshipRouter);
+app.use("/email", emailRouter);
+// app.use('/upload-file', mongoAWSRouter);
 app.use('/upload-file', signS3Router);
 
 //app.use('/file', fileRouter);
