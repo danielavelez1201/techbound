@@ -30,8 +30,4 @@ async function send({ email }) {
     });
 }
 
-<<<<<<< HEAD
-module.exports = send;
-=======
 module.exports = { send };
->>>>>>> bef977ec042e286f01cf9d47d22967a4afc5e70c

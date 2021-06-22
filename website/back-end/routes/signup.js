@@ -52,11 +52,11 @@ router.route('/').post(upload.single('resume'), async (req, res) => {
 
     const formData = req.body;
 
-    $.ajax({
+    /* $.ajax({
       type: 'POST',
       url: "resume_analyze.py",
       data: {}
-    })
+    }) */
     
     console.log("PASSWORD", formData.password)
     const hash = await bcrypt.hash(formData.password, 10)
