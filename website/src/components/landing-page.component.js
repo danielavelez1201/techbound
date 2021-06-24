@@ -13,6 +13,7 @@ function LandingPage({ isAuthenticated, user }) {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const [allUsers, setAllUsers] = useState([])
+    console.log(isAuthenticated, user);
     useEffect(async () => {
         const myElement = document.querySelector('#myElement')
         init(myElement, { showCursor: false, strings: clusterTitles, loop: true });

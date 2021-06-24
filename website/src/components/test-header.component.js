@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Form, OverlayTrigger, Popover } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useForm } from "react-hooks-helper";
 import { connect } from 'react-redux';
 import { login } from '../actions/action.auth';
@@ -31,7 +31,7 @@ const defaultData = {
     password: ""
 };
 
-const Header2 = ({ login, isAuthenticated }) => {
+const Header2 = ({ login, isAuthenticated, user }) => {
     const [formData, setForm] = useForm(defaultData);
     const { email, password } = formData;
 
@@ -42,9 +42,21 @@ const Header2 = ({ login, isAuthenticated }) => {
 
     }
 
+    console.log("isAuthenticated from header", isAuthenticated);
+
+    let history = useHistory();
+
+    const profileClick = () => {
+        history.push({
+          pathname: '/profile',
+          state: {userEmail: user.email },
+        });
+      };
+
     //if (isAuthenticated) {
     //    return <Redirect to= "/sample" />;
     //}
+
     const [modalShow, setModalShow] = useState(false);
 
     const loginPopover = (
@@ -76,7 +88,7 @@ const Header2 = ({ login, isAuthenticated }) => {
                 <h2 className="logo blue-text">techbound</h2>
                 <ul>
                 {NavItems.map((item, index) => {
-                        if (item.title === "Log In") {
+                        if (item.title === "Log In" && !isAuthenticated) {
                             return (
                                 <li className="NavbarItems" key={index}>
                                     <OverlayTrigger trigger="click" placement="bottom" overlay={loginPopover}>
@@ -84,6 +96,15 @@ const Header2 = ({ login, isAuthenticated }) => {
                                             {item.title}
                                         </a>
                                     </OverlayTrigger>
+                                </li>
+                            )
+                        }
+                        else if (item.title === "Log In" && isAuthenticated) {
+                            return (
+                                <li className="NavbarItems">
+                                        <a className={item.cName} onClick={profileClick}>
+                                            View profile
+                                        </a>
                                 </li>
                             )
                         }
@@ -104,6 +125,7 @@ const Header2 = ({ login, isAuthenticated }) => {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
   });
 
 export default connect(mapStateToProps, {login})(Header2);

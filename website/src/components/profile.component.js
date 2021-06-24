@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
+import { useLocation, useHistory } from 'react-router-dom';
 import { useForm } from "react-hooks-helper";
 import axios from "axios";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
@@ -12,44 +13,66 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from "react-bootstrap/esm/Card";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { connect, useSelector, useDispatch } from 'react-redux';
 
 
-const Profile = props => {
-    const sampleUser = {
-        firstname: "Johnny",
-        lastname: "Appleseed",
-        email: "johnny@college.edu",
-        password: "johnny",
-        confirmation: "johnny",
-        resume: "filename.png",
-        linkedin: "www.linkedin.com/in/johnnyappleseed",
-        github: "www.github.com/johnny",
-        clusters: [
-            {
-                title: "Employment services",
-                subtitle: "Enable employment services",
-                text: "",
-                selected: false
-            },
-            {
-                title: "Leisure & recreation",
-                subtitle: "Enable leisure and recreation",
-                text: "",
-                selected: false
-            },
-            {
-                title: "Social & community platforms",
-                subtitle: "Develop social and community platforms",
-                text: "",
-                selected: false
+function Profile() {
+
+    //const user = useSelector((state) => state.user);
+    //const userData = useSelector(user => user.auth.user);
+
+    const [userEmail, setUserEmail] = useState(null); 
+
+    let history = useHistory();
+    const [userInfo, setUserInfo] = useState({
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        confirmation: "",
+        resume: "",
+        linkedin: "",
+        github: "",
+        clusters: "",
+    });
+
+    const location = useLocation(); 
+    console.log(location);
+    console.log(location.state.userEmail);
+    //setUserEmail(location.state.userEmail);
+
+    useEffect(async () => {
+        console.log("location email", location.state.userEmail)
+        const result = await axios.post('http://localhost:5000/users/getByEmail', {
+                "email": location.state.userEmail
             }
-        ],
-    };
+        )
+        const userData = result.data
+        console.log("USER DATA", userData)
+        const user = {
+            firstname: userData.firstname,
+            lastname: userData.lastname,
+            email: userData.email,
+            password: userData.password,
+            confirmation: userData.confirmation,
+            resume: userData.resume,
+            linkedin: userData.linkedin,
+            github: userData.github,
+            clusters: userData.clusters,
+        };
+        setUserInfo(user);
+    }, [])    
 
-    const [user, setUser] = useState(sampleUser);
+
+
+    
+
+    const sampleUser = userInfo;
+
+    const [sampleUserVar, setUser] = useState(sampleUser);
     const [editMode, setEditMode] = useState(false);
     
-    const [formData, setForm] = useForm(user);
+    const [formData, setForm] = useForm(userInfo);
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
@@ -109,33 +132,33 @@ const Profile = props => {
                                     <Row>
                                         <Col>
                                             <h6>First Name</h6>
-                                            <Form.Control type="text" name="firstname" value={formData.firstname} onChange={setForm} /><br />
+                                            <Form.Control type="text" name="firstname" value={userInfo.firstname} onChange={setForm} placeholder={"test"} /><br />
                                         </Col>
                                         <Col>
                                             <h6>Last Name</h6>
-                                            <Form.Control type="text" name="lastname" value={formData.lastname} onChange={setForm} /><br />
+                                            <Form.Control type="text" name="lastname" value={userInfo.lastname} onChange={setForm} /><br />
                                         </Col>
                                     </Row>
                                     <h6>Email</h6>
-                                    <Form.Control type="text" name="email" value={formData.email} onChange={setForm} /><br />
+                                    <Form.Control type="text" name="email" value={userInfo.email} onChange={setForm} /><br />
                                     <Row>
                                         <Col>
                                             <h6>Password</h6>
-                                            <Form.Control type="password" name="password" value={formData.password} onChange={setForm} /><br />
+                                            <Form.Control type="password" name="password" value={userInfo.password} onChange={setForm} /><br />
                                         </Col>
                                         <Col>
                                             <h6>Confirm Password</h6>
-                                            <Form.Control type="password" name="confirmation" value={formData.confirmation} onChange={setForm} /><br />
+                                            <Form.Control type="password" name="confirmation" value={userInfo.confirmation} onChange={setForm} /><br />
                                         </Col>
                                     </Row>
                                 </Col>
                                 <Col>
                                     <h6>Resume</h6>
-                                    <Form.Control type="text" name="resume" value={formData.resume} onChange={setForm} /><br />
+                                    <Form.Control type="file" name="resume"  onChange={setForm} /><br />
                                     <h6>LinkedIn</h6>
-                                    <Form.Control type="text" name="linkedin" value={formData.linkedin} onChange={setForm} /><br />
+                                    <Form.Control type="text" name="linkedin" value={userInfo.linkedin} onChange={setForm} /><br />
                                     <h6>GitHub</h6>
-                                    <Form.Control type="text" name="github" value={formData.github} onChange={setForm} /><br />
+                                    <Form.Control type="text" name="github" value={userInfo.github} onChange={setForm} /><br />
                                 </Col>
                             </Row>
                             <h6>Clusters</h6>
@@ -150,6 +173,7 @@ const Profile = props => {
                     <div>
                         <h3>Profile{" "}
                             <Button variant="primary" style={{display: "inline-block"}} onClick={() => setEditMode(true)}>Edit</Button>
+                            <Button variant="primary" style={{display: "inline-block"}} onClick={() => history.push('/landing')}>Home</Button>
                         </h3>
                     </div>
                     <Container>
@@ -158,29 +182,30 @@ const Profile = props => {
                                 <Row>
                                     <Col>
                                         <h6>First Name</h6>
-                                        {user.firstname}<br /><br />
+                                        {userInfo.firstname}<br /><br />
                                     </Col>
                                     <Col>
                                         <h6>Last Name</h6>
-                                        {user.lastname}<br /><br />
+                                        {userInfo.lastname}<br /><br />
                                     </Col>
                                 </Row>
                                 <h6>Email</h6>
-                                {user.email}<br /><br />
+                                {userInfo.email}<br /><br />
                                 <h6>Password</h6>
-                                {'*'.repeat(user.password.length)}<br /><br />
+                                {userInfo.password && '*'.repeat(userInfo.password.length)}<br /><br />
                             </Col>
                             <Col>
                                 <h6>Resume</h6>
-                                {user.resume}<br /><br />
+                                {userInfo.resume}<br /><br />
                                 <h6>LinkedIn</h6>
-                                <a href={user.linkedin}>{user.linkedin}</a><br /><br />
+                                <a href={userInfo.linkedin}>{userInfo.linkedin}</a><br /><br />
                                 <h6>GitHub</h6>
-                                <a href={user.github}>{user.github}</a><br /><br />
+                                <a href={userInfo.github}>{userInfo.github}</a><br /><br />
                             </Col>
                             <Col>
                                 <h6>Clusters</h6>
-                                {user.clusters.map(c => <div><Card body>{c.title}</Card><br /></div>)}
+                                {userInfo.clusters && userInfo.clusters.map(c => <div><Card body>{c}</Card><br /></div>)}
+                            
                             </Col>
                         </Row>
                     </Container>
@@ -225,6 +250,14 @@ const Profile = props => {
     };
 
     
+};
+
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        isAuthenticated: state.auth.isAuthenticated,
+    };
 };
 
 export default Profile;

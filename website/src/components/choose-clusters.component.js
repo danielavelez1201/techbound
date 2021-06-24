@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { login } from '../actions/action.auth';
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,8 +22,15 @@ const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
     const { previous } = navigation;
     console.log('in choose clusters', formData);
     const [resumeFile, _] = useState(resume);
+    let history = useHistory();
     
     console.log('in choose clusters resume', resume);
+
+    const [redirectToHome, setRedirectToHome] = useState(false);
+
+    if (redirectToHome) {
+        history.push("/landing");
+    }
 
     // const { clusters } = formData;
 
@@ -78,6 +87,9 @@ const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
             for (var pair of formDataNew.entries()) {
                 console.log(pair[0]+ ', ' + pair[1]); 
             }
+
+            
+
             await axios
             .post("http://localhost:5000/signup", formDataNew, {headers: {
                 'Content-Type': 'multipart/form-data'
@@ -90,6 +102,11 @@ const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
             } catch (err) {
                 console.log(err)
             }
+
+            await login(formData.email, formData.password); 
+
+            setRedirectToHome(true);
+
             // await axios
             // .post("http://localhost:5000/users/add", formData)
             // .then(res => console.log(res.data))
