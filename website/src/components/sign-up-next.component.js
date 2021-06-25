@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, useStep } from "react-hooks-helper";
 import { useLocation } from "react-router-dom";
+import { useState } from 'react';
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,11 +30,16 @@ const SignUpNext = () => {
         clusters: [],
     };
 
+    console.log('default data resume', defaultData.resume);
+
     const [formData, setForm] = useForm(defaultData);
+    
     const { step, navigation } = useStep({ initialStep: 0, steps });
+
+    const [resume, _] = useState(defaultData.resume);
     const { id } = step;
 
-    const props = { formData, setForm, navigation };
+    const props = { formData, setForm, navigation, resume };
 
     switch (id) {
         case "more-deets":

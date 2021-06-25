@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { login } from '../actions/action.auth';
 
 // Importing Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,10 +15,22 @@ import { cardInfo } from "./cluster-list.component";
 import axios from "axios";
 import { signup } from "../actions/action.auth";
 import { connect } from 'react-redux';
+import { sendEmail } from "../api/public"
 
-const ChooseClusters = ({ setForm, formData, navigation }) => {
+const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
     const [clusters, setClusters] = useState(cardInfo);
     const { previous } = navigation;
+    console.log('in choose clusters', formData);
+    const [resumeFile, _] = useState(resume);
+    let history = useHistory();
+    
+    console.log('in choose clusters resume', resume);
+
+    const [redirectToHome, setRedirectToHome] = useState(false);
+
+    if (redirectToHome) {
+        history.push("/landing");
+    }
 
     // const { clusters } = formData;
 
@@ -57,11 +71,46 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
         if (clusters.filter(c => c.selected).length === 3) {
             signup(formData.email, formData.password);
             formData.clusters = clusters.filter(c => c.selected);
+            console.log(formData);
+            let formDataNew = new FormData();
+
+            formDataNew.append("email", formData.email);
+            formDataNew.append("cluster1", formData.clusters[0].title);
+            formDataNew.append("cluster2", formData.clusters[1].title);
+            formDataNew.append("cluster3", formData.clusters[2].title);
+            formDataNew.append("firstname", formData.firstname);
+            formDataNew.append("lastname", formData.lastname);
+            formDataNew.append("linkedin", formData.linkedin);
+            formDataNew.append("password", formData.password);
+            formDataNew.append("confirmation", formData.confirmation);
+            formDataNew.append("resume", resumeFile);
+            for (var pair of formDataNew.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]); 
+            }
+
+            
+
             await axios
-            .post("http://localhost:5000/users/add", formData)
+            .post("http://localhost:5000/signup", formDataNew, {headers: {
+                'Content-Type': 'multipart/form-data'
+              }})
             .then(res => console.log(res.data))
+            try {
+                console.log("trying to submit");
+                await sendEmail(formData.email);
+                console.log('email was successfully added to Mailchimp list');
+            } catch (err) {
+                console.log(err)
+            }
+
+            await login(formData.email, formData.password); 
+
+            setRedirectToHome(true);
+
+            // await axios
+            // .post("http://localhost:5000/users/add", formData)
+            // .then(res => console.log(res.data))
         }
-      
     }
 
     return (

@@ -10,6 +10,15 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+router.route('/getByEmail').post(async (req, res) => {
+  console.log("params", req.body.email);
+  console.log("in get by email route:", req.body.email);
+  User.findOne({'email': req.body.email})
+  .then(user => res.json(user))
+  .catch(err => res.status(400).json('Error: ' + err));
+})
+
 const auth = require("../middleware/auth");
 
 router.get("/authenticate", auth, async (req, res) => {
@@ -43,6 +52,7 @@ router.route('/signin').post((req, res) => {
       return bcrypt.compare(password, user.password)
     })
     .then((response) => {
+      console.log("response:", response)
       if (!response) {
         return res.status(401).json({
           message: "Authentication failed. Password invalid",

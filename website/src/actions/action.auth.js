@@ -49,10 +49,11 @@ export function login(email, password) {
     .then(
       res => {
         console.log(res.data);
-        dispatch({
+        const dispatchResult = dispatch({
           type: LOGIN_SUCESS,
           payload: res.data,
         });
+        console.log(dispatchResult)
         dispatch(check_authenticated());
         console.log("user logged in!");
       },
