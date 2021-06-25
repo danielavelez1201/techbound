@@ -9,15 +9,15 @@ import { connect } from 'react-redux';
 import { login } from '../actions/action.auth';
 import ForgotPassword from "./forgot-password.component";
 
-const NavItems = [
+function NavItems(color) {return [
     {
         title: 'View Internships',
         url: '#',
-        cName: 'nav-links'
+        cName: color
     },
     {
         title: 'Log In',
-        cName: 'nav-links'
+        cName: color
     },
     {
         title: 'Tailor Your Resume',
@@ -25,13 +25,15 @@ const NavItems = [
         cName: 'nav-button'
     },
 ];
+};
 
 const defaultData = {
     email: "",
     password: ""
 };
 
-const Header2 = ({ login, isAuthenticated }) => {
+//const Header2 = ({ login, isAuthenticated }, color) => {
+function Header2 (props) {
     const [formData, setForm] = useForm(defaultData);
     const { email, password } = formData;
 
@@ -75,7 +77,7 @@ const Header2 = ({ login, isAuthenticated }) => {
             <nav className= "FullNavbar">
                 <h2 className="logo blue-text">techbound</h2>
                 <ul>
-                {NavItems.map((item, index) => {
+                {NavItems(props.color).map((item, index) => {
                         if (item.title === "Log In") {
                             return (
                                 <li className="NavbarItems" key={index}>
@@ -106,5 +108,6 @@ const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
   });
 
-export default connect(mapStateToProps, {login})(Header2);
+//export default connect(mapStateToProps, {login})(Header2);
+export default Header2;
 

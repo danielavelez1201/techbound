@@ -11,6 +11,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
+import Header2 from "./test-header.component";
 
 const InternshipListings = () => {
     const [cluster, setCluster] = useState("Language Learning");
@@ -32,31 +33,34 @@ const InternshipListings = () => {
 
     const renderCard = (card, index) => {
         return (
-            <div className="listing-cards">
-                <Link to={card.link}>
-                    <div key={index} className="listing-card">
-                        <div className="row no-gutters">
-                            <div className="col-auto listing-center">
-                                <img src={"https://logo.clearbit.com/" + getDomain(card.link)} class="img-fluid listing-card-logo" alt="Logo" />
-                            </div>
-                            <div className="col listing-center">
-                                <div className="card-block px-2">
-                                    <h3 className="listing-card-title">{card.name}</h3>
-                                    <h5 className="listing-card-location"><FaMapMarkerAlt />{" "}{card.location}</h5>
-                                    <h4 className="listing-card-text">{card.notes}</h4>
+                    <div className="listing-cards">
+                        <Link to={card.link}>
+                            <div key={index} className="listing-card">
+                                <div className="row no-gutters">
+                                    <div className="col-auto listing-center">
+                                        <img src={"https://logo.clearbit.com/" + getDomain(card.link)} class="img-fluid listing-card-logo" alt="Logo" />
+                                    </div>
+                                    <div className="col listing-center">
+                                        <div className="card-block px-2">
+                                            <h3 className="listing-card-title">{card.name}</h3>
+                                            <h5 className="listing-card-location"><FaMapMarkerAlt />{" "}{card.location}</h5>
+                                            <h4 className="listing-card-text">{card.notes}</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>
-                </Link>
-            </div>
         );
     };
 
     return (
         <div>
+            <div className="BasicNavbar">
+                <Header2 color='nav-links-black'/>
+            </div> 
             <Menu />
-            <div id="main-internships">
+            <div className='content' id="main-internships">
                 <h2>{cluster} Internship Opportunities</h2>
                 <br />
                 <div className="container" style={{ columnCount: 2 }}>

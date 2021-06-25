@@ -35,8 +35,13 @@
   font-family: 'Glacial Indifference Regular';
   src: url(GlacialIndifference-Regular.otf);
 }
+/* BLACK NAVBAR */
+.BasicNavbar {
+  margin-bottom: 10vh;
+  color: black;
+}
 
-/* NAVBAR */
+/* LANDING NAVBAR */
 .FullNavbar {
   margin-left: 10vw;
   margin-right: 10vw;
@@ -52,15 +57,26 @@
   padding-right: 20px;
 }
 
-.nav-links {
-  color: white;
+.nav-links-black {
   font-size: 2.2vh;
   font-family: Glacial Indifference Regular;
+  color: black;
 }
 
-.nav-links:hover {
+.nav-links-white {
+  font-size: 2.2vh;
+  font-family: Glacial Indifference Regular;
   color: white;
+}
+
+.nav-links-white:hover {
   text-decoration: underline;
+  color: white;
+}
+
+.nav-links-black:hover {
+  text-decoration: underline;
+  color: black;
 }
 
 .nav-button {
@@ -413,7 +429,7 @@ h5 {
 /* CARD LISTING */
 .listing-cards {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .listing-card {
