@@ -36,8 +36,9 @@ function LandingPage({ isAuthenticated, user }) {
                     <img className = 'gaming-blob' alt='Gaming companies' src='../../images/gaming-blob.png' /> 
                     <img className = 'productivity-blob' alt='Productivity companies' src='../../images/productivity-blob.png' />   
                 </div>
-
-            <Header2 />  
+            <div className='white-text'>
+            <Header2 color='nav-links-white'/> 
+            </div> 
                     <div className= 'content'>
                         <ul>
                             {allUsers.map(item=> (

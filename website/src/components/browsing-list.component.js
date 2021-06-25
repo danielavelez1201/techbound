@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLocation } from "react";
 import Sidebar from "react-sidebar";
 import axios from "axios";
 import parse from "html-react-parser";
+import Header2 from "./test-header.component";
 
 function BrowsingList() {
   const [open, setOpen] = useState(false);
@@ -33,15 +34,15 @@ function BrowsingList() {
             const domain = getDomain(internship.link);
 
             return (
-              <div className="internship">
-                {internship.name}
-                <a href = {internship.link} >Link</a>
-                {internship.notes}
-                
+                  <div className="internship">
+                    {internship.name}
+                    <a href = {internship.link} >Link</a>
+                    {internship.notes}
+                    
 
-                <img src={"https://logo.clearbit.com/" + domain}></img>
-                <br></br>
-              </div>
+                    <img src={"https://logo.clearbit.com/" + domain}></img>
+                    <br></br>
+                  </div>
             );
           })}
       </div>

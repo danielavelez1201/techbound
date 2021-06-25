@@ -9,15 +9,15 @@ import { connect } from 'react-redux';
 import { login } from '../actions/action.auth';
 import ForgotPassword from "./forgot-password.component";
 
-const NavItems = [
+function NavItems(color) {return [
     {
         title: 'View Internships',
         url: '#',
-        cName: 'nav-links'
+        cName: color
     },
     {
         title: 'Log In',
-        cName: 'nav-links'
+        cName: color
     },
     {
         title: 'Tailor Your Resume',
@@ -25,6 +25,7 @@ const NavItems = [
         cName: 'nav-button'
     },
 ];
+};
 
 const defaultData = {
     email: "",
@@ -124,5 +125,5 @@ const mapStateToProps = (state) => ({
     user: state.auth.user,
   });
 
-export default connect(mapStateToProps, {login})(Header2);
+export default Header2;
 
