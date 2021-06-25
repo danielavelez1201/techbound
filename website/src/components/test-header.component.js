@@ -9,15 +9,15 @@ import { connect } from 'react-redux';
 import { login } from '../actions/action.auth';
 import ForgotPassword from "./forgot-password.component";
 
-function NavItems(color) {return [
+function NavItems(className) {return [
     {
         title: 'View Internships',
         url: '#',
-        cName: color
+        cName: className,
     },
     {
         title: 'Log In',
-        cName: color
+        cName: className,
     },
     {
         title: 'Tailor Your Resume',
@@ -84,7 +84,7 @@ const Header2 = ({ login, isAuthenticated, user }) => {
             <nav className= "FullNavbar">
                 <h2 className="logo blue-text">techbound</h2>
                 <ul>
-                {NavItems.map((item, index) => {
+                {NavItems('nav-links-white').map((item, index) => {
                         if (item.title === "Log In" && !isAuthenticated) {
                             return (
                                 <li className="NavbarItems" key={index}>
