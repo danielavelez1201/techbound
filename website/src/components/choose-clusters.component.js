@@ -32,15 +32,6 @@ const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
         history.push("/landing");
     }
 
-    // const { clusters } = formData;
-
-    // useEffect(() => {
-    //     axios
-    //     .get("http://localhost:5000/clusters/")
-    //     .then(response => setClusters(response.data))
-    //     .catch(error => console.log(error));
-    // }, [])
-
     const toggleSelect = cluster => {
         setClusters(
             clusters.map(c => {
@@ -88,8 +79,6 @@ const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
                 console.log(pair[0]+ ', ' + pair[1]); 
             }
 
-            
-
             await axios
             .post("http://localhost:5000/signup", formDataNew, {headers: {
                 'Content-Type': 'multipart/form-data'
@@ -102,14 +91,8 @@ const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
             } catch (err) {
                 console.log(err)
             }
-
-            await login(formData.email, formData.password); 
-
+            await login(formData.email, formData.password); //not working
             setRedirectToHome(true);
-
-            // await axios
-            // .post("http://localhost:5000/users/add", formData)
-            // .then(res => console.log(res.data))
         }
     }
 

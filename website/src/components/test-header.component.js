@@ -53,10 +53,6 @@ const Header2 = ({ login, isAuthenticated, user }) => {
         });
       };
 
-    //if (isAuthenticated) {
-    //    return <Redirect to= "/sample" />;
-    //}
-
     const [modalShow, setModalShow] = useState(false);
 
     const loginPopover = (

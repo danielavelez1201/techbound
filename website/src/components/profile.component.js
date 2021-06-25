@@ -13,15 +13,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from "react-bootstrap/esm/Card";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { connect, useSelector, useDispatch } from 'react-redux';
 
 
 function Profile() {
-
-    //const user = useSelector((state) => state.user);
-    //const userData = useSelector(user => user.auth.user);
-
-    const [userEmail, setUserEmail] = useState(null); 
 
     let history = useHistory();
     const [userInfo, setUserInfo] = useState({
@@ -37,18 +31,13 @@ function Profile() {
     });
 
     const location = useLocation(); 
-    console.log(location);
-    console.log(location.state.userEmail);
-    //setUserEmail(location.state.userEmail);
 
     useEffect(async () => {
-        console.log("location email", location.state.userEmail)
         const result = await axios.post('http://localhost:5000/users/getByEmail', {
                 "email": location.state.userEmail
             }
         )
         const userData = result.data
-        console.log("USER DATA", userData)
         const user = {
             firstname: userData.firstname,
             lastname: userData.lastname,
@@ -64,12 +53,6 @@ function Profile() {
     }, [])    
 
 
-
-    
-
-    const sampleUser = userInfo;
-
-    const [sampleUserVar, setUser] = useState(sampleUser);
     const [editMode, setEditMode] = useState(false);
     
     const [formData, setForm] = useForm(userInfo);
@@ -104,15 +87,8 @@ function Profile() {
         });
     }
 
-    // useEffect(() => {
-    //     axios
-    //     .get("http://localhost:5000/users/:id")
-    //     .then(response => setUser(response.data))
-    //     .catch(error => console.log(error));
-    // }, [])
-
     const updateProfile = () => {
-        setUser(formData);
+        setUserInfo(formData);
         setEditMode(false);
     }
 
@@ -252,12 +228,5 @@ function Profile() {
     
 };
 
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        isAuthenticated: state.auth.isAuthenticated,
-    };
-};
 
 export default Profile;
