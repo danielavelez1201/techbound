@@ -58,6 +58,7 @@ import {
         localStorage.setItem("access", payload.token);
         console.log("login success");
         console.log("token:", payload.token);
+        state.user = payload.user;
         return {
           ...state,
           isAuthenticated: true,

@@ -15,6 +15,8 @@ const port = process.env.PORT || 5000;
 
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 
 mongoose.set("useNewUrlParser", true);

@@ -13,6 +13,7 @@ function LandingPage({ isAuthenticated, user }) {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const [allUsers, setAllUsers] = useState([])
+    console.log(isAuthenticated, user);
     useEffect(async () => {
         const myElement = document.querySelector('#myElement')
         init(myElement, { showCursor: false, strings: clusterTitles, loop: true });
@@ -35,8 +36,9 @@ function LandingPage({ isAuthenticated, user }) {
                     <img className = 'gaming-blob' alt='Gaming companies' src='../../images/gaming-blob.png' /> 
                     <img className = 'productivity-blob' alt='Productivity companies' src='../../images/productivity-blob.png' />   
                 </div>
-
-            <Header2 />  
+            <div className='white-text'>
+            <Header2 color='nav-links-white'/> 
+            </div> 
                     <div className= 'content'>
                         <ul>
                             {allUsers.map(item=> (
