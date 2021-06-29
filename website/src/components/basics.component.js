@@ -12,26 +12,41 @@ import Form from "react-bootstrap/Form";
 
 const Basics = ({ isAuthenticated, user }) => {
   const defaultData = {
-    email: "",
-    resume: ""
+    email: ""
   }
-  const [{ email, resume }, setForm] = useForm(defaultData);
-  const [fileName, setFileName] = useState("none");
-  const [file, setFile] = useState("");
+  const [{ email }, setForm] = useForm(defaultData);
 
-  const uploadFile = (e) => {
-    setFileName(e.target.files[0].originalname);
-    setForm({target: {name: "resume", value: e.target.files[0]}});
-    setFile(e.target.files[0]);
-  }
   let history = useHistory();
   const handleClick = () => {
-    console.log(file);
     history.push({
       pathname: "/sign-up/more",
-      state: { email: email, resume: resume }
+      state: { email: email }
     });
   };
+
+  // code including resume upload, don't wanna delete bc might be useful later
+
+  // const defaultData = {
+  //   email: "",
+  //   resume: ""
+  // }
+  // const [{ email, resume }, setForm] = useForm(defaultData);
+  // const [fileName, setFileName] = useState("none");
+  // const [file, setFile] = useState("");
+
+  // const uploadFile = (e) => {
+  //   setFileName(e.target.files[0].originalname);
+  //   setForm({target: {name: "resume", value: e.target.files[0]}});
+  //   setFile(e.target.files[0]);
+  // }
+  // let history = useHistory();
+  // const handleClick = () => {
+  //   console.log(file);
+  //   history.push({
+  //     pathname: "/sign-up/more",
+  //     state: { email: email, resume: resume }
+  //   });
+  // };
 
   return (
     <div>
@@ -48,7 +63,7 @@ const Basics = ({ isAuthenticated, user }) => {
             required
           />
         </Form.Group>
-        <Form.Group className="form-label form-margin">
+        {/* <Form.Group className="form-label form-margin">
           Resume
           <Form.File
             type="file"
@@ -57,7 +72,7 @@ const Basics = ({ isAuthenticated, user }) => {
             required
             label={fileName}
           />
-        </Form.Group>
+        </Form.Group> */}
         <Button className = 'button' variant="primary" onClick={handleClick}>
           Get Started
         </Button>

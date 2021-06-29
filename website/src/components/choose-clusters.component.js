@@ -55,24 +55,27 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
         );
     };
 
-    async function handleSubmit() {
-        if (clusters.filter(c => c.selected).length === 3) {
-            signup(formData.email, formData.password);
+    async function handleSubmit(skip) {
+        if (clusters.filter(c => c.selected).length === 3 && !skip) {
             formData.clusters = clusters.filter(c => c.selected);
-            // await axios
-            // .post("http://localhost:5000/signup", formData)
-            // .then(res => console.log(res.data))
-            try {
-                console.log("trying to submit");
-                await sendEmail(formData.email);
-                console.log('email was successfully added to Mailchimp list');
-            } catch (err) {
-                console.log(err)
-            }
-            // await axios
-            // .post("http://localhost:5000/users/add", formData)
-            // .then(res => console.log(res.data))
+        } else {
+            formData.clusters = [];
         }
+
+        signup(formData.email, formData.password);
+        // await axios
+        // .post("http://localhost:5000/signup", formData)
+        // .then(res => console.log(res.data))
+        try {
+            console.log("trying to submit");
+            await sendEmail(formData.email);
+            console.log('email was successfully added to Mailchimp list');
+        } catch (err) {
+            console.log(err)
+        }
+        // await axios
+        // .post("http://localhost:5000/users/add", formData)
+        // .then(res => console.log(res.data))
     }
 
     return (
@@ -85,10 +88,13 @@ const ChooseClusters = ({ setForm, formData, navigation }) => {
                     <div className="container" style={{ columnCount: 3 }}>{cardInfo.map(renderCard)}</div>
                 </Form.Group>
                 <Form.Group>
+                    <Alert.Link onClick={() => handleSubmit(true)}>Not sure yet? Choose clusters later.</Alert.Link>
+                </Form.Group>
+                <Form.Group>
                     <Button variant="primary" onClick={previous}>
                         Previous
                     </Button>
-                    <Button variant="primary" onClick={() => handleSubmit()}>
+                    <Button variant="primary" onClick={() => handleSubmit(false)}>
                         Finish
                     </Button>
                 </Form.Group>

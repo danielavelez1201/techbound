@@ -23,13 +23,9 @@ const SignUpNext = () => {
         email: location.state.email,
         password: "",
         confirmation: "",
-        resume: location.state.resume,
-        linkedin: "",
-        github: "",
+        college: "",
         clusters: [],
     };
-
-    console.log('default data resume', defaultData.resume);
 
     const [formData, setForm] = useForm(defaultData);
     

@@ -9,18 +9,66 @@ import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
 const MoreDeets = ({ setForm, formData, navigation }) => {
-    const { firstname, lastname, password, confirmation, github, linkedin, resume } = formData;
+    const { firstname, lastname, password, confirmation, college } = formData;
     const { previous, next } = navigation;
-    const [file, setFile] = useState(formData.resume);
-    console.log("state variable", file);
+    const [colleges, setColleges] = useState({});
+    // const [file, setFile] = useState(formData.resume);
+    // console.log("state variable", file);
 
-    console.log("resume value", formData.resume);
-    console.log("form Data:", formData)
+    // console.log("resume value", formData.resume);
+    console.log("form Data:", formData);
     
-   useEffect(() => {
-        setForm({target: {name: "resume", value: file}})
-        console.log("form in use effect,", formData);
-    }, []); 
+//    useEffect(() => {
+//         setForm({target: {name: "resume", value: file}})
+//         console.log("form in use effect,", formData);
+//     }, []); 
+
+    // useEffect(() => {
+    //     console.log("hi");
+    //     fetch('http://universities.hipolabs.com/search?country=United%20States')
+    //         .then(response => response.json())
+    //         .then(colleges => setColleges(colleges));
+    // }, []);
+
+    // useEffect(() => {
+    //     console.log("ho");
+    //     const colleges = async () => {
+    //         const url = 'http://universities.hipolabs.com/search?country=United%20States';
+    //         try {
+    //             let res = await fetch(url);
+    //             setColleges(res.json());
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+    //     colleges();
+    // }, []);
+
+    // useEffect(() => {
+    //     const internships = async () => {
+    //         const response = await axios.get("http://localhost:5000/internships");
+    //         setInternships(response.data);
+    //     }
+    //     internships();
+    // }, []);
+
+    async function getColleges() {
+        const response = await fetch('http://universities.hipolabs.com/search?country=United%20States')
+                                .then(res => res.json())
+                                .then(colleges => {
+                                    setColleges(colleges);
+                                    colleges.map(college => <option>{college.name}</option>);
+                                })
+                                .catch(error => console.error(error));
+    };
+
+    // async function renderColleges() {
+    //     const college = await getColleges();
+    //     console.log("colleges", colleges);
+    //     colleges.map(college => <option>{college.name}</option>)
+    // }
+
+    // renderColleges()
 
     return (
         <div>
@@ -70,24 +118,18 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
                     />
                 </Form.Group>
                 <Form.Group>
-                    GitHub Link (optional)
-                    <Form.Control
-                    type="text"
-                    name="github"
-                    placeholder="https://github.com/johnny"
-                    value={github}
-                    onChange={setForm}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    LinkedIn Profile Link (optional)
-                    <Form.Control
-                    type="text"
-                    name="linkedin"
-                    placeholder="https://www.linkedin.com/in/johnnyappleseed/"
-                    value={linkedin}
-                    onChange={setForm}
-                    />
+                    College/University
+                    <Form.Control 
+                    as="select" 
+                    name="college" 
+                    value={college} 
+                    onChange={setForm} 
+                    required
+                    >
+                        <option>Other</option>
+                        {getColleges()}
+                        {/* {colleges.map(college => <option>{college.name}</option>)} */}
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group>
                     <Button variant="primary" onClick={previous}>
@@ -101,7 +143,6 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
         </div>
     );
 };
-
 
 
 export default MoreDeets;
