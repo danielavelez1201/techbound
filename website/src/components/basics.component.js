@@ -51,12 +51,11 @@ const Basics = ({ isAuthenticated, user }) => {
   return (
     <div>
       <Form>
-        <Form.Group className="form-label form-margin">
-          Email (to send results)
+         <Form.Group>
           <Form.Control
             type="email"
             name="email"
-            className="form-field"
+            className="form-field form-margin"
             placeholder="jenny@college.edu"
             value={email}
             onChange={setForm}
@@ -73,8 +72,8 @@ const Basics = ({ isAuthenticated, user }) => {
             label={fileName}
           />
         </Form.Group> */}
-        <Button className = 'button' variant="primary" onClick={handleClick}>
-          Get Started
+        <Button className = 'button form-margin' variant="primary" onClick={handleClick}>
+          Create account
         </Button>
       </Form>
     </div>

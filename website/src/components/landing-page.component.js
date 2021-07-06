@@ -26,7 +26,6 @@ function LandingPage({ isAuthenticated, user }) {
     console.log(userData);
     console.log(allUsers)
 
-    
     return(
         <>
             <div className= 'blue-block landing-block black-text'>
@@ -49,32 +48,32 @@ function LandingPage({ isAuthenticated, user }) {
                         </ul>
                         <h1 className="black-text landing-text">Find a tech internship <br></br>
                         in <b>{" "}<span id="myElement"></span></b>|</h1>
-                        <p className="landing-text p1"> Start growing your career in tech by looking in the <br></br>
-                        areas you’re most passionate about.</p>
+                        <p className="landing-text p1"> Apply to mission-based clusters of companies and land<br></br>
+                        your dream SWE or PM internship.</p>
                     </div>
             </div>
 
-            <div className= 'white-block black-text'>
+{/*             <div className= 'white-block black-text'>
                 <div className= 'content'>
                     <h2>Explore Internships By Mission Cluster</h2>
                     <ClusterList />
                 </div>
-            </div>
+            </div> */}
 
-            <div className='blue-block'>
+            <div className='white-block'>
                 <div className= 'content'>
-                    <h2 className= 'center-text white-text text-space'>TechBound can help you customize your resume to company mission.</h2>
+                    <h2 className= 'center-text text-space black-text'>Stop sending hundreds of resumes into black holes of companies you're not excited about</h2>
                     <div class= 'image-rows'>
-                        <img class= 'three-step' alt='1. Choose the missions that resonate with you most' src='../../images/step1.png' />
-                        <img class= 'three-step' alt='2. Share your resume and other work experiences' src='../../images/step2.png' />
-                        <img class= 'three-step' alt='3. Learn what to highlight for every mission cluster' src='../../images/step3.png' />
+                        <img class= 'three-step' alt='1. Apply to the clusters that resonate with you most' src='../../images/step1.png' />
+                        <img class= 'three-step' alt='2. Meet and network with company recruiters within the clusters' src='../../images/step2.png' />
+                        <img class= 'three-step' alt='3. Interview with your top choices and get offers' src='../../images/step3.png' />
                     </div>
                 </div>
             </div>
 
             <div className='white-block'>
-                <div className= 'content'>
-                    <h2>Let us look at your resume and help you tailor it to your dream clusters.</h2>
+                <div className= 'content '>
+                    <h2 className= 'center-text text-space black-text'>Create an account to get first priority for our first fall cohort.</h2>
                     <Basics />
                 </div>
             </div>

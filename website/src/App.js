@@ -30,7 +30,7 @@ function App() {
           <div className="container">
             <Switch>
               <Route path="/sign-up/more" exact component={SignUpNext} />
-              <Route path="/landing" exact component={LandingPage} />
+              <Route path="/" exact component={LandingPage} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/login" exact component = {Login} />
               <Route path="/sign-up" exact component = {SignUpFirst} />

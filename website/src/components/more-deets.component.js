@@ -128,7 +128,7 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
                     >
                         <option>Other</option>
                         {getColleges()}
-                        {/* {colleges.map(college => <option>{college.name}</option>)} */}
+                        {colleges.map(college => <option>{college.name}</option>)}
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>

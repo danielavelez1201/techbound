@@ -345,11 +345,13 @@ h5 {
 .form-field {
   background: #F5F4F7;
   box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
+  /* border-radius: 8px; */
   width: 18vw;
   height: 5vh;
   font-family: Nunito;
   font-size: 2.25vh;
+  margin-left: 100vw;
+
 }
 
 .form-label {
@@ -357,11 +359,12 @@ h5 {
   font-size: 2.25vh;
   font-weight: 400;
   color: #152352;
+  margin-left: 100vw;
 }
 
 .form-margin {
-  margin-top: 8vh;
-  margin-bottom: 8vh;
+  margin-bottom: 4vh;
+  margin-left: 40vh; 
 }
 
 .inline-form-text {
