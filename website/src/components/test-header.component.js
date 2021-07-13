@@ -20,8 +20,8 @@ function NavItems(className) {return [
         cName: className,
     },
     {
-        title: 'Tailor Your Resume',
-        url: '#',
+        title: 'Create account',
+        url: 'signup',
         cName: 'nav-button'
     },
 ];
@@ -60,7 +60,7 @@ const Header2 = ({ login, isAuthenticated, user }) => {
         <Popover className="login-box">
             <Popover.Content>
                 <h4>Welcome back!</h4>
-                <h6>New here? <a href="sign-up">Create an account.</a></h6>
+                <h6>New here? <a href="signup">Create an account.</a></h6>
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group>
                         <Form.Label>Email</Form.Label>

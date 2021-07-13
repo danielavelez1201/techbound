@@ -29,7 +29,7 @@ function Header({logout}) {
                 <Nav.Link href="#internships">View Internships</Nav.Link>
                 <Nav.Link href="#login">Log In</Nav.Link>
                 <Nav.Link onClick ={logout} href="#">Log Out</Nav.Link>
-                <Button variant="info" href="/sign-up">Tailor Your Resume</Button>
+                <Button variant="info" href="/signup">Create account</Button>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

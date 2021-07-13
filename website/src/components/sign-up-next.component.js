@@ -21,7 +21,7 @@ const SignUpNext = () => {
     const defaultData = {
         firstname: "",
         lastname: "",
-        email: location.state.email,
+        email: location.state ? location.state.email : '',
         password: "",
         confirmation: "",
         college: "",

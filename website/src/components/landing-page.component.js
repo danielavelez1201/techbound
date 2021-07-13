@@ -7,6 +7,7 @@ import axios from "axios";
 import { cardInfo } from "./cluster-list.component";
 import Header2 from "./test-header.component";
 import { connect, useSelector, useDispatch } from 'react-redux';
+import { Waitlist } from 'waitlistapi';
 
 function LandingPage({ isAuthenticated, user }) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
@@ -25,6 +26,30 @@ function LandingPage({ isAuthenticated, user }) {
     const userData = useSelector(user => user.auth.user);
     console.log(userData);
     console.log(allUsers)
+
+    const [collegesLoaded, setCollegesLoaded] = useState(false);
+    const [colleges, setColleges] = useState(null);
+
+
+    useEffect(() => {
+        async function getColleges() {
+            await fetch('http://universities.hipolabs.com/search?country=United%20States')
+                .then(res => res.json())
+                .then(colleges => {
+                    console.log(colleges); 
+                    const collegeList = colleges.map(college => college.name)
+                    console.log(collegeList)
+                    setColleges(collegeList);    
+                    setCollegesLoaded(true); 
+                    return collegeList;      
+                })
+                .catch(error => console.error(error));
+        };
+    
+        getColleges();
+    }, [collegesLoaded])
+
+
 
     return(
         <>
@@ -53,6 +78,28 @@ function LandingPage({ isAuthenticated, user }) {
                     </div>
             </div>
 
+            {/* <>
+                <Waitlist api_key="W5L0VL" waitlist_link="http://techbound.io/"	/>
+                    <style jsx>{`
+                    h1 {
+                        color: #361cd5;
+                    }
+                    .container--waitlistapi {
+                        margin: 0 auto; // centers the widget
+                        background-color: #ffffff;
+                    }
+                    .button--waitlistapi {
+                        background-color: #3723db;
+                    }
+                    .statusTextContainer--waitlistapi {
+                        color: #361cd5;
+                    }
+                    .referralLinkField--text {
+                        color: #361cd5;
+                    }
+                    `}</style>
+                </>
+ */}
 {/*             <div className= 'white-block black-text'>
                 <div className= 'content'>
                     <h2>Explore Internships By Mission Cluster</h2>
@@ -72,10 +119,10 @@ function LandingPage({ isAuthenticated, user }) {
             </div>
 
             <div className='white-block'>
-                <div className= 'content '>
-                    <h2 className= 'center-text text-space black-text'>Create an account to get first priority for our first fall cohort.</h2>
-                    <Basics />
+                <div className= 'content'  style={{"display": "flex", "flex-wrap": "wrap"}}>
+                    <h2 className= 'center-text black-text' >Create an account to get first priority for our first fall cohort.</h2>
                 </div>
+                <Basics props={colleges}/>
             </div>
         </>
     )

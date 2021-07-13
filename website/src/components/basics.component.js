@@ -10,17 +10,33 @@ import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const Basics = ({ isAuthenticated, user }) => {
+const Basics = (colleges) => {
+
+
+    async function getColleges() {
+        await fetch('http://universities.hipolabs.com/search?country=United%20States')
+            .then(res => res.json())
+            .then(colleges => {
+                const collegeList = colleges.map(college => college.name)
+                return collegeList;      
+            })
+            .catch(error => console.error(error));
+    };
+
+
   const defaultData = {
     email: ""
   }
   const [{ email }, setForm] = useForm(defaultData);
 
   let history = useHistory();
-  const handleClick = () => {
+  async function handleClick() {
+    if (!colleges) {
+      colleges = await getColleges()
+    }
     history.push({
-      pathname: "/sign-up/more",
-      state: { email: email }
+      pathname: "/signup",
+      state: { email: email, colleges: colleges}
     });
   };
 
@@ -72,11 +88,16 @@ const Basics = ({ isAuthenticated, user }) => {
             label={fileName}
           />
         </Form.Group> */}
-        <Button className = 'button form-margin' variant="primary" onClick={handleClick}>
+        <Button className = 'button' variant="primary" onClick={handleClick}>
           Create account
         </Button>
+        <Form.Group>
+        
+        </Form.Group>
+        
       </Form>
     </div>
+    
   );
 };
 
