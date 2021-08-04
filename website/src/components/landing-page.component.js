@@ -8,6 +8,7 @@ import { cardInfo } from "./cluster-list.component";
 import Header2 from "./test-header.component";
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { Waitlist } from 'waitlistapi';
+import { setSourceMapRange } from "typescript";
 
 function LandingPage({ isAuthenticated, user }) {
     const clusterTitles = cardInfo.map(cluster => cluster.title.toLowerCase())
@@ -15,67 +16,54 @@ function LandingPage({ isAuthenticated, user }) {
     const dispatch = useDispatch();
     const [allUsers, setAllUsers] = useState([])
     console.log(isAuthenticated, user);
-    useEffect(async () => {
-        const myElement = document.querySelector('#myElement')
-        init(myElement, { showCursor: false, strings: clusterTitles, loop: true });
-
-        const allUsers = await axios('http://localhost:5000/users/')
-        setAllUsers(allUsers.data)
-    }, [])    
-
-    const userData = useSelector(user => user.auth.user);
-    console.log(userData);
-    console.log(allUsers)
+    const [open, setOpen] = useState(false)
 
     const [collegesLoaded, setCollegesLoaded] = useState(false);
     const [colleges, setColleges] = useState(null);
 
+    useEffect(async () => {
+        const myElement = document.querySelector('#myElement')
+        init(myElement, { showCursor: false, strings: clusterTitles, loop: true });
+    }, [])    
 
-    useEffect(() => {
-        async function getColleges() {
-            await fetch('http://universities.hipolabs.com/search?country=United%20States')
-                .then(res => res.json())
-                .then(colleges => {
-                    console.log(colleges); 
-                    const collegeList = colleges.map(college => college.name)
-                    console.log(collegeList)
-                    setColleges(collegeList);    
-                    setCollegesLoaded(true); 
-                    return collegeList;      
-                })
-                .catch(error => console.error(error));
-        };
+    // useEffect(() => {
+    //     async function getColleges() {
+    //         await fetch('http://universities.hipolabs.com/search?country=United%20States')
+    //             .then(res => res.json())
+    //             .then(colleges => {
+    //                 console.log(colleges); 
+    //                 const collegeList = colleges.map(college => college.name)
+    //                 console.log(collegeList)
+    //                 setColleges(collegeList);    
+    //                 setCollegesLoaded(true); 
+    //                 return collegeList;      
+    //             })
+    //             .catch(error => console.error(error));
+    //     };
     
-        getColleges();
-    }, [collegesLoaded])
+    //     getColleges();
+    // }, [collegesLoaded])
 
 
 
     return(
         <>
-            <div className= 'blue-block landing-block black-text'>
+            <div className= 'blue-block landing-block black-text' onClick={() => setOpen(true)}>
                 <div className= 'landing-grid'>
                     <img className = 'main-blob' alt='Big cluster' src='../../images/main-blob.png' />  
                     <img className = 'language-blob' alt='Language learning companies' src='../../images/language-blob.png' />  
                     <img className = 'gaming-blob' alt='Gaming companies' src='../../images/gaming-blob.png' /> 
                     <img className = 'productivity-blob' alt='Productivity companies' src='../../images/productivity-blob.png' />   
                 </div>
-            <div className='white-text'>
-            <Header2 color='nav-links-white'/> 
+            <Header2 color='nav-links-white' open={open}/> 
+            <h1 className="black-text landing-text">Find a tech internship <br></br>
+                        in <b>{" "}<span id="myElement"></span></b>|</h1>
+                        <br>
+                        </br>
+                        <p className="landing-text subtitle p1"> Apply to mission-based clusters of companies and land your dream SWE or PM internship.</p>
             </div> 
                     <div className= 'content'>
-                        <ul>
-                            {allUsers.map(item=> (
-                                <li key={item._id}>
-                                    <p>{item.firstname}</p>
-                                </li>
-                            ))}
-                        </ul>
-                        <h1 className="black-text landing-text">Find a tech internship <br></br>
-                        in <b>{" "}<span id="myElement"></span></b>|</h1>
-                        <p className="landing-text p1"> Apply to mission-based clusters of companies and land<br></br>
-                        your dream SWE or PM internship.</p>
-                    </div>
+                        
             </div>
 
             {/* <>

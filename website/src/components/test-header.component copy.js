@@ -13,7 +13,7 @@ import App from "../App";
 
 function NavItems(className) {return [
     {
-        title: 'For recruiters',
+        title: 'View Internships',
         url: '#',
         cName: className,
     },
@@ -86,15 +86,12 @@ const Header2 = (props, { login, isAuthenticated, user }) => {
 
     return (
         <div>
+        <div>
             
-            
-            <div className= "nav-background">
-            
-            <h2  className="logo blue-text">techbound</h2>
-            
-            <nav className= {open? 'FullNavbar-open' : 'FullNavbar-closed'}>
+        
+            <nav onClick={() => setOpen(!open)}  className= {open? 'FullNavbar-open' : 'FullNavbar-closed'}>
                 
-                <ul className="ul">
+                <ul onClick={() => setOpen(!open)}  className="ul">
                 {NavItems('nav-links-white').map((item, index) => {
                         if (item.title === "Log In" && !isAuthenticated) {
                             return (
@@ -129,9 +126,11 @@ const Header2 = (props, { login, isAuthenticated, user }) => {
             <ForgotPassword show={modalShow} onHide={() => setModalShow(false)} />
         </div>
         <div onClick={() => setOpen(!open)} className={open ? "sidebar-background-open" : "sidebar-background-closed"}>
-            <img onClick={() => setOpen(!open)} style={{"padding": "20px", "height": "60px"}} src="https://i1.wp.com/freevector.co/wp-content/uploads/2009/01/54459-menu-three-lines-button-interface-symbol.png" />
+            <img onClick={() => setOpen(!open)} style={{"padding": "20px", "height": "60px", "z-index": "500"}} src="https://i1.wp.com/freevector.co/wp-content/uploads/2009/01/54459-menu-three-lines-button-interface-symbol.png" />
         </div>
+
         </div>
+
         
     );
 };
