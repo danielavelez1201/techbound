@@ -35,7 +35,7 @@ const defaultData = {
     password: ""
 }
 
-const Header2 = (props, { login, isAuthenticated, user }) => {
+const Header2 = (props, {isAuthenticated, user }) => {
     const [formData, setForm] = useForm(defaultData);
     const { email, password } = formData;
     const [open, setOpen] = useState(false);
@@ -45,7 +45,10 @@ const Header2 = (props, { login, isAuthenticated, user }) => {
         e.preventDefault();
         console.log(formData.email, formData.password);
         await login(formData.email, formData.password); 
-
+        history.push({
+            pathname: '/profile',
+            state: {userEmail: formData.email },
+          });
     }
 
     console.log("isAuthenticated from header", isAuthenticated);
@@ -141,5 +144,5 @@ const mapStateToProps = (state) => ({
     user: state.auth.user,
   });
 
-export default Header2;
+export default connect(mapStateToProps)(Header2);;
 

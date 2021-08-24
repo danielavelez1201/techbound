@@ -107,10 +107,13 @@ function LandingPage({ isAuthenticated, user }) {
             </div>
 
             <div className='white-block'>
+                <div className = 'form-card'>
                 <div className= 'content'  style={{"display": "flex", "flex-wrap": "wrap"}}>
                     <h2 className= 'center-text black-text' >Create an account to get first priority for our first fall cohort.</h2>
                 </div>
                 <Basics props={colleges}/>
+                </div>
+                
             </div>
         </>
     )

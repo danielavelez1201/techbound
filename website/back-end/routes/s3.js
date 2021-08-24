@@ -16,7 +16,6 @@ router.route('/').post((req, res) => {
     ContentType: fileType,
   };  
 
-  console.log("IN SIGNS3");
   s3.getSignedUrl("putObject", s3Params, (err, data) => {
     if (err) {
       console.log("error", err);

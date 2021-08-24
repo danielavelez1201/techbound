@@ -10,6 +10,7 @@ import { login } from '../actions/action.auth';
 import ForgotPassword from "./forgot-password.component";
 import * as styles from '../App.css'
 import App from "../App";
+import { login } from '../actions/action.auth';
 
 function NavItems(className) {return [
     {
@@ -35,7 +36,7 @@ const defaultData = {
     password: ""
 }
 
-const Header2 = (props, { login, isAuthenticated, user }) => {
+const Header2 = (props, {login, isAuthenticated, user }) => {
     const [formData, setForm] = useForm(defaultData);
     const { email, password } = formData;
     const [open, setOpen] = useState(false);
@@ -69,14 +70,14 @@ const Header2 = (props, { login, isAuthenticated, user }) => {
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group>
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name="email" className="form-field" value={email} onChange={setForm} required />
+                        <Form.Control placeholder="Email" type="email" name="email" className="form-field" value={email} onChange={setForm} required />
                     </Form.Group>
                     <Form.Group>
                         <div className="inline-form-text">
                             <Form.Label>Password</Form.Label>
                             <Form.Text><a href="#" onClick={() => setModalShow(true)}>Forgot Your Password?</a></Form.Text>
                         </div>
-                        <Form.Control className="form-field" type="password" name="password" value={password} onChange={setForm} required />
+                        <Form.Control placeholder="Password"  className="form-field" type="password" name="password" value={password} onChange={setForm} required />
                     </Form.Group>
                     <Button type="submit">Log In</Button>
                 </Form>
@@ -140,5 +141,5 @@ const mapStateToProps = (state) => ({
     user: state.auth.user,
   });
 
-export default Header2;
+export default connect(mapStateToProps, {login})(Header2);
 

@@ -13,6 +13,7 @@ import { check_authenticated } from "./actions/action.auth";
 import setAuthToken from "./utils/setAuthToken";
 import ForgotPassword from "./components/forgot-password.component";
 import PrivateRoute from "./routing/PrivateRoutes";
+import RecruiterPage from "./components/recruiter-page.component";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -35,6 +36,7 @@ function App() {
               <Route path="/login" exact component = {Login} />
               <Route path="/sign-up" exact component = {SignUpFirst} />
               <Route path="/forgot-password" exact component = {ForgotPassword} />
+              <Route path="/recruiters" exact component= {RecruiterPage} />
             </Switch>
           </div>
         </div>

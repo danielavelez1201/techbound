@@ -59,6 +59,16 @@
   z-index: 200;
 }
 
+.profile-dashboard {
+  padding: 30px;
+  border: 10px black;
+  margin: 50px;
+}
+
+.width-full {
+  width: 100%;
+}
+
 .ul {
   margin: 0;
   padding: 0;
@@ -78,6 +88,11 @@
   font-size: 2.2vh;
   font-family: Glacial Indifference Regular;
   color: white;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
 }
 
 .nav-button {
@@ -143,8 +158,9 @@
 .NavbarItems {
   color: black;
   z-index: 200;
-  width: 200px;
+  width: 230px;
   justify-content: center;
+  min-width: fit-content;
 }
 
 .nav-links-black {
@@ -376,11 +392,27 @@ h5 {
 }
 
 .content {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
   margin-left: 10vw;
   margin-right: 10vw;
   z-index: 100;
+  justify-content: center;
+}
+
+.flex-grid {
+  display: flex;
+  padding-right: 200px;
+  padding: 50px;
+  justify-content: space-between;
+  padding-left: 200px;
+  
+}
+
+.col {
+  flex: 1;
+  text-align: left;
+  max-width: 500px;
 }
 
 .image-rows {
@@ -429,6 +461,10 @@ h5 {
 .form-margin {
   margin-bottom: 4vh;
   margin-left: 30vw; 
+  width: 180px;
+}
+
+.form-margin-centered {
   width: 180px;
 }
 
@@ -604,7 +640,7 @@ h5 {
     position: absolute;
     right: 0;
     z-index: 0;
-    transform: translateX(270px);
+    transform: translateX(290px);
     transition: transform 400ms ease-in;
     padding-right: 0px;
     height: 0vh;
@@ -628,16 +664,18 @@ h5 {
     display: flex;
     flex-direction: column;
     z-index: 200;
+    min-width: fit-content;
 
   }
 
   .NavbarItems {
     color: black;
     z-index: 200;
-    width: 200px;
+    width: 220px;
     height: 100px;
     background: white;
     justify-content: left;
+    min-width: fit-content;
   }
 
   .nav-links-white {
@@ -700,16 +738,16 @@ h5 {
     max-height: 100%;
   }
   
- /*  .language-blob {
+  /* .language-blob {
     grid-column: 4 / 8;
-    grid-row: 4 / 5;
+    grid-row: 5 / 5;
     object-fit: fill;
     max-width: 80%;
   }
   
   .gaming-blob {
     grid-column: 5 / 10;
-    grid-row: 4 / 4;
+    grid-row: 3 / 4;
     object-fit: contain;
     max-width: 80%;
   }

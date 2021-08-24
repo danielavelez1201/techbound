@@ -21,13 +21,24 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
     const [loadedColleges, setLoadedColleges] = useState(colleges);
     const [collegesLoaded, setCollegesLoaded] = useState(false);
 
+    function setCollege(e) {
+        console.log(e)
+        if (e) {
+            setForm({
+                ...formData,
+                [college]: e[0],
+            })
+        }
+        
+    }
+
     useEffect(() => {
         async function getColleges() {
             await fetch('http://universities.hipolabs.com/search?country=United%20States')
                 .then(res => res.json())
                 .then(colleges => {
                     console.log(colleges); 
-                    const collegeList = colleges.map(college => college.name)
+                    const collegeList = colleges ? colleges.map(college => college ? college.name : null) : []
                     console.log(collegeList)
                     setLoadedColleges(collegeList);    
                     setCollegesLoaded(true); 
@@ -35,7 +46,6 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
                 })
                 .catch(error => console.error(error));
         };
-    
         getColleges();
     }, [collegesLoaded])
 
@@ -159,10 +169,11 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
                         id="pagination-example"
                         onPaginate={(e) => console.log('Results paginated')}
                         value = {college}
-                        onChange={setForm}
+                        onChange={(e) => setCollege(e)}
                         options={loadedColleges}
                         paginate={true}
                         placeholder="Select your college"
+                        className="width-full"
                     />
                 {/* </Form.Control> */}
             </Form.Group>

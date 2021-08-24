@@ -71,7 +71,7 @@ const Basics = (colleges) => {
           <Form.Control
             type="email"
             name="email"
-            className="form-field form-margin"
+            className="form-field form-margin-centered"
             placeholder="jenny@college.edu"
             value={email}
             onChange={setForm}
