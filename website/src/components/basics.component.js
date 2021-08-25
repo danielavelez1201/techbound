@@ -67,7 +67,7 @@ const Basics = (colleges) => {
   return (
     <div>
       <Form>
-         <Form.Group>
+         <Form.Group className="form-centered">
           <Form.Control
             type="email"
             name="email"

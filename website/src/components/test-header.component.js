@@ -71,15 +71,13 @@ const Header2 = (props, {isAuthenticated, user }) => {
                 <h6>New here? <a href="signup">Create an account.</a></h6>
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name="email" className="form-field" value={email} onChange={setForm} required />
+                        <Form.Control type="email" name="email" className="form-field" placeholder={"Email"} value={email} onChange={setForm} required />
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group style={{"justify-content": "left"}}>
+                        <Form.Control className="form-field" type="password" name="password" placeholder={"Password"} value={password} onChange={setForm} required />
                         <div className="inline-form-text">
-                            <Form.Label>Password</Form.Label>
                             <Form.Text><a href="#" onClick={() => setModalShow(true)}>Forgot Your Password?</a></Form.Text>
                         </div>
-                        <Form.Control className="form-field" type="password" name="password" value={password} onChange={setForm} required />
                     </Form.Group>
                     <Button type="submit">Log In</Button>
                 </Form>
