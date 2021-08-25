@@ -15,45 +15,18 @@ import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
 
 
 const MoreDeets = ({ setForm, formData, navigation }) => {
-    const { email, firstname, lastname, password, confirmation, college } = formData;
-    const { previous, next } = navigation;
+    const { email, firstname, lastname, password, confirmation } = formData;
+    const { _, next } = navigation;
     const [colleges, setColleges] = useState([]);
-    // const [file, setFile] = useState(formData.resume);
-    // console.log("state variable", file);
     const location = useLocation();
-    const colleges2 = location.state ? location.state.colleges : null;
     const emailVar = location.state ? location.state.email : null;
-    const [loadedColleges, setLoadedColleges] = useState(colleges2);
-    const [collegesLoaded, setCollegesLoaded] = useState(false);
-
-    // useEffect(() => {
-    //     async function getColleges() {
-    //         await fetch('http://universities.hipolabs.com/search?country=United%20States')
-    //             .then(res => res.json())
-    //             .then(colleges => {
-    //                 console.log(colleges); 
-    //                 const collegeList = colleges.map(college => college.name)
-    //                 console.log(collegeList)
-    //                 setLoadedColleges(collegeList);    
-    //                 setCollegesLoaded(true); 
-    //                 return collegeList;      
-    //             })
-    //             .catch(error => console.error(error));
-    //     };
-    
-    //     getColleges();
-    // }, [collegesLoaded])
-
-    // console.log(emailVar)
-    
-    
-//    useEffect(() => {
-//         setForm({target: {name: "resume", value: file}})
-//         console.log("form in use effect,", formData);
-//     }, []); 
+    const [college, setCollege] = useState({name: ""});
 
     useEffect(() => {
-        console.log("hi");
+        setForm({target: {name: "college", value: college.name}})
+    }, [college])
+
+    useEffect(() => {
         fetch('http://universities.hipolabs.com/search?country=United%20States')
             .then(response => response.json())
             .then(colleges => {
@@ -121,10 +94,11 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
                                 required />
                         </Form.Group>
                         <Form.Group>
+                            <div style={{"width": "100%"}}>
                             <Autocomplete
                                 name="college"
                                 value={college}
-                                onChange={setForm}
+                                onChange={(e) => {setCollege({name: e.target.innerText})}}
                                 required
                                 options={colleges}
                                 autoHighlight
@@ -146,32 +120,9 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
                                     />
                                 )}
                             />
+                            </div>
+                            
                         </Form.Group>
-                        <Form.Group>
-                            <Button variant="primary" onClick={previous}>
-                                Previous
-                            </Button>
-                            <Button variant="primary" onClick={next}>
-                                Next
-                            </Button>
-                        </Form.Group>
-                        {/* <Form.Control
-                            as="select"
-                            name="college"
-                            value={college}
-                            onChange={setForm}
-                            required
-                        >
-                            <Typeahead
-                                id="pagination-example"
-                                onPaginate={(e) => console.log('Results paginated')}
-                                value={college}
-                                onChange={setForm}
-                                options={loadedColleges}
-                                paginate={true}
-                                placeholder="Select your college" 
-                            />
-                        </Form.Control> */}
                     </Form>
                 <br>
                 </br>

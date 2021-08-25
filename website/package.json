@@ -31,7 +31,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "pdf-text-extract": "^1.5.0",
-    "react": "next",
+    "react": "^18.0.0-alpha-bd5bf555e-20210823",
     "react-bootstrap": "^1.4.0",
     "react-bootstrap-typeahead": "^5.2.0",
     "react-chartjs-2": "^2.10.0",
