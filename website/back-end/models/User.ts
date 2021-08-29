@@ -1,6 +1,6 @@
 import { prop, getModelForClass } from "@typegoose/typegoose"
 
-class UserClass {
+export class UserClass {
   @prop({ required: true })
   public firstname!: string;
 
@@ -20,4 +20,6 @@ class UserClass {
   public clusters?: [string];
 }
 
-export const User = getModelForClass(UserClass);
+const User = getModelForClass(UserClass);
+
+export default User;

@@ -12,7 +12,6 @@ import { Provider } from "react-redux";
 import { check_authenticated } from "./actions/action.auth";
 import setAuthToken from "./utils/setAuthToken";
 import ForgotPassword from "./components/forgot-password.component";
-import PrivateRoute from "./routing/PrivateRoutes";
 import RecruiterPage from "./components/recruiter-page.component";
 
 if (localStorage.token) {

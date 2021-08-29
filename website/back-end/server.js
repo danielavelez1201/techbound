@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
 import { usersRouter } from './routes/users.js';
-import { authRouter } from './routes/auth.js';
 import { emailRouter } from './routes/email.js';
 import { signupRouter } from './routes/signup.js';
 
@@ -34,7 +33,6 @@ connection.once("open", () => {
 
 app.use("/users", usersRouter);
 app.use("/signup", signupRouter);
-app.use('/auth', authRouter);
 app.use("/email", emailRouter);
 
 app.get("/", (req, res) => {

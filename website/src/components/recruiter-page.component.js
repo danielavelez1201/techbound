@@ -19,6 +19,7 @@ function RecruiterPage() {
         </div>
         <div class="flex-grid">
             <div class="col">
+                <img style={{"justify-content": "center", "padding-bottom": "20px"}} src="../../images/trophy.png" height="60px" />
                 <h2>
                 Discover who really wants to intern with you.
                 </h2>
@@ -28,22 +29,24 @@ function RecruiterPage() {
                 </h3>
             </div>
             <div class="col">
+                <img style={{"justify-content": "center", "padding-bottom": "20px"}} src="../../images/handshake.png" height="60px" />
                 <h2>
                 Hire candidates excited about pursuing a future with your company.
                 </h2>
                 <h3>
-                We route students to the sectors of tech they are most passionate about, so they’re more likely to come back full-time.
+                We route students to the sectors of tech they are most passionate about, so they’re more likely to return full-time.
                 </h3>
             </div>        
         </div>
         <div class="flex-grid">
             <div class="col">
+                <img style={{"justify-content": "center", "padding-bottom": "20px"}} src="../../images/magnifier.png" height="60px" />
                 <h2>
                 We’ve already found the top candidates.
                 </h2>
                 <h3>
                 
-                <ul>
+                <ul style={{"list-style-image": 'url(../../images/checksmall.png)', "padding-inline-start": "23px"}}>
                     <li>
                     Proficient coding & thinking skills
                     </li>
@@ -57,6 +60,7 @@ function RecruiterPage() {
                 </h3>
             </div>
             <div class="col">
+                <img style={{"justify-content": "center", "padding-bottom": "20px"}} src="../../images/money.png" height="60px" />
                 <h2>
                 If it doesn’t work out, it’s on us.
                 </h2>
