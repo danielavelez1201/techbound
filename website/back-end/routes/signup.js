@@ -1,15 +1,13 @@
-require('dotenv/config')
-const bcrypt = require('bcrypt');
-const express = require('express')
-const multer = require('multer')
-const AWS = require('aws-sdk')
-const uuid = require('uuid/v4')
-const router = require("express").Router();
-let User = require('../models/user.model');
-const jwt = require("jsonwebtoken");
+import 'dotenv/config'
+import bcrypt from 'bcrypt';
+import express from 'express';
+import { User } from '../models/User.js';
+import jwt from "jsonwebtoken";
 
 
-router.route('/').post(async (req, res) => {
+const signupRouter = express.Router();
+
+signupRouter.route('/').post(async (req, res) => {
     const data = req.body;
     console.log(data);
 
@@ -63,4 +61,4 @@ router.route('/').post(async (req, res) => {
     
 })
 
-module.exports = router;
+export default signupRouter;

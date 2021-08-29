@@ -1,8 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-var mongoose = require('mongoose');
-const bodyParser = require("body-parser");
-const dotenv = require('dotenv');
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+
+import { usersRouter } from './routes/users.js';
+import { authRouter } from './routes/auth.js';
+import { emailRouter } from './routes/email.js';
+import { signupRouter } from './routes/signup.js';
 
 dotenv.config({ path: './config/config.env' })
 
@@ -26,14 +31,10 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-const usersRouter = require("./routes/users");
-const auth = require("./routes/auth");
-const emailRouter = require("./routes/email");
-const signupRouter = require("./routes/signup");
 
 app.use("/users", usersRouter);
 app.use("/signup", signupRouter);
-app.use('/auth', auth);
+app.use('/auth', authRouter);
 app.use("/email", emailRouter);
 
 app.get("/", (req, res) => {

@@ -1,7 +1,10 @@
-const router = require('express').Router();
-const send = require('../util/mailchimp').send;
+import express from 'express';
+import mailchimp from '../util/mailchimp';
 
-router.route("/api/v1/public/sendEmail").post(async (req, res) => {
+const send = mailchimp.send;
+const emailRouter = express.Router();
+
+emailRouter.route("/api/v1/public/sendEmail").post(async (req, res) => {
     const { email } = req.body
     if (!email) {    
         res.json({ error: 'Email is required' });    
@@ -16,4 +19,4 @@ router.route("/api/v1/public/sendEmail").post(async (req, res) => {
     }
 });
 
-module.exports = router;
+export default emailRouter;

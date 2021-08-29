@@ -1,17 +1,17 @@
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import express from 'express';
+import { User } from '../models/User.js';
 
-const jwt = require("jsonwebtoken");
-const bcrypt  = require("bcrypt");
-const router = require('express').Router();
-let User = require('../models/user.model');
-
-router.route('/').get((req, res) => {
+const usersRouter = express.Router();
+usersRouter.route('/').get((req, res) => {
   User.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-
-router.route('/getByEmail').post(async (req, res) => {
+ 
+usersRouter.route('/getByEmail').post(async (req, res) => {
   console.log("params", req.body.email);
   console.log("in get by email route:", req.body.email);
   User.findOne({'email': req.body.email})
@@ -21,7 +21,7 @@ router.route('/getByEmail').post(async (req, res) => {
 
 const auth = require("../middleware/auth");
 
-router.get("/authenticate", auth, async (req, res) => {
+usersRouter.get("/authenticate", auth, async (req, res) => {
   console.log("in authentication function");
   try {
     console.log("authenticating, user: ", req.user.userId)
@@ -33,7 +33,7 @@ router.get("/authenticate", auth, async (req, res) => {
   }
 });
 
-router.route('/signin').post((req, res) => {
+usersRouter.route('/signin').post((req, res) => {
   console.log("sign in back-end");
 
   email = req.body.email;
@@ -88,7 +88,7 @@ router.route('/signin').post((req, res) => {
   });
 
 
-router.route('/add').post(async (req, res, next) => {
+  usersRouter.route('/add').post(async (req, res, next) => {
 
   const formData = req.body;
   const clusterData = [];
@@ -171,21 +171,21 @@ router.route('/add').post(async (req, res, next) => {
   });
 });
 
-router.route('/get/:id').get(async (req, res) => {
+usersRouter.route('/get/:id').get(async (req, res) => {
   User.findById(req.params.id)
   .then(user => res.json(user.firstname))
   .catch(err => res.status(400).json('Error: ' + err));
 })
 
 
-router.route('/clusters/:id').get(async (req, res) => {
+usersRouter.route('/clusters/:id').get(async (req, res) => {
 
   User.findById(req.params.id)
     .then(user => res.json(user.clusters))
     .catch(err => res.status(400). json('Error: ' + err));
 })
 
-router.route('/addcluster/:id/:clusterId').post((req, res) => {
+usersRouter.route('/addcluster/:id/:clusterId').post((req, res) => {
   console.log("WORKED")
   User.findById(req.params.id)
     .then(user => {
@@ -198,4 +198,4 @@ router.route('/addcluster/:id/:clusterId').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-module.exports = router;
+export default userRouter;

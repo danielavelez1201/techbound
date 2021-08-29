@@ -1,10 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const userSchema = require("../models/user.model");
-const bcrypt = require('bcrypt');
-const authorize = require('../middleware/auth');
+import express from 'express';
+import { User } from "../models/User.js";
+import bcrypt from 'bcrypt';
+import authorize from '../middleware/auth';
 
-router.post("/signin-user", (req, res, next) => {
+const authRouter = express.Router();
+const userSchema = User;
+
+authRouter.post("/signin-user", (req, res, next) => {
     let getUser;
     userSchema.findOne({
         email: req.body.email
@@ -42,7 +44,7 @@ router.post("/signin-user", (req, res, next) => {
     });
 });
 
-router.route('/all-user').get(authorize, (req, res) => {
+authRouter.route('/all-user').get(authorize, (req, res) => {
     userSchema.find((error, response) => {
         if (error) {
             return next(error)
@@ -51,4 +53,4 @@ router.route('/all-user').get(authorize, (req, res) => {
     });
 });
 
-module.exports = router;
+export default authRouter;
