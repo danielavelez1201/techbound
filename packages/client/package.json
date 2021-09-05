@@ -1,0 +1,99 @@
+{
+  "name": "@techbound/client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@typegoose/typegoose": "^8.2.0",
+    "@types/js-cookie": "^2.2.6",
+    "axios": "^0.21.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
+    "chart.js": "^2.9.4",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "html-react-parser": "^0.14.2",
+    "html-to-react": "^1.4.5",
+    "is-empty": "^1.2.0",
+    "isomorphic-fetch": "^3.0.0",
+    "ityped": "^1.0.3",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mdbreact": "^4.6.1",
+    "mongoose": "^5.13.8",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pdf-text-extract": "^1.5.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.4.0",
+    "react-bootstrap-typeahead": "^5.2.0",
+    "react-chartjs-2": "^2.10.0",
+    "react-dom": "next",
+    "react-dropzone": "^11.2.4",
+    "react-highlight-words": "^0.17.0",
+    "react-hooks-helper": "^1.6.0",
+    "react-icons": "^4.1.0",
+    "react-pdf": "^5.1.0",
+    "react-pdf-highlighter": "^3.4.0",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-s3": "^1.3.1",
+    "react-scripts": "^4.0.2",
+    "react-select": "^3.1.0",
+    "react-sidebar": "^3.0.2",
+    "react-sidemenu": "^1.1.0",
+    "react-toastify": "^6.0.9",
+    "react-typist": "^2.0.5",
+    "reactstrap": "^8.6.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "request": "^2.88.2",
+    "reselect": "^4.0.0",
+    "sass": "^1.35.2",
+    "typescript": "~4.0.5",
+    "validator": "^13.1.17",
+    "waitlistapi": "^0.6.2",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "flow": "flow"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/preset-flow": "^7.12.13",
+    "flow-bin": "^0.145.0"
+  }
+}
