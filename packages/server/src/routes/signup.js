@@ -9,13 +9,8 @@ const signupRouter = express.Router();
 
 signupRouter.route('/').post(async (req, res) => {
     const data = req.body;
-    console.log(data);
-
     const formData = req.body;
-
-    console.log("PASSWORD", formData.password)
     const hash = await bcrypt.hash(formData.password, 10)
-    console.log(hash)
     const user = new User({
       "firstname": formData.firstname,
       "lastname": formData.lastname,

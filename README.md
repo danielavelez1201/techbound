@@ -2,7 +2,7 @@
 
 Installation: 
 
-This project uses lerna (https://github.com/lerna/lerna) for workspace management. Use `lerna run build` followed by `lerna run start` to get started. 
+This project uses lerna (https://github.com/lerna/lerna) for workspace management. Use `lerna run build` followed by `lerna run start --stream` to get started. 
 
 Other: 
 - run `npm i` for npm packages 

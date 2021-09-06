@@ -51,13 +51,10 @@ signupRouter.route('/').post(function (req, res) { return __awaiter(void 0, void
         switch (_a.label) {
             case 0:
                 data = req.body;
-                console.log(data);
                 formData = req.body;
-                console.log("PASSWORD", formData.password);
                 return [4 /*yield*/, bcrypt_1["default"].hash(formData.password, 10)];
             case 1:
                 hash = _a.sent();
-                console.log(hash);
                 user = new User_js_1.User({
                     "firstname": formData.firstname,
                     "lastname": formData.lastname,
