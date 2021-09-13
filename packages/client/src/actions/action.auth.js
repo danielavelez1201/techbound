@@ -20,7 +20,7 @@ export const check_authenticated = () => async (dispatch) => {
   console.log("in action to check for authentication");
 
   try {
-    const res = await axios.get("http://localhost:5000/users/authenticate");
+    const res = await axios.get("/users/authenticate");
     console.log("authentication worked!")
     dispatch({
       type: AUTHENTICATION_SUCESS,
@@ -45,7 +45,7 @@ export function login(email, password) {
     };
     const body = JSON.stringify({email, password });
     console.log(body);
-    axios.post("http://localhost:5000/users/signin", body, config)
+    axios.post("/users/signin", body, config)
     .then(
       res => {
         console.log(res.data);
@@ -77,7 +77,7 @@ export const login2 = (email, password) => async (dispatch) => {
   const body = JSON.stringify({email, password });
   console.log(body);
   try {
-    const res = await axios.post("http://localhost:5000/users/signin", body, config);
+    const res = await axios.post("/users/signin", body, config);
     console.log(res.data);
     dispatch({
       type: LOGIN_SUCESS,
@@ -102,8 +102,8 @@ export const signup = (email, password) => async (dispatch) => {
   const body = JSON.stringify({email, password });
 
   try {
-    console.log(body);
-    const res = await axios.post("http://localhost:5000/users/add", body, config);
+    // This route does not exist.
+    const res = await axios.post("/users/add", body, config);
     dispatch({
       type: SIGNUP_SUCESS,
       payload: res.data,

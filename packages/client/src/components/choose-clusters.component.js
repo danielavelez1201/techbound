@@ -59,50 +59,27 @@ const ChooseClusters = ({ setForm, formData, navigation, resume }) => {
     };
 
     async function handleSubmit(skip) {
-        let formDataNew = new FormData();
+        let body = {
+            ...formData
+        };
         if (clusters.filter(c => c.selected).length === 3 && !skip) {
-            formData.clusters = clusters.filter(c => c.selected);
-            formDataNew.append("email", formData.email);
-            formDataNew.append("firstname", formData.firstname);
-            formDataNew.append("lastname", formData.lastname);
-            formDataNew.append("linkedin", formData.linkedin);
-            formDataNew.append("password", formData.password);
-            formDataNew.append("confirmation", formData.confirmation);
-            formDataNew.append("college", formData.college);
-            formDataNew.append("cluster1", formData.clusters[0].title);
-            formDataNew.append("cluster2", formData.clusters[1].title);
-            formDataNew.append("cluster3", formData.clusters[2].title);
+            let selectedClusters = clusters.filter(c => c.selected);
+            body['cluster1'] = selectedClusters[0].title;
+            body['cluster2'] = selectedClusters[1].title;
+            body['cluster3'] = selectedClusters[2].title;
         } else {
-            formData.clusters = [];
-            console.log(formData);
-            formDataNew.append("email", formData.email);
-            formDataNew.append("firstname", formData.firstname);
-            formDataNew.append("lastname", formData.lastname);
-            formDataNew.append("linkedin", formData.linkedin);
-            formDataNew.append("password", formData.password);
-            formDataNew.append("confirmation", formData.confirmation);
-            formDataNew.append("college", formData.college);
-            for (var pair of formDataNew.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]); 
-            }
+           body.clusters = [];
         }
 
-            await axios
-            .post("http://localhost:5000/signup", formDataNew, {headers: {
-                'Content-Type': 'multipart/form-data'
-              }})
+        await axios
+            .post("/signup", body)
             .then(res => console.log(res.data))
-            try {
-                console.log("trying to submit");
-                await sendEmail(formData.email);
-                console.log('email was successfully added to Mailchimp list');
-            } catch (err) {
-                console.log(err)
-            }
-            await login(formData.email, formData.password); //not working
-            setRedirectToHome(true);
+            .then(() => sendEmail(formData.email))
+            .then(() => login(formData.email, formData.password)) //not working
+            .finally(() => setRedirectToHome(true));       
+            // signup(formData.email, formData.password)};
+    }
 
-        signup(formData.email, formData.password)};
 
     return (
         <div>

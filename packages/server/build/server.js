@@ -41,7 +41,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
+var typegoose_1 = require("@typegoose/typegoose");
 var dotenv_1 = __importDefault(require("dotenv"));
+var morgan_1 = __importDefault(require("morgan"));
 var find_up_1 = __importDefault(require("find-up"));
 var path_1 = __importDefault(require("path"));
 var express_session_1 = __importDefault(require("express-session"));
@@ -51,8 +53,17 @@ var signup_1 = __importDefault(require("./routes/signup"));
 var email_1 = __importDefault(require("./routes/email"));
 var envPath = find_up_1["default"].sync(".env");
 dotenv_1["default"].config({ path: envPath });
+/**
+ * Verifies that the environment has the correct keys.
+ * Crashes if verification fails.
+ */
 var validateEnv = function () {
-    // TODO: Validate the env keys.
+    var REQUIRED_KEYS = ["MONGO_URI", "SESSION_SECRET"];
+    REQUIRED_KEYS.map(function (k) {
+        if (process.env[k] === undefined) {
+            throw new Error("Missing environment key " + k);
+        }
+    });
 };
 // The client code *must* be built before the server starts.
 var appBundleDir = path_1["default"].resolve(__dirname, "..", "..", "client", "build");
@@ -62,21 +73,32 @@ var createHttpServer = function () { return __awaiter(void 0, void 0, void 0, fu
         validateEnv();
         app = (0, express_1["default"])();
         app.use(express_1["default"].urlencoded({ extended: true }));
+        app.use(express_1["default"].json({}));
+        // Nice HTTP logging.
+        app.use((0, morgan_1["default"])("dev", { skip: function () { return process.env.NODE_ENV === "test"; } }));
         app.use((0, express_session_1["default"])({
-            secret: "CHANGETHIS",
+            secret: String(process.env.SESSION_SECRET),
             resave: false,
             saveUninitialized: true
         }));
+        app.use((0, cors_1["default"])({ credentials: true, origin: "http://localhost:3000" }));
+        // *ADD ROUTES HERE* 
         app.use("/users", users_1["default"]);
         app.use("/signup", signup_1["default"]);
         app.use("/email", email_1["default"]);
+        // Serves client assets.
         app.use(express_1["default"].static(appBundleDir));
-        // TODO: The origin should be an env variable.
-        app.use((0, cors_1["default"])({ credentials: true, origin: "http://localhost:3000" }));
+        // This *needs* at the end.
         app.use("*", function (_, res) {
             res.sendFile(path_1["default"].resolve(appBundleDir, "public", "index.html"));
         });
-        return [2 /*return*/, new http_1["default"].Server(app)];
+        return [2 /*return*/, typegoose_1.mongoose.connect(String(process.env.MONGO_URI), {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useCreateIndex: true
+            }).then(function () {
+                return new http_1["default"].Server(app);
+            })];
     });
 }); };
 exports["default"] = createHttpServer;

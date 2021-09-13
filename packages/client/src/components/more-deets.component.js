@@ -9,14 +9,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import TextField from '@material-ui/core/TextField';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useLocation } from "react-router-dom";
 import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
 
 
 const MoreDeets = ({ setForm, formData, navigation }) => {
     const { email, firstname, lastname, password, confirmation } = formData;
-    const { _, next } = navigation;
+    const { next } = navigation;
     const [colleges, setColleges] = useState([]);
     const location = useLocation();
     const emailVar = location.state ? location.state.email : null;
@@ -27,7 +27,7 @@ const MoreDeets = ({ setForm, formData, navigation }) => {
     }, [college])
 
     useEffect(() => {
-        fetch('http://universities.hipolabs.com/search?country=United%20States')
+        fetch('/colleges.json') // This is available in the public folder.
             .then(response => response.json())
             .then(colleges => {
                 setColleges(colleges);

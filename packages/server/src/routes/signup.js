@@ -1,17 +1,16 @@
 import 'dotenv/config'
 import bcrypt from 'bcrypt';
 import express from 'express';
-import { User } from '../models/User.js';
+import UserModel from '../models/User';
 import jwt from "jsonwebtoken";
 
 
 const signupRouter = express.Router();
 
 signupRouter.route('/').post(async (req, res) => {
-    const data = req.body;
     const formData = req.body;
     const hash = await bcrypt.hash(formData.password, 10)
-    const user = new User({
+    const user = new UserModel({
       "firstname": formData.firstname,
       "lastname": formData.lastname,
       "email": formData.email,
@@ -30,7 +29,7 @@ signupRouter.route('/').post(async (req, res) => {
       }
   
       //jwt payload
-      payload = {
+      const payload = {
         user: {
           email: user.email,
           userId: user._id,

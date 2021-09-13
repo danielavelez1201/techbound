@@ -106,7 +106,7 @@ function ClusterList() {
 
   useEffect(() => {
     const internships = async () => {
-      const response = await axios.get("http://localhost:5000/internships");
+      const response = await axios.get("/internships");
       setInternships(response.data);
     }
     internships();
@@ -138,7 +138,7 @@ function ClusterList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/clusters/")
+      .get("/clusters")
       .then((response) => {
         setClusters(response.data);
       })

@@ -1,4 +1,4 @@
-import { prop, getModelForClass, mongoose } from "@typegoose/typegoose"
+import { prop, getModelForClass, mongoose } from "@typegoose/typegoose";
 export interface IUser {
   _id?: mongoose.Types.ObjectId;
   firstname: string,

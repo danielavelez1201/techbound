@@ -36,6 +36,7 @@ const createHttpServer = async (): Promise<http.Server> => {
 
     const app = express();
     app.use(express.urlencoded({extended: true}));
+    app.use(express.json({}));
     // Nice HTTP logging.
     app.use(logger("dev", { skip: () => process.env.NODE_ENV === "test" }));
     app.use(session({

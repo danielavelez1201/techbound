@@ -42,20 +42,19 @@ exports.__esModule = true;
 require("dotenv/config");
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var express_1 = __importDefault(require("express"));
-var User_js_1 = require("../models/User.js");
+var User_1 = __importDefault(require("../models/User"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var signupRouter = express_1["default"].Router();
 signupRouter.route('/').post(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, formData, hash, user;
+    var formData, hash, user;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                data = req.body;
                 formData = req.body;
                 return [4 /*yield*/, bcrypt_1["default"].hash(formData.password, 10)];
             case 1:
                 hash = _a.sent();
-                user = new User_js_1.User({
+                user = new User_1["default"]({
                     "firstname": formData.firstname,
                     "lastname": formData.lastname,
                     "email": formData.email,
@@ -73,7 +72,7 @@ signupRouter.route('/').post(function (req, res) { return __awaiter(void 0, void
                         });
                     }
                     //jwt payload
-                    payload = {
+                    var payload = {
                         user: {
                             email: user.email,
                             userId: user._id
